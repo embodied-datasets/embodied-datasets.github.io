@@ -1,0 +1,216 @@
+{
+  "slug": "ncore",
+  "name": "NCore (PhysicalAI-AV NCore)",
+  "aliases": [
+    "PAI-AV-NCore",
+    "PhysicalAI-Autonomous-Vehicles-NCore"
+  ],
+  "tagline": "NVIDIA's Hyperion 8.1 clips repackaged in the component-based NCore V4 format, with seven fisheye cameras, a 360° LiDAR, 100 Hz poses and auto-labelled cuboids.",
+  "domain": "driving",
+  "family": "physical-ai-av",
+  "version": "NCore V4 format",
+  "release_date": "2026-03",
+  "last_update": "2026-03",
+  "organizations": [
+    "nvidia"
+  ],
+  "homepage": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore",
+  "links": {
+    "download": [
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore"
+    ],
+    "code": [
+      "https://github.com/NVIDIA/ncore"
+    ]
+  },
+  "papers": [],
+  "availability": {
+    "status": "available-registration",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "hf_hub_gated"
+    ],
+    "cost": "free",
+    "eligibility": "Governed by the NVIDIA AV dataset licence accepted on the Hugging Face Hub.",
+    "registration_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore",
+    "evidence": [
+      {
+        "url": "https://huggingface.co/api/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Hugging Face API reports gated=auto, public, custom licence (nvidia-av-dataset), created 2026-03-04, last modified 2026-03-23."
+      }
+    ],
+    "mirrors": [],
+    "download_size": {
+      "compressed_gb": 2400,
+      "note": "About 1.2 GB per clip (one LiDAR archive plus seven camera archives)."
+    },
+    "history": [
+      {
+        "date": "2026-03",
+        "status": "available-registration",
+        "event": "Released on the Hugging Face Hub together with the open-source ncore reader.",
+        "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "NVIDIA-AV-Dataset-License",
+        "name": "NVIDIA Autonomous Vehicles dataset licence",
+        "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles/blob/main/LICENSE.pdf",
+        "applies_to": [
+          "data",
+          "annotations"
+        ]
+      }
+    ],
+    "permissions": {},
+    "notes": "Permissions not assessed; read the licence PDF before use."
+  },
+  "collection": {
+    "reality": "real",
+    "platform": "NVIDIA Hyperion 8.1",
+    "driving_mode": "mixed",
+    "locations": [],
+    "locations_note": "Cities are not published."
+  },
+  "scale": {
+    "logs": 1147,
+    "log_unit": "clips",
+    "hours": 6.3,
+    "km": 167.6,
+    "storage_tb": 2.4
+  },
+  "modalities": [
+    "ego_pose",
+    "camera",
+    "lidar",
+    "boxes_3d"
+  ],
+  "sensors": [
+    {
+      "type": "camera",
+      "count": 7,
+      "name": "f-theta (fisheye) cameras",
+      "hz": 30,
+      "ids": [
+        "FTCAM_F0",
+        "FTCAM_TELE_F0",
+        "FTCAM_R0",
+        "FTCAM_L0",
+        "FTCAM_R1",
+        "FTCAM_L1",
+        "FTCAM_TELE_B0"
+      ],
+      "notes": "Six-coefficient f-theta polynomials; JPEG frames stored inside zarr archives."
+    },
+    {
+      "type": "lidar",
+      "count": 1,
+      "name": "360° roof LiDAR",
+      "hz": 10,
+      "ids": [
+        "LIDAR_TOP"
+      ]
+    },
+    {
+      "type": "imu",
+      "count": 1,
+      "notes": "Rig-to-world poses at about 100 Hz; no velocities, py123d infers dynamics."
+    }
+  ],
+  "annotations": [
+    {
+      "type": "boxes_3d",
+      "classes": 10,
+      "hz": 10,
+      "method": "auto",
+      "notes": "Same taxonomy as Physical AI AV."
+    },
+    {
+      "type": "tracking_ids",
+      "hz": 10,
+      "method": "auto"
+    }
+  ],
+  "maps": {
+    "available": false,
+    "type": "none"
+  },
+  "splits": [
+    {
+      "name": "ncore_train",
+      "count": 1147,
+      "unit": "clips",
+      "notes": "Single collection; the split name is synthetic."
+    }
+  ],
+  "benchmarks": [],
+  "formats": {
+    "raw": [
+      "indexed-tar zarr archives (.zarr.itar) per modality",
+      "JSON sequence manifests"
+    ],
+    "devkit": {
+      "name": "ncore",
+      "url": "https://github.com/NVIDIA/ncore",
+      "language": "Python",
+      "maintained": true
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://kesai.eu/py123d/datasets/ncore/"
+      }
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "ncore",
+        "ncore-stream"
+      ],
+      "extra": "py123d[ncore]",
+      "docs": "https://kesai.eu/py123d/datasets/ncore/",
+      "status": "experimental",
+      "notes": "Streaming downloads each clip per Ray worker and deletes it after conversion."
+    }
+  },
+  "relations": [
+    {
+      "type": "shares_rig_with",
+      "target": "physical-ai-av",
+      "external": false
+    }
+  ],
+  "figures": {
+    "sensor_timeline": {
+      "file": "assets/sensor_timeline.svg",
+      "caption": "Sensor recording timeline of an NCore clip, as measured by py123d.",
+      "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_ncore.svg",
+      "license": "Apache-2.0"
+    }
+  },
+  "community": {
+    "huggingface": "nvidia/PhysicalAI-Autonomous-Vehicles-NCore"
+  },
+  "sources": {
+    "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "sensors": "https://kesai.eu/py123d/datasets/ncore/",
+    "availability.download_size": "https://kesai.eu/py123d/datasets/ncore/"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "medium",
+    "notes": "No paper; licence permissions not assessed."
+  }
+}

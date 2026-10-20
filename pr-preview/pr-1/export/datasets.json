@@ -1,0 +1,4785 @@
+{
+  "generated": "2026-10-20T03:29:40.499Z",
+  "schema_version": "0.1.0",
+  "license": "CC-BY-4.0",
+  "source": "https://github.com/embodied-datasets/embodied-datasets.github.io",
+  "count": 16,
+  "datasets": [
+    {
+      "slug": "av2-sensor",
+      "name": "Argoverse 2 Sensor",
+      "aliases": [
+        "AV2 Sensor",
+        "AV2-Sensor"
+      ],
+      "tagline": "Argo AI's 1,000-log perception dataset from six US cities with seven ring cameras, a stereo pair, two LiDARs, 3D HD maps and 3D cuboids in 30 categories.",
+      "domain": "driving",
+      "family": "argoverse-2",
+      "version": "v2.0",
+      "release_date": "2021-06",
+      "organizations": [
+        "argo-ai"
+      ],
+      "homepage": "https://www.argoverse.org/av2.html",
+      "links": {
+        "download": [
+          "https://www.argoverse.org/av2.html#download-link"
+        ],
+        "code": [
+          "https://github.com/argoverse/av2-api"
+        ],
+        "leaderboard": "https://eval.ai/web/challenges/challenge-page/1710/leaderboard"
+      },
+      "papers": [
+        {
+          "title": "Argoverse 2: Next Generation Datasets for Self-Driving Perception and Forecasting",
+          "venue": "NeurIPS 2021 Datasets and Benchmarks",
+          "year": 2021,
+          "arxiv": "2301.00493",
+          "url": "https://arxiv.org/abs/2301.00493",
+          "bibtex": "@inproceedings{Wilson2021NEURIPS,\n  author = {Benjamin Wilson and William Qi and Tanmay Agarwal and John Lambert and Jagjeet Singh and Siddhesh Khandelwal and Bowen Pan and Ratnesh Kumar and Andrew Hartnett and Jhony Kaesemodel Pontes and Deva Ramanan and Peter Carr and James Hays},\n  title = {Argoverse 2: Next Generation Datasets for Self-Driving Perception and Forecasting},\n  booktitle = {Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks},\n  year = {2021}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "cloud_bucket"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial use under CC BY-NC-SA 4.0 and the Argoverse terms of use.",
+        "evidence": [
+          {
+            "url": "https://www.argoverse.org/av2.html",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Website online and still maintained after Argo AI's shutdown."
+          },
+          {
+            "url": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/av2.rst",
+            "checked": "2026-10-14",
+            "note": "py123d downloads from s3://argoverse/datasets/av2/sensor/ without AWS credentials; the bucket is publicly readable."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "compressed_gb": 250,
+          "note": "About 250 MB per log across 1,000 logs, as measured by py123d."
+        },
+        "history": [
+          {
+            "date": "2021-06",
+            "status": "available",
+            "event": "Argoverse 2 released (Sensor, Lidar, Motion Forecasting and Map Change datasets).",
+            "source": "https://www.argoverse.org/av2.html"
+          },
+          {
+            "date": "2022-10",
+            "event": "Argo AI shut down. The datasets stayed on the public S3 bucket and the website kept working.",
+            "source": "https://www.argoverse.org/about.html"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "CC-BY-NC-SA-4.0",
+            "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0",
+            "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+            "applies_to": [
+              "data",
+              "annotations",
+              "maps"
+            ]
+          },
+          {
+            "id": "MIT",
+            "name": "MIT License (av2-api)",
+            "url": "https://github.com/argoverse/av2-api/blob/main/LICENSE",
+            "applies_to": [
+              "code"
+            ]
+          }
+        ],
+        "terms_url": "https://www.argoverse.org/about.html#terms-of-use",
+        "permissions": {
+          "commercial": false,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": true
+        }
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Argo AI test fleet (Ford Fusion Hybrid)",
+        "driving_mode": "mixed",
+        "locations": [
+          {
+            "city": "Austin",
+            "region": "Texas",
+            "country": "US",
+            "lat": 30.27,
+            "lon": -97.74
+          },
+          {
+            "city": "Detroit",
+            "region": "Michigan",
+            "country": "US",
+            "lat": 42.33,
+            "lon": -83.05
+          },
+          {
+            "city": "Miami",
+            "region": "Florida",
+            "country": "US",
+            "lat": 25.76,
+            "lon": -80.19
+          },
+          {
+            "city": "Pittsburgh",
+            "region": "Pennsylvania",
+            "country": "US",
+            "lat": 40.44,
+            "lon": -79.99
+          },
+          {
+            "city": "Palo Alto",
+            "region": "California",
+            "country": "US",
+            "lat": 37.44,
+            "lon": -122.14
+          },
+          {
+            "city": "Washington",
+            "region": "District of Columbia",
+            "country": "US",
+            "lat": 38.91,
+            "lon": -77.04
+          }
+        ],
+        "environment": [
+          "urban",
+          "suburban"
+        ]
+      },
+      "scale": {
+        "logs": 1000,
+        "log_unit": "logs",
+        "scene_duration_s": 15,
+        "hours": 4.4,
+        "km": 87.5
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "hd_map",
+        "boxes_3d"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 7,
+          "name": "ring cameras",
+          "hz": 20,
+          "resolution": "2048×1550",
+          "ids": [
+            "PCAM_F0",
+            "PCAM_R0",
+            "PCAM_R1",
+            "PCAM_R2",
+            "PCAM_L0",
+            "PCAM_L1",
+            "PCAM_L2"
+          ]
+        },
+        {
+          "type": "camera",
+          "count": 2,
+          "name": "stereo cameras",
+          "hz": 20,
+          "resolution": "2048×1550",
+          "ids": [
+            "PCAM_STEREO_L",
+            "PCAM_STEREO_R"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 2,
+          "name": "stacked roof LiDARs",
+          "model": "Velodyne VLP-32C",
+          "hz": 10,
+          "beams": 32,
+          "ids": [
+            "LIDAR_TOP",
+            "LIDAR_DOWN"
+          ],
+          "notes": "Two 32-beam sensors stacked for 64-beam-equivalent coverage."
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "classes": 30,
+          "hz": 10,
+          "method": "human"
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "human"
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "hd_vector",
+        "dimensions": "3d",
+        "scope": "per_log",
+        "format": "JSON lane graph plus ground-height raster per log",
+        "georeferenced": true,
+        "layers": [
+          "lane segments",
+          "lane boundaries",
+          "pedestrian crossings",
+          "drivable area",
+          "ground height"
+        ]
+      },
+      "splits": [
+        {
+          "name": "train",
+          "count": 700,
+          "unit": "logs"
+        },
+        {
+          "name": "val",
+          "count": 150,
+          "unit": "logs"
+        },
+        {
+          "name": "test",
+          "count": 150,
+          "unit": "logs",
+          "hidden_ground_truth": true
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "3d_detection",
+          "name": "AV2 3D object detection",
+          "url": "https://eval.ai/web/challenges/challenge-page/1710/overview",
+          "eval_server": "unknown"
+        },
+        {
+          "task": "3d_tracking",
+          "name": "AV2 3D tracking",
+          "url": "https://www.argoverse.org/av2.html",
+          "eval_server": "unknown"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "Feather tables (annotations",
+          "poses",
+          "calibration)",
+          "JPEG images",
+          "Feather LiDAR sweeps",
+          "JSON maps"
+        ],
+        "devkit": {
+          "name": "av2-api",
+          "url": "https://github.com/argoverse/av2-api",
+          "language": "Python / Rust",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/av2/"
+          }
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "av2-sensor",
+            "av2-sensor-stream"
+          ],
+          "extra": "py123d[av2]",
+          "docs": "https://kesai.eu/py123d/datasets/av2/",
+          "status": "stable",
+          "notes": "The stream config pulls selected logs from S3 and needs no cloud account; it is py123d's default demo dataset."
+        }
+      },
+      "relations": [],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of an Argoverse 2 Sensor log, as measured by py123d.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_av2-sensor.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {},
+      "sources": {
+        "scale.hours": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "scale.km": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "scale.logs": "https://www.argoverse.org/av2.html",
+        "sensors": "https://arxiv.org/abs/2301.00493",
+        "collection.locations": "https://www.argoverse.org/av2.html",
+        "availability.download_size": "https://kesai.eu/py123d/datasets/av2/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "high",
+        "notes": "Evaluation-server status on EvalAI is not confirmed."
+      }
+    },
+    {
+      "slug": "carla",
+      "name": "CARLA",
+      "aliases": [
+        "CARLA Simulator"
+      ],
+      "tagline": "The open-source urban driving simulator behind most synthetic driving datasets; it generates sensor data, maps and labels on demand instead of shipping a fixed dataset.",
+      "domain": "driving",
+      "family": "carla",
+      "version": "0.9.16 (Unreal Engine 4) and 0.10 (Unreal Engine 5)",
+      "release_date": "2017-11",
+      "last_update": "2025",
+      "organizations": [
+        "cvc-uab",
+        "intel-labs"
+      ],
+      "homepage": "https://carla.org/",
+      "links": {
+        "download": [
+          "https://github.com/carla-simulator/carla/releases"
+        ],
+        "code": [
+          "https://github.com/carla-simulator/carla"
+        ],
+        "docs": "https://carla.readthedocs.io/",
+        "leaderboard": "https://leaderboard.carla.org/"
+      },
+      "papers": [
+        {
+          "title": "CARLA: An Open Urban Driving Simulator",
+          "venue": "CoRL 2017",
+          "year": 2017,
+          "arxiv": "1711.03938",
+          "url": "https://arxiv.org/abs/1711.03938",
+          "bibtex": "@inproceedings{Dosovitskiy2017CORL,\n  title={{CARLA}: {An} Open Urban Driving Simulator},\n  author={Alexey Dosovitskiy and German Ros and Felipe Codevilla and Antonio Lopez and Vladlen Koltun},\n  booktitle={Proceedings of the 1st Annual Conference on Robot Learning (CoRL)},\n  year={2017}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "source_code",
+          "direct"
+        ],
+        "cost": "free",
+        "evidence": [
+          {
+            "url": "https://carla.org/",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Website online; packaged releases are published on GitHub."
+          },
+          {
+            "url": "https://github.com/carla-simulator/carla",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Repository active."
+          }
+        ],
+        "mirrors": [],
+        "history": [
+          {
+            "date": "2017-11",
+            "status": "available",
+            "event": "Open-sourced with the CoRL 2017 paper.",
+            "source": "https://arxiv.org/abs/1711.03938"
+          },
+          {
+            "date": "2024-12",
+            "event": "CARLA 0.10 on Unreal Engine 5 released; 0.9.x remains the version most datasets and leaderboards use.",
+            "source": "https://carla.org/"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "MIT",
+            "name": "MIT License (simulator code)",
+            "url": "https://github.com/carla-simulator/carla/blob/master/LICENSE",
+            "applies_to": [
+              "code"
+            ]
+          },
+          {
+            "id": "CC-BY-4.0",
+            "name": "Creative Commons Attribution 4.0 (CARLA assets, maps and meshes)",
+            "url": "https://github.com/carla-simulator/carla/blob/master/LICENSE",
+            "applies_to": [
+              "data",
+              "maps"
+            ]
+          }
+        ],
+        "permissions": {
+          "commercial": true,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": false
+        },
+        "notes": "Unreal Engine itself is licensed separately by Epic Games."
+      },
+      "collection": {
+        "reality": "synthetic",
+        "simulator": {
+          "name": "CARLA"
+        },
+        "driving_mode": "expert-policy",
+        "locations": [],
+        "locations_note": "Fictional towns (Town01–Town15 and others); no real-world location.",
+        "environment": [
+          "urban",
+          "suburban",
+          "highway",
+          "rural"
+        ],
+        "conditions": [
+          "day",
+          "night",
+          "rain",
+          "fog",
+          "configurable weather"
+        ]
+      },
+      "scale": {
+        "log_unit": "routes",
+        "notes": "Variable. CARLA is a generator; scale depends on the data-collection run. See the CARLA-generated datasets in this family for concrete numbers."
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "radar",
+        "hd_map",
+        "boxes_3d",
+        "traffic_lights",
+        "segmentation"
+      ],
+      "sensors": [],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "method": "auto",
+          "notes": "Ground truth from the simulator for all actors."
+        },
+        {
+          "type": "traffic_light_state",
+          "method": "auto"
+        },
+        {
+          "type": "semantic_seg_image",
+          "method": "auto",
+          "notes": "Semantic, instance and depth cameras are built-in sensors."
+        },
+        {
+          "type": "depth",
+          "method": "auto"
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "opendrive",
+        "dimensions": "3d",
+        "scope": "global",
+        "format": "OpenDRIVE (.xodr) per town",
+        "georeferenced": false,
+        "notes": "py123d converts the OpenDRIVE town maps with its standalone OpenDRIVE parser."
+      },
+      "splits": [],
+      "benchmarks": [
+        {
+          "task": "end_to_end_driving",
+          "name": "CARLA Leaderboard 2.0",
+          "url": "https://leaderboard.carla.org/",
+          "eval_server": "open"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "Python API streams; on-disk format chosen by the collection framework"
+        ],
+        "devkit": {
+          "name": "CARLA Python API",
+          "url": "https://carla.readthedocs.io/",
+          "language": "Python / C++",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/carla/",
+            "notes": "Demo data and OpenDRIVE map parser."
+          },
+          {
+            "name": "LEAD",
+            "url": "https://github.com/kesai-labs/lead",
+            "notes": "Data collection with a privileged expert, writes 123D logs directly."
+          }
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "opendrive"
+          ],
+          "docs": "https://kesai.eu/py123d/datasets/carla/",
+          "status": "experimental",
+          "notes": "The py123d documentation covers the bundled demo data only; use LEAD to collect CARLA data in 123D format."
+        }
+      },
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "griffin",
+          "external": false,
+          "note": "Griffin is rendered with CARLA (and AirSim)."
+        },
+        {
+          "type": "derived_from",
+          "target": "l3ad",
+          "external": false,
+          "note": "L3AD is collected in CARLA with the LEAD expert."
+        }
+      ],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of py123d's CARLA demo data.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_carla.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {},
+      "sources": {
+        "legal": "https://github.com/carla-simulator/carla/blob/master/LICENSE",
+        "tooling": "https://kesai.eu/py123d/datasets/carla/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "Recorded as the synthetic-generator case. The 0.10 release date should be confirmed."
+      }
+    },
+    {
+      "slug": "griffin",
+      "name": "Griffin",
+      "aliases": [],
+      "tagline": "A CARLA-rendered aerial-ground cooperative perception dataset pairing a ground vehicle with a drone, with 3D boxes for cooperative detection and tracking.",
+      "domain": "driving",
+      "family": "carla",
+      "release_date": "2025-03",
+      "last_update": "2025-09",
+      "organizations": [
+        "tsinghua-svm"
+      ],
+      "homepage": "https://github.com/wang-jh18-SVM/Griffin",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/wjh-svm/Griffin",
+          "https://pan.baidu.com/s/1NDgsuHB-QPRiROV73NRU5g?pwd=u3cm"
+        ],
+        "code": [
+          "https://github.com/wang-jh18-SVM/Griffin"
+        ]
+      },
+      "papers": [
+        {
+          "title": "Griffin: Aerial-Ground Cooperative Detection and Tracking Dataset and Benchmark",
+          "venue": "AAAI 2026",
+          "year": 2026,
+          "arxiv": "2503.06983",
+          "url": "https://arxiv.org/abs/2503.06983",
+          "bibtex": "@inproceedings{wang2026griffin,\n  title={Griffin: Aerial-Ground Cooperative Detection and Tracking Dataset and Benchmark},\n  author={Wang, Jiahao and Cao, Xiangyu and Zhong, Jiaru and Zhang, Yuner and Han, Zeyu and Yu, Haibao and Zhang, Chuang and He, Lei and Xu, Shaobing and Wang, Jianqiang},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={40},\n  year={2026}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub",
+          "direct"
+        ],
+        "cost": "free",
+        "evidence": [
+          {
+            "url": "https://huggingface.co/api/datasets/wjh-svm/Griffin",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Hugging Face API reports an ungated public repository (MIT), last modified 2025-09-04."
+          },
+          {
+            "url": "https://github.com/wang-jh18-SVM/Griffin",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Code and documentation online."
+          }
+        ],
+        "mirrors": [
+          {
+            "host": "Baidu Netdisk",
+            "url": "https://pan.baidu.com/s/1NDgsuHB-QPRiROV73NRU5g?pwd=u3cm",
+            "official": true,
+            "last_verified": "2026-10-14",
+            "note": "Official alternative download for users in China."
+          }
+        ],
+        "history": [
+          {
+            "date": "2025-03",
+            "status": "available",
+            "event": "Dataset and paper released on arXiv, Hugging Face and Baidu Netdisk.",
+            "source": "https://arxiv.org/abs/2503.06983"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "MIT",
+            "name": "MIT License",
+            "url": "https://github.com/wang-jh18-SVM/Griffin/blob/main/LICENSE.txt",
+            "applies_to": [
+              "data",
+              "annotations",
+              "code"
+            ]
+          }
+        ],
+        "permissions": {
+          "commercial": true,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": false
+        }
+      },
+      "collection": {
+        "reality": "synthetic",
+        "simulator": {
+          "name": "CARLA + AirSim co-simulation"
+        },
+        "platform": "ground vehicle paired with a UAV at 20–60 m altitude",
+        "driving_mode": "expert-policy",
+        "locations": [],
+        "locations_note": "CARLA towns Town03, Town06, Town07 and Town10HD.",
+        "environment": [
+          "urban"
+        ],
+        "conditions": [
+          "day",
+          "night",
+          "varied weather"
+        ]
+      },
+      "scale": {
+        "logs": 255,
+        "log_unit": "scenes",
+        "scene_duration_s": 15,
+        "hours": 1.1,
+        "frames": 37700,
+        "boxes_3d": 914800,
+        "notes": "Hours are computed from scenes × duration. Samples and annotations are taken from the py123d documentation."
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "hd_map",
+        "boxes_3d"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 4,
+          "name": "vehicle cameras (front, back, left, right)",
+          "hz": 10,
+          "ids": [
+            "PCAM_F0",
+            "PCAM_B0",
+            "PCAM_L0",
+            "PCAM_R0"
+          ]
+        },
+        {
+          "type": "camera",
+          "count": 5,
+          "name": "UAV cameras (four cardinal plus one nadir)",
+          "hz": 10,
+          "notes": "Converted by py123d as a separate single-agent drone log."
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "vehicle roof LiDAR",
+          "hz": 10,
+          "beams": 80,
+          "ids": [
+            "LIDAR_TOP"
+          ]
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "hz": 10,
+          "method": "auto",
+          "notes": "Simulator ground truth with instance-aware occlusion quantification."
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "auto"
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "opendrive",
+        "dimensions": "3d",
+        "scope": "global",
+        "format": "OpenDRIVE CARLA town maps",
+        "notes": "Not shipped with the dataset; py123d uses the stock CARLA town maps, which share Griffin's global frame."
+      },
+      "splits": [
+        {
+          "name": "griffin_50scenes_25m",
+          "count": 50,
+          "unit": "scenes",
+          "notes": "Fixed UAV altitude of 25 m; train/val partition embedded in py123d."
+        },
+        {
+          "name": "griffin_50scenes_40m",
+          "count": 50,
+          "unit": "scenes"
+        },
+        {
+          "name": "griffin_50scenes_55m",
+          "count": 50,
+          "unit": "scenes"
+        },
+        {
+          "name": "griffin_100scenes_random",
+          "count": 100,
+          "unit": "scenes",
+          "notes": "Random UAV altitude."
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "cooperative_perception",
+          "name": "Aerial-ground cooperative 3D detection and tracking",
+          "url": "https://github.com/wang-jh18-SVM/Griffin",
+          "eval_server": "unknown"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "KITTI-style folders; PNG images",
+          "PLY point clouds",
+          "JSON poses and calibration",
+          "text labels"
+        ],
+        "devkit": {
+          "name": "Griffin repository",
+          "url": "https://github.com/wang-jh18-SVM/Griffin",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/griffin/"
+          }
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "griffin",
+            "griffin_drone"
+          ],
+          "extra": "py123d[griffin]",
+          "docs": "https://kesai.eu/py123d/datasets/griffin/",
+          "status": "stable",
+          "notes": "Vehicle and drone are converted as separate logs sharing one global frame; cooperative views are not a first-class type yet."
+        }
+      },
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "carla",
+          "external": false,
+          "note": "Rendered in CARLA with AirSim for the UAV."
+        }
+      ],
+      "figures": {},
+      "community": {
+        "huggingface": "wjh-svm/Griffin"
+      },
+      "sources": {
+        "scale": "https://kesai.eu/py123d/datasets/griffin/",
+        "sensors": "https://kesai.eu/py123d/datasets/griffin/",
+        "splits": "https://kesai.eu/py123d/datasets/griffin/",
+        "availability": "https://huggingface.co/datasets/wjh-svm/Griffin"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "The authors' affiliation is inferred (Tsinghua SVM) and should be confirmed from the paper."
+      }
+    },
+    {
+      "slug": "kitscenes-multimodal",
+      "name": "KITScenes Multimodal",
+      "aliases": [
+        "KITScenes"
+      ],
+      "tagline": "KIT's European urban dataset with nine global-shutter cameras, seven long-range LiDARs, three 4D radars and the most complete Lanelet2 HD maps of any public driving dataset.",
+      "domain": "driving",
+      "family": "kitscenes",
+      "version": "Early release",
+      "release_date": "2026-05",
+      "last_update": "2026-06",
+      "organizations": [
+        "kit-mrt"
+      ],
+      "homepage": "https://kitscenes.com/multimodal/",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/KIT-MRT/KITScenes-Multimodal"
+        ],
+        "code": [
+          "https://github.com/KIT-MRT/kitscenes"
+        ]
+      },
+      "papers": [
+        {
+          "title": "The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset",
+          "venue": "arXiv preprint",
+          "year": 2026,
+          "arxiv": "2606.02956",
+          "url": "https://arxiv.org/abs/2606.02956",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub_gated"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial use under CC BY-NC 4.0 and the KITScenes terms.",
+        "registration_url": "https://huggingface.co/datasets/KIT-MRT/KITScenes-Multimodal",
+        "evidence": [
+          {
+            "url": "https://huggingface.co/api/datasets/KIT-MRT/KITScenes-Multimodal",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Hugging Face API reports gated=auto, public, CC BY-NC 4.0, created 2026-05-02, last modified 2026-06-03."
+          },
+          {
+            "url": "https://kitscenes.com/multimodal/",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Project page online, labelled \"Early Release\"."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "note": "Each scene is a single archive of 2–5 GB."
+        },
+        "history": [
+          {
+            "date": "2026-05",
+            "status": "available-registration",
+            "event": "Early release on the Hugging Face Hub.",
+            "source": "https://huggingface.co/datasets/KIT-MRT/KITScenes-Multimodal"
+          },
+          {
+            "date": "2026-06",
+            "event": "Paper published on arXiv.",
+            "source": "https://arxiv.org/abs/2606.02956"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "CC-BY-NC-4.0",
+            "name": "Creative Commons Attribution-NonCommercial 4.0 with KITScenes terms",
+            "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+            "applies_to": [
+              "data",
+              "maps"
+            ]
+          }
+        ],
+        "permissions": {
+          "commercial": false,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": false
+        }
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Research vehicle \"Joy\" (BMW 7 Series with roof sensor rack)",
+        "vehicle": "BMW 7 Series",
+        "num_vehicles": 1,
+        "driving_mode": "human",
+        "locations": [
+          {
+            "city": "Karlsruhe",
+            "region": "Baden-Württemberg",
+            "country": "DE",
+            "lat": 49.01,
+            "lon": 8.4
+          },
+          {
+            "city": "Frankfurt am Main",
+            "region": "Hesse",
+            "country": "DE",
+            "lat": 50.11,
+            "lon": 8.68
+          },
+          {
+            "city": "Sindelfingen",
+            "region": "Baden-Württemberg",
+            "country": "DE",
+            "lat": 48.71,
+            "lon": 9
+          }
+        ],
+        "environment": [
+          "urban"
+        ]
+      },
+      "scale": {
+        "logs": 1000,
+        "log_unit": "scenes",
+        "scene_duration_s": 20,
+        "hours": 5.6,
+        "map_area_km2": 62,
+        "notes": "The project page says \"more than 1,000 scenes\"; hours are computed from scenes × duration."
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "radar",
+        "hd_map"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 6,
+          "name": "surround ring cameras (global shutter, rectified)",
+          "hz": 10,
+          "ids": [
+            "PCAM_F0",
+            "PCAM_L0",
+            "PCAM_L1",
+            "PCAM_B0",
+            "PCAM_R0",
+            "PCAM_R1"
+          ],
+          "notes": "All nine cameras together deliver 72.5 megapixels per frame."
+        },
+        {
+          "type": "camera",
+          "count": 2,
+          "name": "tilted stereo pair",
+          "hz": 10,
+          "ids": [
+            "PCAM_STEREO_L",
+            "PCAM_STEREO_R"
+          ]
+        },
+        {
+          "type": "camera",
+          "count": 1,
+          "name": "high-resolution front camera",
+          "hz": 10,
+          "ids": [
+            "PCAM_F1"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "128-channel roof LiDAR",
+          "hz": 10,
+          "beams": 128,
+          "range_m": 400,
+          "ids": [
+            "LIDAR_TOP"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 4,
+          "name": "long-range LiDARs",
+          "hz": 10,
+          "ids": [
+            "LIDAR_FRONT",
+            "LIDAR_BACK",
+            "LIDAR_SIDE_LEFT",
+            "LIDAR_SIDE_RIGHT"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 2,
+          "name": "tilted corner LiDARs",
+          "hz": 10,
+          "ids": [
+            "LIDAR_FRONT_LEFT",
+            "LIDAR_FRONT_RIGHT"
+          ]
+        },
+        {
+          "type": "radar",
+          "count": 3,
+          "name": "4D imaging radars",
+          "model": "Continental ARS548",
+          "hz": 10,
+          "ids": [
+            "RADAR_FRONT",
+            "RADAR_BACK_LEFT",
+            "RADAR_BACK_RIGHT"
+          ],
+          "notes": "With RCS and Doppler velocity."
+        },
+        {
+          "type": "gnss",
+          "count": 1,
+          "notes": "GNSS/INS measurements are published but not converted by py123d."
+        }
+      ],
+      "annotations": [],
+      "maps": {
+        "available": true,
+        "type": "lanelet2",
+        "dimensions": "3d",
+        "scope": "per_log",
+        "format": "Lanelet2 OSM with UTM origin",
+        "georeferenced": true,
+        "layers": [
+          "lanelets with topology",
+          "crosswalks",
+          "stop lines",
+          "road edges",
+          "road lines",
+          "traffic lights (3D)",
+          "traffic signs (3D)",
+          "poles"
+        ],
+        "notes": "Validated in closed-loop drives with Autoware, so the maps are drivable as published."
+      },
+      "splits": [
+        {
+          "name": "train",
+          "unit": "scenes"
+        },
+        {
+          "name": "val",
+          "unit": "scenes"
+        },
+        {
+          "name": "test",
+          "unit": "scenes"
+        },
+        {
+          "name": "test_e2e",
+          "unit": "scenes",
+          "notes": "Test split of the end-to-end driving benchmark."
+        },
+        {
+          "name": "overlap_train_val",
+          "unit": "scenes"
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "end_to_end_driving",
+          "name": "Multimodal E2E Driving",
+          "url": "https://kitscenes.com/multimodal/",
+          "eval_server": "unknown"
+        },
+        {
+          "task": "map_perception",
+          "name": "Relational HD Map Perception",
+          "url": "https://kitscenes.com/multimodal/",
+          "eval_server": "unknown"
+        },
+        {
+          "task": "novel_view_synthesis",
+          "url": "https://kitscenes.com/multimodal/",
+          "eval_server": "unknown"
+        },
+        {
+          "task": "depth_estimation",
+          "name": "Monocular depth estimation",
+          "url": "https://kitscenes.com/multimodal/",
+          "eval_server": "unknown"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "per-scene tar archives; JPEG images",
+          "parquet LiDAR and radar",
+          "Lanelet2 OSM maps",
+          "text poses"
+        ],
+        "devkit": {
+          "name": "kitscenes",
+          "url": "https://github.com/KIT-MRT/kitscenes",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/kitscenes.rst"
+          }
+        ],
+        "known_issues": [
+          "No 3D bounding boxes in the early release.",
+          "LiDAR points and radar velocities are not ego-motion compensated.",
+          "Timestamps are relative to the scene start; no absolute time is published."
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "kitscenes",
+            "kitscenes-stream"
+          ],
+          "extra": "py123d[hf]",
+          "docs": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/kitscenes.rst",
+          "status": "experimental",
+          "notes": "Converts ego trajectory, all cameras, LiDARs and radars and the per-scene Lanelet2 maps without the lanelet2 library. Docs page not yet deployed to kesai.eu."
+        }
+      },
+      "relations": [
+        {
+          "type": "companion",
+          "target": "KITScenes LongTail",
+          "external": true,
+          "url": "https://arxiv.org/abs/2603.23607",
+          "note": "Same vehicle and group; a language-and-reasoning oriented dataset."
+        }
+      ],
+      "figures": {},
+      "community": {
+        "huggingface": "KIT-MRT/KITScenes-Multimodal"
+      },
+      "sources": {
+        "scale": "https://kitscenes.com/multimodal/",
+        "sensors": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/kitscenes.rst",
+        "maps": "https://kitscenes.com/multimodal/",
+        "availability": "https://huggingface.co/datasets/KIT-MRT/KITScenes-Multimodal"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "Split sizes and camera resolutions are not recorded; the dataset is an early preview and will change."
+      }
+    },
+    {
+      "slug": "kitti-360",
+      "name": "KITTI-360",
+      "aliases": [],
+      "tagline": "The 360° successor of KITTI – nine long Karlsruhe sequences with stereo and fisheye cameras, a 64-beam LiDAR, 3D primitives and dense 2D and 3D semantic labels.",
+      "domain": "driving",
+      "family": "kitti",
+      "release_date": "2020",
+      "organizations": [
+        "avg-tuebingen"
+      ],
+      "homepage": "https://www.cvlibs.net/datasets/kitti-360/",
+      "links": {
+        "download": [
+          "https://www.cvlibs.net/datasets/kitti-360/download.php"
+        ],
+        "code": [
+          "https://github.com/autonomousvision/kitti360scripts"
+        ],
+        "leaderboard": "https://www.cvlibs.net/datasets/kitti-360/leaderboard.php"
+      },
+      "papers": [
+        {
+          "title": "KITTI-360: A Novel Dataset and Benchmarks for Urban Scene Understanding in 2D and 3D",
+          "venue": "IEEE TPAMI 2022",
+          "year": 2022,
+          "arxiv": "2109.13410",
+          "url": "https://arxiv.org/abs/2109.13410",
+          "bibtex": "@article{Liao2022PAMI,\n  title={{KITTI}-360: A Novel Dataset and Benchmarks for Urban Scene Understanding in 2D and 3D},\n  author={Yiyi Liao and Jun Xie and Andreas Geiger},\n  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},\n  year={2022}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "registration",
+          "direct"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial use under CC BY-NC-SA 3.0; downloads require a cvlibs account.",
+        "registration_url": "https://www.cvlibs.net/datasets/kitti-360/download.php",
+        "evidence": [
+          {
+            "url": "https://www.cvlibs.net/datasets/kitti-360/download.php",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Download page online behind the cvlibs login. A banner says the KITTI and KITTI-360 servers were restored to an August 2026 backup on 2026-09-07 and results from that period must be resubmitted."
+          }
+        ],
+        "mirrors": [],
+        "history": [
+          {
+            "date": "2013-05",
+            "event": "Recording drive in Karlsruhe (2013-05-28).",
+            "source": "https://www.cvlibs.net/datasets/kitti-360/"
+          },
+          {
+            "date": "2020",
+            "status": "available-registration",
+            "event": "Dataset released with 2D and 3D benchmarks.",
+            "source": "https://www.cvlibs.net/datasets/kitti-360/"
+          },
+          {
+            "date": "2026-09",
+            "event": "Servers restored from an August 2026 backup after an outage; leaderboard submissions from that month lost.",
+            "source": "https://www.cvlibs.net/datasets/kitti-360/download.php"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "CC-BY-NC-SA-3.0",
+            "name": "Creative Commons Attribution-NonCommercial-ShareAlike 3.0",
+            "url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+            "applies_to": [
+              "data",
+              "annotations"
+            ]
+          },
+          {
+            "id": "MIT",
+            "name": "MIT License (kitti360scripts)",
+            "url": "https://github.com/autonomousvision/kitti360scripts/blob/master/LICENSE",
+            "applies_to": [
+              "code"
+            ]
+          }
+        ],
+        "permissions": {
+          "commercial": false,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": true
+        }
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "VW Passat station wagon with roof rig",
+        "vehicle": "VW Passat station wagon",
+        "num_vehicles": 1,
+        "driving_mode": "human",
+        "period": {
+          "start": "2013-05-28",
+          "end": "2013-05-28"
+        },
+        "locations": [
+          {
+            "city": "Karlsruhe",
+            "region": "Baden-Württemberg",
+            "country": "DE",
+            "lat": 49.01,
+            "lon": 8.4
+          }
+        ],
+        "environment": [
+          "urban",
+          "suburban"
+        ],
+        "conditions": [
+          "day"
+        ]
+      },
+      "scale": {
+        "logs": 9,
+        "log_unit": "sequences",
+        "hours": 2.7,
+        "km": 73.7,
+        "frames": 100000,
+        "notes": "About 320 k images and 100 k laser scans; frames count the LiDAR scans."
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "hd_map",
+        "boxes_3d",
+        "segmentation"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 2,
+          "name": "perspective stereo cameras",
+          "hz": 10,
+          "resolution": "1392×512",
+          "ids": [
+            "PCAM_STEREO_L",
+            "PCAM_STEREO_R"
+          ]
+        },
+        {
+          "type": "camera",
+          "count": 2,
+          "name": "fisheye side cameras",
+          "hz": 10,
+          "resolution": "1400×1400",
+          "fov_deg": 180,
+          "ids": [
+            "FMCAM_L",
+            "FMCAM_R"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "model": "Velodyne HDL-64E",
+          "hz": 10,
+          "beams": 64,
+          "ids": [
+            "LIDAR_TOP"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "pushbroom laser scanner",
+          "model": "SICK LMS 200",
+          "notes": "Not converted by py123d."
+        },
+        {
+          "type": "gnss",
+          "count": 1,
+          "model": "OXTS RT3003"
+        },
+        {
+          "type": "imu",
+          "count": 1,
+          "model": "OXTS RT3003"
+        }
+      ],
+      "annotations": [
+        {
+          "type": "primitives_3d",
+          "method": "human",
+          "notes": "Cuboids and ellipsoids annotated once in the global frame; py123d derives per-frame visibility from the LiDAR points inside each primitive."
+        },
+        {
+          "type": "boxes_3d",
+          "hz": 10,
+          "method": "hybrid",
+          "notes": "Derived from the global 3D primitives."
+        },
+        {
+          "type": "semantic_seg_image",
+          "method": "human",
+          "coverage": "left perspective camera",
+          "notes": "Transferred from the 3D labels."
+        },
+        {
+          "type": "instance_seg",
+          "method": "human",
+          "coverage": "left perspective camera"
+        },
+        {
+          "type": "semantic_seg_lidar",
+          "method": "human",
+          "notes": "Dense 3D semantic and instance labels of the accumulated point cloud."
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "semantic",
+        "dimensions": "3d",
+        "scope": "per_log",
+        "format": "3D ground primitives (XML)",
+        "georeferenced": true,
+        "layers": [
+          "roads",
+          "sidewalks",
+          "driveways",
+          "drivable areas"
+        ],
+        "notes": "No lane-level map. py123d builds a 3D surface map from the ground primitives."
+      },
+      "splits": [
+        {
+          "name": "train",
+          "unit": "sequences",
+          "notes": "Sequences are assigned to splits in py123d's kitti360.yaml; the benchmarks hold out their own test data."
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "semantic_segmentation",
+          "name": "2D and 3D semantic segmentation",
+          "url": "https://www.cvlibs.net/datasets/kitti-360/leaderboard.php",
+          "eval_server": "open"
+        },
+        {
+          "task": "3d_detection",
+          "name": "3D bounding box detection",
+          "url": "https://www.cvlibs.net/datasets/kitti-360/leaderboard.php",
+          "eval_server": "open"
+        },
+        {
+          "task": "scene_completion",
+          "url": "https://www.cvlibs.net/datasets/kitti-360/leaderboard.php",
+          "eval_server": "open"
+        },
+        {
+          "task": "novel_view_synthesis",
+          "url": "https://www.cvlibs.net/datasets/kitti-360/leaderboard.php",
+          "eval_server": "open"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "PNG images",
+          "binary Velodyne scans",
+          "text poses and timestamps",
+          "XML 3D primitives"
+        ],
+        "devkit": {
+          "name": "kitti360scripts",
+          "url": "https://github.com/autonomousvision/kitti360scripts",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/kitti-360/"
+          }
+        ],
+        "known_issues": [
+          "2D and 3D semantic labels are not yet read by py123d."
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "kitti360"
+          ],
+          "docs": "https://kesai.eu/py123d/datasets/kitti-360/",
+          "status": "stable",
+          "notes": "Converted logs reference the original image and LiDAR files by relative path."
+        }
+      },
+      "relations": [
+        {
+          "type": "extends",
+          "target": "KITTI",
+          "external": true,
+          "url": "https://www.cvlibs.net/datasets/kitti/",
+          "note": "Same group and vehicle lineage, with 360° coverage and dense 3D labels."
+        }
+      ],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of a KITTI-360 sequence, as measured by py123d.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_kitti360.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {},
+      "sources": {
+        "scale.hours": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "scale.km": "https://www.cvlibs.net/datasets/kitti-360/",
+        "scale.frames": "https://www.cvlibs.net/datasets/kitti-360/",
+        "sensors": "https://arxiv.org/abs/2109.13410",
+        "availability": "https://www.cvlibs.net/datasets/kitti-360/download.php"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "The release year (2020 vs 2021) and the class counts should be confirmed against the paper."
+      }
+    },
+    {
+      "slug": "l3ad",
+      "name": "L3AD",
+      "aliases": [
+        "LEAD 123D",
+        "lead123d"
+      ],
+      "tagline": "CARLA Leaderboard 2.0 expert-driving logs from the LEAD framework, shipped pre-converted in the 123D Arrow format with six cameras, two LiDARs, boxes, traffic lights and maps.",
+      "domain": "driving",
+      "family": "carla",
+      "release_date": "2026-04",
+      "last_update": "2026-05",
+      "organizations": [
+        "kesai"
+      ],
+      "homepage": "https://huggingface.co/datasets/ln2697/l3ad",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/ln2697/l3ad"
+        ],
+        "code": [
+          "https://github.com/kesai-labs/lead"
+        ],
+        "docs": "https://ln2697.github.io/lead/"
+      },
+      "papers": [
+        {
+          "title": "LEAD: Minimizing Learner-Expert Asymmetry in End-to-End Driving",
+          "venue": "CVPR 2026",
+          "year": 2026,
+          "arxiv": "2512.20563",
+          "url": "https://arxiv.org/abs/2512.20563",
+          "bibtex": "@inproceedings{Nguyen2026CVPR,\n  author={Long Nguyen and Micha Fauth and Bernhard Jaeger and Daniel Dauner and Maximilian Igl and Andreas Geiger and Kashyap Chitta},\n  title={LEAD: Minimizing Learner-Expert Asymmetry in End-to-End Driving},\n  booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2026}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub"
+        ],
+        "cost": "free",
+        "evidence": [
+          {
+            "url": "https://huggingface.co/api/datasets/ln2697/l3ad",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Public, ungated repository (MIT), created 2026-04-18, last modified 2026-05-02. The former id ln2697/lead123d used by py123d redirects here."
+          }
+        ],
+        "mirrors": [],
+        "history": [
+          {
+            "date": "2026-04",
+            "status": "available",
+            "event": "Published on the Hugging Face Hub for the CVPR 2026 paper.",
+            "source": "https://huggingface.co/datasets/ln2697/l3ad"
+          },
+          {
+            "date": "2026-08",
+            "event": "A larger, incompatible successor (LEAD 123D, ln2697/lead-123d) was released from the LEAD main branch; this record keeps the CVPR 2026 dataset that py123d downloads.",
+            "source": "https://github.com/kesai-labs/lead"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "MIT",
+            "name": "MIT License",
+            "url": "https://github.com/kesai-labs/lead/blob/main/LICENSE",
+            "applies_to": [
+              "data",
+              "annotations",
+              "code"
+            ]
+          }
+        ],
+        "permissions": {
+          "commercial": true,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": false
+        },
+        "notes": "CARLA assets and OpenDRIVE maps remain under their upstream licences."
+      },
+      "collection": {
+        "reality": "synthetic",
+        "simulator": {
+          "name": "CARLA",
+          "version": "0.9.15"
+        },
+        "driving_mode": "expert-policy",
+        "locations": [],
+        "locations_note": "CARLA towns of the Leaderboard 2.0 routes.",
+        "environment": [
+          "urban",
+          "suburban",
+          "highway"
+        ],
+        "conditions": [
+          "day",
+          "night",
+          "rain",
+          "fog"
+        ]
+      },
+      "scale": {
+        "logs": 789,
+        "log_unit": "routes",
+        "hours": 7.3,
+        "km": 138.7
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "hd_map",
+        "boxes_3d",
+        "traffic_lights"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 6,
+          "name": "surround cameras",
+          "hz": 10,
+          "ids": [
+            "PCAM_F0",
+            "PCAM_B0",
+            "PCAM_L0",
+            "PCAM_R0",
+            "PCAM_L1",
+            "PCAM_R1"
+          ],
+          "notes": "ID mapping assumed from the Arrow file names (pcam_{f,b,l,r}{0,1}); confirm against the LEAD sensor config."
+        },
+        {
+          "type": "lidar",
+          "count": 2,
+          "hz": 10,
+          "ids": [
+            "LIDAR_TOP"
+          ]
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "hz": 10,
+          "method": "auto",
+          "notes": "Simulator ground truth for all dynamic actors."
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "auto"
+        },
+        {
+          "type": "traffic_light_state",
+          "hz": 10,
+          "method": "auto"
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "opendrive",
+        "dimensions": "3d",
+        "scope": "global",
+        "format": "123D Arrow maps converted from CARLA OpenDRIVE",
+        "layers": [
+          "lanes",
+          "intersections",
+          "crosswalks",
+          "road edges",
+          "road lines"
+        ]
+      },
+      "splits": [],
+      "benchmarks": [
+        {
+          "task": "end_to_end_driving",
+          "name": "CARLA Leaderboard 2.0 benchmarks (Bench2Drive, Longest6 v2, Town13)",
+          "url": "https://github.com/kesai-labs/lead",
+          "eval_server": "unknown"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "123D Apache Arrow IPC files",
+          "one per modality and route"
+        ],
+        "devkit": {
+          "name": "LEAD",
+          "url": "https://github.com/kesai-labs/lead",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://github.com/kesai-labs/py123d",
+            "notes": "Native format; no conversion needed."
+          }
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "lead123d"
+          ],
+          "extra": "py123d[hf]",
+          "docs": "https://github.com/kesai-labs/py123d",
+          "status": "stable",
+          "notes": "Downloaded with py123d-download dataset=lead123d straight into $PY123D_DATA_ROOT; no conversion step. No dedicated py123d docs page yet."
+        }
+      },
+      "relations": [
+        {
+          "type": "derived_from",
+          "target": "carla",
+          "external": false
+        },
+        {
+          "type": "successor",
+          "target": "LEAD 123D (ln2697/lead-123d)",
+          "external": true,
+          "url": "https://huggingface.co/datasets/ln2697/lead-123d",
+          "note": "Larger release from the LEAD main branch (8,930 routes, 43 scenario types); not compatible with this dataset."
+        }
+      ],
+      "figures": {},
+      "community": {
+        "huggingface": "ln2697/l3ad"
+      },
+      "sources": {
+        "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "sensors": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "availability": "https://huggingface.co/datasets/ln2697/l3ad"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "The Hugging Face card says \"five hours\" while py123d's table reports 7.3 h; the py123d measurement is used. Camera ID mapping is assumed."
+      }
+    },
+    {
+      "slug": "ncore",
+      "name": "NCore (PhysicalAI-AV NCore)",
+      "aliases": [
+        "PAI-AV-NCore",
+        "PhysicalAI-Autonomous-Vehicles-NCore"
+      ],
+      "tagline": "NVIDIA's Hyperion 8.1 clips repackaged in the component-based NCore V4 format, with seven fisheye cameras, a 360° LiDAR, 100 Hz poses and auto-labelled cuboids.",
+      "domain": "driving",
+      "family": "physical-ai-av",
+      "version": "NCore V4 format",
+      "release_date": "2026-03",
+      "last_update": "2026-03",
+      "organizations": [
+        "nvidia"
+      ],
+      "homepage": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore"
+        ],
+        "code": [
+          "https://github.com/NVIDIA/ncore"
+        ]
+      },
+      "papers": [],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub_gated"
+        ],
+        "cost": "free",
+        "eligibility": "Governed by the NVIDIA AV dataset licence accepted on the Hugging Face Hub.",
+        "registration_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore",
+        "evidence": [
+          {
+            "url": "https://huggingface.co/api/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Hugging Face API reports gated=auto, public, custom licence (nvidia-av-dataset), created 2026-03-04, last modified 2026-03-23."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "compressed_gb": 2400,
+          "note": "About 1.2 GB per clip (one LiDAR archive plus seven camera archives)."
+        },
+        "history": [
+          {
+            "date": "2026-03",
+            "status": "available-registration",
+            "event": "Released on the Hugging Face Hub together with the open-source ncore reader.",
+            "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NCore"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "NVIDIA-AV-Dataset-License",
+            "name": "NVIDIA Autonomous Vehicles dataset licence",
+            "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles/blob/main/LICENSE.pdf",
+            "applies_to": [
+              "data",
+              "annotations"
+            ]
+          }
+        ],
+        "permissions": {},
+        "notes": "Permissions not assessed; read the licence PDF before use."
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "NVIDIA Hyperion 8.1",
+        "driving_mode": "mixed",
+        "locations": [],
+        "locations_note": "Cities are not published."
+      },
+      "scale": {
+        "logs": 1147,
+        "log_unit": "clips",
+        "hours": 6.3,
+        "km": 167.6,
+        "storage_tb": 2.4
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "boxes_3d"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 7,
+          "name": "f-theta (fisheye) cameras",
+          "hz": 30,
+          "ids": [
+            "FTCAM_F0",
+            "FTCAM_TELE_F0",
+            "FTCAM_R0",
+            "FTCAM_L0",
+            "FTCAM_R1",
+            "FTCAM_L1",
+            "FTCAM_TELE_B0"
+          ],
+          "notes": "Six-coefficient f-theta polynomials; JPEG frames stored inside zarr archives."
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "360° roof LiDAR",
+          "hz": 10,
+          "ids": [
+            "LIDAR_TOP"
+          ]
+        },
+        {
+          "type": "imu",
+          "count": 1,
+          "notes": "Rig-to-world poses at about 100 Hz; no velocities, py123d infers dynamics."
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "classes": 10,
+          "hz": 10,
+          "method": "auto",
+          "notes": "Same taxonomy as Physical AI AV."
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "auto"
+        }
+      ],
+      "maps": {
+        "available": false,
+        "type": "none"
+      },
+      "splits": [
+        {
+          "name": "ncore_train",
+          "count": 1147,
+          "unit": "clips",
+          "notes": "Single collection; the split name is synthetic."
+        }
+      ],
+      "benchmarks": [],
+      "formats": {
+        "raw": [
+          "indexed-tar zarr archives (.zarr.itar) per modality",
+          "JSON sequence manifests"
+        ],
+        "devkit": {
+          "name": "ncore",
+          "url": "https://github.com/NVIDIA/ncore",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/ncore/"
+          }
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "ncore",
+            "ncore-stream"
+          ],
+          "extra": "py123d[ncore]",
+          "docs": "https://kesai.eu/py123d/datasets/ncore/",
+          "status": "experimental",
+          "notes": "Streaming downloads each clip per Ray worker and deletes it after conversion."
+        }
+      },
+      "relations": [
+        {
+          "type": "shares_rig_with",
+          "target": "physical-ai-av",
+          "external": false
+        }
+      ],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of an NCore clip, as measured by py123d.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_ncore.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {
+        "huggingface": "nvidia/PhysicalAI-Autonomous-Vehicles-NCore"
+      },
+      "sources": {
+        "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "sensors": "https://kesai.eu/py123d/datasets/ncore/",
+        "availability.download_size": "https://kesai.eu/py123d/datasets/ncore/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "No paper; licence permissions not assessed."
+      }
+    },
+    {
+      "slug": "nuplan",
+      "name": "nuPlan",
+      "aliases": [
+        "nuPlan v1.1"
+      ],
+      "tagline": "Motional's large-scale planning dataset with more than a thousand hours of auto-labelled logs, HD maps and a closed-loop simulator, from four cities.",
+      "domain": "driving",
+      "family": "nuscenes",
+      "version": "v1.1",
+      "release_date": "2021-12",
+      "last_update": "2023",
+      "organizations": [
+        "motional"
+      ],
+      "homepage": "https://www.nuscenes.org/nuplan",
+      "links": {
+        "download": [
+          "https://www.nuplan.org/download"
+        ],
+        "code": [
+          "https://github.com/motional/nuplan-devkit"
+        ],
+        "challenge": "https://www.nuscenes.org/nuplan"
+      },
+      "papers": [
+        {
+          "title": "Towards learning-based planning: The nuPlan benchmark for real-world autonomous driving",
+          "venue": "ICRA 2024",
+          "year": 2024,
+          "arxiv": "2403.04133",
+          "url": "https://arxiv.org/abs/2403.04133",
+          "bibtex": "@inproceedings{Karnchanachari2024ICRA,\n  title={Towards learning-based planning: The nuPlan benchmark for real-world autonomous driving},\n  author={Karnchanachari, Napat and Geromichalos, Dimitris and Tan, Kok Seang and Li, Nanxiang and Eriksen, Christopher and Yaghoubi, Shakiba and Mehdipour, Noushin and Bernasconi, Gianmarco and Fong, Whye Kit and Guo, Yiluan and Caesar, Holger},\n  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n  year={2024}\n}\n",
+          "required_citation": true
+        },
+        {
+          "title": "nuPlan: A closed-loop ML-based planning benchmark for autonomous vehicles",
+          "venue": "CVPR 2021 Workshops",
+          "year": 2021,
+          "arxiv": "2106.11810",
+          "url": "https://arxiv.org/abs/2106.11810",
+          "bibtex": "@article{Caesar2021CVPRW,\n  title={nuPlan: A closed-loop ML-based planning benchmark for autonomous vehicles},\n  author={Caesar, Holger and Kabzan, Juraj and Tan, Kok Seang and Fong, Whye Kit and Wolff, Eric and Lang, Alex and Fletcher, Luke and Beijbom, Oscar and Omari, Sammy},\n  booktitle={CVPR Workshop on Autonomous Driving},\n  year={2021}\n}\n",
+          "required_citation": false
+        }
+      ],
+      "availability": {
+        "status": "available",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "cloud_bucket",
+          "direct"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial use under the nuPlan terms; the licence file sits next to the archives in the bucket.",
+        "evidence": [
+          {
+            "url": "https://motional-nuplan.s3-ap-northeast-1.amazonaws.com/LICENSE",
+            "checked": "2026-10-14",
+            "wayback": "http://web.archive.org/web/20240813215407/https://motional-nuplan.s3-ap-northeast-1.amazonaws.com/LICENSE",
+            "http_status": 200,
+            "note": "The public S3 bucket answers anonymously; py123d downloads logs, maps and sensor shards from it without credentials."
+          },
+          {
+            "url": "https://www.nuscenes.org/nuplan",
+            "checked": "2026-10-14",
+            "wayback": "http://web.archive.org/web/20260621035850/https://www.nuscenes.org/nuplan",
+            "http_status": 200,
+            "note": "Dataset page online."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "compressed_gb": 135,
+          "note": "Logs and maps for train, val and test. The mini set is about 11 GB. Camera and LiDAR shards add hundreds of GB per split."
+        },
+        "history": [
+          {
+            "date": "2021-12",
+            "status": "available",
+            "event": "First public release (v0.x) with the planning devkit.",
+            "source": "https://www.nuscenes.org/nuplan"
+          },
+          {
+            "date": "2023",
+            "event": "v1.1 logs and sensor blobs for a 120-hour subset; nuPlan Challenge at the CVPR 2023 workshop.",
+            "source": "https://www.nuscenes.org/nuplan"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "CC-BY-NC-SA-4.0",
+            "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0",
+            "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+            "applies_to": [
+              "data",
+              "annotations",
+              "maps"
+            ]
+          },
+          {
+            "id": "Apache-2.0",
+            "name": "Apache License 2.0 (devkit)",
+            "url": "https://github.com/motional/nuplan-devkit/blob/master/LICENSE.txt",
+            "applies_to": [
+              "code"
+            ]
+          }
+        ],
+        "terms_url": "https://www.nuscenes.org/terms-of-use",
+        "permissions": {
+          "commercial": false,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": true
+        }
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Motional robotaxi fleet",
+        "driving_mode": "mixed",
+        "period": {
+          "start": "2021"
+        },
+        "locations": [
+          {
+            "city": "Boston",
+            "region": "Massachusetts",
+            "country": "US",
+            "lat": 42.36,
+            "lon": -71.06
+          },
+          {
+            "city": "Pittsburgh",
+            "region": "Pennsylvania",
+            "country": "US",
+            "lat": 40.44,
+            "lon": -79.99
+          },
+          {
+            "city": "Las Vegas",
+            "region": "Nevada",
+            "country": "US",
+            "lat": 36.17,
+            "lon": -115.14
+          },
+          {
+            "city": "Singapore",
+            "country": "SG",
+            "lat": 1.35,
+            "lon": 103.82
+          }
+        ],
+        "environment": [
+          "urban"
+        ]
+      },
+      "scale": {
+        "logs": 15910,
+        "log_unit": "logs",
+        "hours": 1174.3,
+        "km": 17808.6,
+        "notes": "Motional quotes about 1,282 hours; the figures here are measured by py123d from the released v1.1 databases. About 120 hours carry camera and LiDAR data."
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "hd_map",
+        "boxes_3d",
+        "traffic_lights"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 8,
+          "name": "surround cameras",
+          "hz": 10,
+          "ids": [
+            "PCAM_F0",
+            "PCAM_R0",
+            "PCAM_R1",
+            "PCAM_R2",
+            "PCAM_L0",
+            "PCAM_L1",
+            "PCAM_L2",
+            "PCAM_B0"
+          ],
+          "notes": "Released for the 120-hour sensor subset only."
+        },
+        {
+          "type": "lidar",
+          "count": 5,
+          "name": "merged point cloud",
+          "hz": 20,
+          "ids": [
+            "LIDAR_TOP",
+            "LIDAR_FRONT",
+            "LIDAR_SIDE_LEFT",
+            "LIDAR_SIDE_RIGHT",
+            "LIDAR_BACK"
+          ],
+          "notes": "Shipped as one merged point cloud per sweep; released for the sensor subset only."
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "hz": 20,
+          "method": "auto",
+          "notes": "Auto-labelled tracks; some boxes are noisy."
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 20,
+          "method": "auto"
+        },
+        {
+          "type": "traffic_light_state",
+          "hz": 20,
+          "method": "auto",
+          "notes": "Inferred from vehicle movements, so labels can be wrong."
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "hd_vector",
+        "dimensions": "2d",
+        "scope": "per_location",
+        "format": "GeoPackage (map.gpkg per city)",
+        "georeferenced": true,
+        "layers": [
+          "lanes",
+          "lane connectors",
+          "intersections",
+          "crosswalks",
+          "walkways",
+          "carparks",
+          "stop lines",
+          "road edges",
+          "traffic lights"
+        ]
+      },
+      "splits": [
+        {
+          "name": "train",
+          "unit": "logs"
+        },
+        {
+          "name": "val",
+          "unit": "logs"
+        },
+        {
+          "name": "test",
+          "unit": "logs"
+        },
+        {
+          "name": "mini",
+          "count": 64,
+          "unit": "logs",
+          "notes": "Smoke-test subset with its own train, val and test partition."
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "planning",
+          "name": "nuPlan Challenge 2023 (closed-loop planning)",
+          "url": "https://www.nuscenes.org/nuplan",
+          "eval_server": "closed",
+          "notes": "The challenge concluded in 2023; the devkit simulator keeps working offline."
+        }
+      ],
+      "formats": {
+        "raw": [
+          "SQLite .db log databases",
+          "JPEG camera shards",
+          ".pcd merged point clouds",
+          "GeoPackage maps"
+        ],
+        "devkit": {
+          "name": "nuplan-devkit",
+          "url": "https://github.com/motional/nuplan-devkit",
+          "language": "Python",
+          "maintained": false,
+          "notes": "Last tagged release v1.2; pinned dependencies (SQLAlchemy 1.4) age badly."
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/nuplan/"
+          },
+          {
+            "name": "NAVSIM",
+            "url": "https://github.com/autonomousvision/navsim",
+            "notes": "Builds its benchmark on nuPlan logs."
+          }
+        ],
+        "known_issues": [
+          "Synchronisation offsets between sensors and ego state in the sensor subset.",
+          "Sensor shards are uncompressed tar archives despite their .zip name and hold about 150 million files."
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "nuplan",
+            "nuplan-mini",
+            "nuplan-stream",
+            "nuplan-mini-stream",
+            "nuplan-tar"
+          ],
+          "extra": "py123d[nuplan] plus nuplan-devkit v1.2",
+          "docs": "https://kesai.eu/py123d/datasets/nuplan/",
+          "status": "stable",
+          "notes": "nuplan-tar reads camera images and LiDAR sweeps straight from the downloaded sensor archives after indexing them once."
+        }
+      },
+      "relations": [
+        {
+          "type": "companion",
+          "target": "nuscenes",
+          "external": false,
+          "note": "Same organization and terms of use."
+        }
+      ],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of the nuPlan mini split, as measured by py123d.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_nuplan-mini.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {},
+      "sources": {
+        "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "sensors": "https://kesai.eu/py123d/datasets/nuplan/",
+        "annotations": "https://kesai.eu/py123d/datasets/nuplan/",
+        "availability.download_size": "https://kesai.eu/py123d/datasets/nuplan/",
+        "maps": "https://kesai.eu/py123d/datasets/nuplan/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "Release dates of v0.x and v1.1 should be confirmed against the devkit changelog. Split sizes are not recorded."
+      }
+    },
+    {
+      "slug": "nureasoning",
+      "name": "nuReasoning",
+      "aliases": [],
+      "tagline": "A reasoning-centric long-tail driving dataset of 20-second clips with eight cameras, LiDAR, HD maps and human-verified spatial, decision and counterfactual reasoning annotations.",
+      "domain": "driving",
+      "family": "nuscenes",
+      "version": "Staged release (11,890 of 20,000 clips)",
+      "release_date": "2026-05",
+      "last_update": "2026-09",
+      "organizations": [
+        "ucla-mobility-lab",
+        "motional"
+      ],
+      "homepage": "https://nureasoning.github.io/",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/nureasoning/nuReasoning"
+        ],
+        "code": [
+          "https://github.com/nureasoning/nureasoning-devkit"
+        ],
+        "challenge": "https://nureasoning.github.io/"
+      },
+      "papers": [
+        {
+          "title": "nuReasoning: A Reasoning-Centric Dataset and Benchmark for Long-Tail Autonomous Driving",
+          "venue": "arXiv preprint",
+          "year": 2026,
+          "arxiv": "2605.31572",
+          "url": "https://arxiv.org/abs/2605.31572",
+          "bibtex": "@misc{huang2026nureasoning,\n  title={nuReasoning: A Reasoning-Centric Dataset and Benchmark for Long-Tail Autonomous Driving},\n  author={Huang, Zhiyu and Liu, Johnson and Song, Rui and others},\n  year={2026},\n  eprint={2605.31572},\n  archivePrefix={arXiv},\n  primaryClass={cs.CV}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub_gated"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial use under the nuScenes Terms of Use; commercial use needs a separate licence from Motional.",
+        "registration_url": "https://huggingface.co/datasets/nureasoning/nuReasoning",
+        "evidence": [
+          {
+            "url": "https://huggingface.co/api/datasets/nureasoning/nuReasoning",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Hugging Face API reports gated=auto (terms must be accepted, approval is automatic), public, last modified 2026-09-16."
+          },
+          {
+            "url": "https://nureasoning.github.io/",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Project page online; announces the staged release and the nuReasoning Challenge 2026."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "compressed_gb": 27000,
+          "note": "Whole current release. A clip is about 2.3 GB (1 GB in the test split)."
+        },
+        "history": [
+          {
+            "date": "2026-05",
+            "event": "Paper and project page published; first clips released on Hugging Face as a mini release.",
+            "source": "https://arxiv.org/abs/2605.31572"
+          },
+          {
+            "date": "2026-08",
+            "status": "available-registration",
+            "event": "Full staged release on the Hugging Face Hub (train, val and test); remaining clips announced for after the 2026 challenge.",
+            "source": "https://huggingface.co/datasets/nureasoning/nuReasoning"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "nuScenes-ToU",
+            "name": "nuScenes Terms of Use (non-commercial)",
+            "url": "https://www.nuscenes.org/terms-of-use",
+            "applies_to": [
+              "data",
+              "annotations",
+              "maps"
+            ]
+          }
+        ],
+        "terms_url": "https://www.nuscenes.org/terms-of-use",
+        "permissions": {
+          "commercial": false,
+          "attribution_required": true
+        }
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Motional robotaxi fleet",
+        "driving_mode": "mixed",
+        "locations": [],
+        "locations_note": "Collected from multiple cities; the record does not yet list them.",
+        "environment": [
+          "urban"
+        ]
+      },
+      "scale": {
+        "logs": 11890,
+        "log_unit": "clips",
+        "scene_duration_s": 20,
+        "hours": 66,
+        "storage_tb": 27,
+        "notes": "20,000 clips (about 105 hours) are announced; 11,890 clips are released so far. Hours are computed from the released clips."
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "hd_map",
+        "boxes_3d",
+        "traffic_lights",
+        "language",
+        "trajectories"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 8,
+          "name": "surround cameras",
+          "ids": [
+            "PCAM_F0",
+            "PCAM_B0",
+            "PCAM_L0",
+            "PCAM_L1",
+            "PCAM_L2",
+            "PCAM_R0",
+            "PCAM_R1",
+            "PCAM_R2"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 5,
+          "name": "merged point cloud",
+          "ids": [
+            "LIDAR_TOP"
+          ],
+          "notes": "One merged cloud fusing top, front, side-left, side-right and back sensors. Only some clips include LiDAR and none of the test split."
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "coverage": "train and val",
+          "notes": "No published object taxonomy; the devkit lists the categories seen in the data."
+        },
+        {
+          "type": "tracking_ids",
+          "coverage": "train and val"
+        },
+        {
+          "type": "traffic_light_state",
+          "coverage": "train and val",
+          "notes": "Per-frame signal states; the referenced lane can lie outside the clip's map."
+        },
+        {
+          "type": "reasoning",
+          "method": "human",
+          "coverage": "about one frame per second in train and val",
+          "notes": "Spatial, decision and counterfactual reasoning, human-verified."
+        },
+        {
+          "type": "trajectories",
+          "notes": "Ego history and future per frame."
+        },
+        {
+          "type": "intents",
+          "notes": "Route command and route path per frame, plus the clip's scenario type."
+        },
+        {
+          "type": "language_qa",
+          "coverage": "test split",
+          "notes": "Challenge questions on the key frame of each test clip."
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "hd_vector",
+        "dimensions": "2d",
+        "scope": "per_log",
+        "format": "pickled map per clip",
+        "notes": "Not available in the test split."
+      },
+      "splits": [
+        {
+          "name": "train",
+          "count": 9890,
+          "unit": "clips"
+        },
+        {
+          "name": "val",
+          "count": 1000,
+          "unit": "clips"
+        },
+        {
+          "name": "test",
+          "count": 1000,
+          "unit": "clips",
+          "hidden_ground_truth": true,
+          "notes": "Cameras, ego states and route only; no map, boxes, LiDAR or reasoning."
+        },
+        {
+          "name": "mini",
+          "unit": "clips",
+          "notes": "Parts 1–3 of train, which include the former mini release."
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "visual_question_answering",
+          "name": "Reasoning VQA benchmark",
+          "url": "https://nureasoning.github.io/",
+          "eval_server": "open"
+        },
+        {
+          "task": "planning",
+          "name": "nuReasoning planning benchmark",
+          "url": "https://nureasoning.github.io/",
+          "eval_server": "open"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "per-clip .tar archives",
+          "JPEG cameras",
+          "LZF-compressed PCD LiDAR",
+          "pickled ego states and annotations",
+          "JSON reasoning"
+        ],
+        "devkit": {
+          "name": "nureasoning-devkit",
+          "url": "https://github.com/nureasoning/nureasoning-devkit",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/nureasoning/"
+          }
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "nureasoning",
+            "nureasoning-mini",
+            "nureasoning-stream",
+            "nureasoning-mini-stream"
+          ],
+          "extra": "py123d[hf]",
+          "docs": "https://kesai.eu/py123d/datasets/nureasoning/",
+          "status": "experimental",
+          "notes": "Reasoning annotations and challenge questions are passed through as custom modalities."
+        }
+      },
+      "relations": [
+        {
+          "type": "companion",
+          "target": "nuscenes",
+          "external": false,
+          "note": "Shares the nuScenes terms of use and sensor conventions."
+        }
+      ],
+      "figures": {},
+      "community": {
+        "huggingface": "nureasoning/nuReasoning"
+      },
+      "sources": {
+        "scale": "https://kesai.eu/py123d/datasets/nureasoning/",
+        "splits": "https://kesai.eu/py123d/datasets/nureasoning/",
+        "annotations": "https://kesai.eu/py123d/datasets/nureasoning/",
+        "availability.download_size": "https://kesai.eu/py123d/datasets/nureasoning/",
+        "organizations": "https://nureasoning.github.io/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "Cities, camera frequency and the box-labelling method are not recorded yet. The project page states \"Accepted to NeurIPS 2025\", which conflicts with the 2026 arXiv date; the venue is left as a preprint until confirmed."
+      }
+    },
+    {
+      "slug": "nurec",
+      "name": "NuRec (PhysicalAI-AV NuRec)",
+      "aliases": [
+        "PhysicalAI-Autonomous-Vehicles-NuRec"
+      ],
+      "tagline": "Neural-reconstruction scenes of NVIDIA driving clips – 3D Gaussian reconstructions with ego poses, auto-labelled tracks and HD maps for closed-loop simulation.",
+      "domain": "driving",
+      "family": "physical-ai-av",
+      "version": "Releases 26.01 and 26.04",
+      "release_date": "2025-06",
+      "last_update": "2026-07",
+      "organizations": [
+        "nvidia"
+      ],
+      "homepage": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec"
+        ],
+        "code": [
+          "https://github.com/NVlabs/alpasim"
+        ]
+      },
+      "papers": [],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub_gated"
+        ],
+        "cost": "free",
+        "eligibility": "Governed by the NVIDIA AV dataset licence accepted on the Hugging Face Hub.",
+        "registration_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec",
+        "evidence": [
+          {
+            "url": "https://huggingface.co/api/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Hugging Face API reports gated=auto, public, custom licence (nvidia-av-dataset), created 2025-06-05, last modified 2026-07-30."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "note": "Each scene is one .usdz archive of about 2 GB."
+        },
+        "history": [
+          {
+            "date": "2025-06",
+            "status": "available-registration",
+            "event": "Repository created on the Hugging Face Hub.",
+            "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec"
+          },
+          {
+            "date": "2026-01",
+            "event": "Release 26.01 (916 scenes; some ship only an OpenDRIVE map).",
+            "source": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst"
+          },
+          {
+            "date": "2026-04",
+            "event": "Release 26.04 (1,607 scenes, all with clipgt map layers).",
+            "source": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "NVIDIA-AV-Dataset-License",
+            "name": "NVIDIA Autonomous Vehicles dataset licence",
+            "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec/blob/main/LICENSE.pdf",
+            "applies_to": [
+              "data",
+              "annotations",
+              "maps",
+              "reconstructions"
+            ]
+          }
+        ],
+        "permissions": {},
+        "notes": "Permissions not assessed; read the licence PDF before use."
+      },
+      "collection": {
+        "reality": "hybrid",
+        "platform": "NVIDIA Hyperion rigs (several vehicle platforms, wheelbases 2.73–3.22 m)",
+        "driving_mode": "mixed",
+        "locations": [],
+        "locations_note": "Reconstructed from real drives in the US and Europe; cities are not published."
+      },
+      "scale": {
+        "logs": 1607,
+        "log_unit": "scenes",
+        "scene_duration_s": 20,
+        "hours": 8.9,
+        "notes": "Scenes of release 26.04; release 26.01 adds 916 scenes, some of them reconstructions of the same drives."
+      },
+      "modalities": [
+        "ego_pose",
+        "hd_map",
+        "boxes_3d",
+        "reconstruction"
+      ],
+      "sensors": [],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "hz": 10,
+          "method": "auto",
+          "notes": "Cuboid tracks interpolated onto a 10 Hz grid; py123d smooths positions and drops tracks shorter than 3 s like NVIDIA's simulator."
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "auto"
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "hd_vector",
+        "dimensions": "3d",
+        "scope": "per_log",
+        "format": "clipgt parquet layers, with an OpenDRIVE map.xodr fallback",
+        "layers": [
+          "lanes with connectivity and speed limits",
+          "lane groups",
+          "road edges",
+          "crosswalks",
+          "stop zones",
+          "road lines",
+          "intersections",
+          "drivable areas",
+          "walkways",
+          "traffic-light and sign geometry"
+        ],
+        "notes": "Maps converted from map.xodr are sparser; their speed limits are mislabelled as mph in European scenes."
+      },
+      "splits": [
+        {
+          "name": "nurec-curated_train",
+          "count": 1761,
+          "unit": "scenes",
+          "notes": "Named scenes from both releases curated for the AlpaSim end-to-end challenge."
+        },
+        {
+          "name": "nurec-curated_val",
+          "count": 441,
+          "unit": "scenes"
+        },
+        {
+          "name": "nurec-2601_train",
+          "count": 916,
+          "unit": "scenes",
+          "notes": "Every scene of release 26.01."
+        },
+        {
+          "name": "nurec-2604_train",
+          "count": 1607,
+          "unit": "scenes",
+          "notes": "Every scene of release 26.04."
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "simulation",
+          "name": "AlpaSim end-to-end challenge",
+          "url": "https://github.com/NVlabs/alpasim",
+          "eval_server": "unknown"
+        }
+      ],
+      "formats": {
+        "raw": [
+          ".usdz scene archives (rig trajectories",
+          "clipgt parquet layers",
+          "map.xodr",
+          "3D Gaussian checkpoint)"
+        ],
+        "devkit": {
+          "name": "AlpaSim",
+          "url": "https://github.com/NVlabs/alpasim",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst",
+            "notes": "Converts the driving log and map; reconstruction assets are left untouched."
+          }
+        ],
+        "known_issues": [
+          "No per-timestep traffic-light states; only the geometry of lights and signs.",
+          "Rig timestamps drift by milliseconds and track timestamps run on a separate clock."
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "nurec-curated",
+            "nurec-2601",
+            "nurec-2604",
+            "nurec-curated-stream",
+            "nurec-2601-stream",
+            "nurec-2604-stream",
+            "nurec-pai"
+          ],
+          "extra": "py123d[nurec]",
+          "docs": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst",
+          "status": "experimental",
+          "notes": "nurec-pai adds the cameras and LiDAR of the underlying Physical AI AV clip to each scene. Docs page not yet deployed to kesai.eu."
+        }
+      },
+      "relations": [
+        {
+          "type": "reconstruction_of",
+          "target": "physical-ai-av",
+          "external": false,
+          "note": "Every scene reconstructs one Physical AI AV clip."
+        },
+        {
+          "type": "companion",
+          "target": "ncore",
+          "external": false
+        }
+      ],
+      "figures": {},
+      "community": {
+        "huggingface": "nvidia/PhysicalAI-Autonomous-Vehicles-NuRec"
+      },
+      "sources": {
+        "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "splits": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst",
+        "maps": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst",
+        "availability.download_size": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "Reality is marked hybrid because the scenes are reconstructions of real drives. No paper; licence permissions not assessed."
+      }
+    },
+    {
+      "slug": "nuscenes",
+      "name": "nuScenes",
+      "aliases": [
+        "nuScenes v1.0"
+      ],
+      "tagline": "Motional's 1,000-scene multimodal benchmark from Boston and Singapore with six cameras, a LiDAR, five radars and HD maps.",
+      "domain": "driving",
+      "family": "nuscenes",
+      "version": "v1.0 (trainval, test, mini) with map expansion v1.3 and CAN bus expansion",
+      "release_date": "2019-03",
+      "last_update": "2021",
+      "organizations": [
+        "motional"
+      ],
+      "homepage": "https://www.nuscenes.org/nuscenes",
+      "links": {
+        "download": [
+          "https://www.nuscenes.org/download"
+        ],
+        "code": [
+          "https://github.com/nutonomy/nuscenes-devkit"
+        ],
+        "leaderboard": "https://www.nuscenes.org/object-detection"
+      },
+      "papers": [
+        {
+          "title": "nuScenes: A multimodal dataset for autonomous driving",
+          "venue": "CVPR 2020",
+          "year": 2020,
+          "arxiv": "1903.11027",
+          "url": "https://arxiv.org/abs/1903.11027",
+          "bibtex": "@inproceedings{Caesar2020CVPR,\n  title={nuScenes: A multimodal dataset for autonomous driving},\n  author={Caesar, Holger and Bankiti, Varun and Lang, Alex H and Vora, Sourabh and Liong, Venice Erin and Xu, Qiang and Krishnan, Anush and Pan, Yu and Baldan, Giancarlo and Beijbom, Oscar},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2020}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "registration",
+          "direct"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial use under the nuScenes Terms of Use; commercial licences are negotiated with Motional.",
+        "registration_url": "https://www.nuscenes.org/sign-up",
+        "evidence": [
+          {
+            "url": "https://www.nuscenes.org/nuscenes",
+            "checked": "2026-10-14",
+            "wayback": "http://web.archive.org/web/20260930101904/https://www.nuscenes.org/nuscenes",
+            "http_status": 200,
+            "note": "Dataset page online. Downloads require an account and acceptance of the terms; py123d's downloader wraps the same login flow."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "compressed_gb": 700,
+          "note": "All archives. The mini split is about 0.6 GB; the smallest useful trainval slice is about 75 GB."
+        },
+        "checksums_published": true,
+        "history": [
+          {
+            "date": "2019-03",
+            "status": "available-registration",
+            "event": "v1.0 full release (trainval and test splits).",
+            "source": "https://www.nuscenes.org/nuscenes"
+          },
+          {
+            "date": "2020",
+            "event": "nuScenes-lidarseg point-wise labels released.",
+            "source": "https://www.nuscenes.org/nuscenes"
+          },
+          {
+            "date": "2021",
+            "event": "nuScenes-panoptic released.",
+            "source": "https://www.nuscenes.org/nuscenes"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "CC-BY-NC-SA-4.0",
+            "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0",
+            "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+            "applies_to": [
+              "data",
+              "annotations",
+              "maps"
+            ]
+          },
+          {
+            "id": "Apache-2.0",
+            "name": "Apache License 2.0 (devkit)",
+            "url": "https://github.com/nutonomy/nuscenes-devkit/blob/master/LICENSE.txt",
+            "applies_to": [
+              "code"
+            ]
+          }
+        ],
+        "terms_url": "https://www.nuscenes.org/terms-of-use",
+        "permissions": {
+          "commercial": false,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": true
+        },
+        "privacy": "Faces and licence plates are blurred in the published images."
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Renault Zoe passenger car with roof-mounted sensor rig",
+        "vehicle": "Renault Zoe",
+        "num_vehicles": 2,
+        "driving_mode": "human",
+        "locations": [
+          {
+            "city": "Boston",
+            "region": "Massachusetts",
+            "country": "US",
+            "lat": 42.36,
+            "lon": -71.06
+          },
+          {
+            "city": "Singapore",
+            "country": "SG",
+            "lat": 1.35,
+            "lon": 103.82
+          }
+        ],
+        "environment": [
+          "urban"
+        ],
+        "conditions": [
+          "day",
+          "night",
+          "rain"
+        ]
+      },
+      "scale": {
+        "logs": 1000,
+        "log_unit": "scenes",
+        "scene_duration_s": 20,
+        "hours": 5.6,
+        "km": 100.9,
+        "frames": 40000,
+        "annotated_frames": 40000,
+        "boxes_3d": 1400000,
+        "notes": "Frames are the 2 Hz keyframes; 1.4 M camera images and 390 k LiDAR sweeps exist in total."
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "radar",
+        "hd_map",
+        "boxes_3d",
+        "segmentation"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 6,
+          "name": "surround cameras",
+          "hz": 12,
+          "resolution": "1600×900",
+          "fov_deg": 70,
+          "ids": [
+            "PCAM_F0",
+            "PCAM_R0",
+            "PCAM_R1",
+            "PCAM_L0",
+            "PCAM_L1",
+            "PCAM_B0"
+          ],
+          "notes": "The rear camera has a 110° field of view."
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "roof LiDAR",
+          "model": "Velodyne HDL-32E",
+          "hz": 20,
+          "beams": 32,
+          "range_m": 70,
+          "ids": [
+            "LIDAR_TOP"
+          ]
+        },
+        {
+          "type": "radar",
+          "count": 5,
+          "model": "Continental ARS 408-21",
+          "hz": 13,
+          "range_m": 250
+        },
+        {
+          "type": "gnss",
+          "count": 1
+        },
+        {
+          "type": "imu",
+          "count": 1
+        },
+        {
+          "type": "can",
+          "count": 1,
+          "notes": "Published separately as the CAN bus expansion."
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "classes": 23,
+          "hz": 2,
+          "method": "human",
+          "notes": "Boxes carry visibility and activity attributes."
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 2,
+          "method": "human"
+        },
+        {
+          "type": "semantic_seg_lidar",
+          "classes": 32,
+          "hz": 2,
+          "method": "human",
+          "coverage": "nuScenes-lidarseg expansion"
+        },
+        {
+          "type": "panoptic_seg",
+          "hz": 2,
+          "method": "human",
+          "coverage": "nuScenes-panoptic expansion (LiDAR)"
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "hd_vector",
+        "dimensions": "2d",
+        "scope": "per_location",
+        "format": "JSON layers (map expansion v1.3) plus rasterised basemaps",
+        "georeferenced": false,
+        "layers": [
+          "lanes",
+          "lane dividers",
+          "road segments",
+          "road blocks",
+          "crosswalks",
+          "walkways",
+          "stop lines",
+          "carparks",
+          "traffic lights"
+        ]
+      },
+      "splits": [
+        {
+          "name": "train",
+          "count": 700,
+          "unit": "scenes"
+        },
+        {
+          "name": "val",
+          "count": 150,
+          "unit": "scenes"
+        },
+        {
+          "name": "test",
+          "count": 150,
+          "unit": "scenes",
+          "hidden_ground_truth": true
+        },
+        {
+          "name": "mini",
+          "count": 10,
+          "unit": "scenes",
+          "notes": "Ten scenes drawn from train and val for quick experiments."
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "3d_detection",
+          "name": "nuScenes detection task",
+          "url": "https://www.nuscenes.org/object-detection",
+          "eval_server": "unknown"
+        },
+        {
+          "task": "3d_tracking",
+          "name": "nuScenes tracking task",
+          "url": "https://www.nuscenes.org/tracking",
+          "eval_server": "unknown"
+        },
+        {
+          "task": "motion_forecasting",
+          "name": "nuScenes prediction task",
+          "url": "https://www.nuscenes.org/prediction",
+          "eval_server": "unknown"
+        },
+        {
+          "task": "semantic_segmentation",
+          "name": "nuScenes lidarseg task",
+          "url": "https://www.nuscenes.org/lidar-segmentation",
+          "eval_server": "unknown"
+        },
+        {
+          "task": "panoptic_segmentation",
+          "name": "nuScenes panoptic task",
+          "url": "https://www.nuscenes.org/panoptic",
+          "eval_server": "unknown"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "JSON metadata tables",
+          "JPEG images",
+          "binary .pcd.bin LiDAR sweeps",
+          ".pcd radar sweeps"
+        ],
+        "devkit": {
+          "name": "nuscenes-devkit",
+          "url": "https://github.com/nutonomy/nuscenes-devkit",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/nuscenes/"
+          },
+          {
+            "name": "mmdetection3d",
+            "url": "https://github.com/open-mmlab/mmdetection3d"
+          },
+          {
+            "name": "OpenPCDet",
+            "url": "https://github.com/open-mmlab/OpenPCDet"
+          }
+        ],
+        "known_issues": [
+          "The HD maps are 2D only."
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "nuscenes",
+            "nuscenes-mini",
+            "nuscenes-stream",
+            "nuscenes-mini-stream",
+            "nuscenes-interpolated",
+            "nuscenes-interpolated-mini"
+          ],
+          "extra": "py123d[nuscenes]",
+          "docs": "https://kesai.eu/py123d/datasets/nuscenes/",
+          "status": "stable",
+          "notes": "The interpolated configs upsample the 2 Hz keyframe annotations to 10 Hz using the intermediate LiDAR sweeps and CAN bus data."
+        }
+      },
+      "relations": [
+        {
+          "type": "companion",
+          "target": "nuplan",
+          "external": false,
+          "note": "Same organization, terms of use and devkit conventions."
+        },
+        {
+          "type": "companion",
+          "target": "nureasoning",
+          "external": false,
+          "note": "Shares the nuScenes terms of use."
+        }
+      ],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of the nuScenes mini split, as measured by py123d.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_nuscenes-mini.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {
+        "semantic_scholar": "arXiv:1903.11027"
+      },
+      "sources": {
+        "scale.hours": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "scale.km": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "scale.logs": "https://www.nuscenes.org/nuscenes",
+        "scale.boxes_3d": "https://www.nuscenes.org/nuscenes",
+        "sensors": "https://arxiv.org/abs/1903.11027",
+        "annotations": "https://www.nuscenes.org/nuscenes",
+        "splits": "https://www.nuscenes.org/nuscenes",
+        "availability.download_size": "https://kesai.eu/py123d/datasets/nuscenes/",
+        "tooling": "https://kesai.eu/py123d/datasets/nuscenes/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "high",
+        "notes": "Drafted from the py123d documentation and the nuScenes paper. Please confirm the release month and the panoptic release year."
+      }
+    },
+    {
+      "slug": "physical-ai-av",
+      "name": "NVIDIA Physical AI Autonomous Vehicles",
+      "aliases": [
+        "PAI-AV",
+        "PhysicalAI-Autonomous-Vehicles",
+        "Physical AI AV"
+      ],
+      "tagline": "NVIDIA's gated release of more than 300,000 Hyperion 8 clips with seven fisheye cameras at 30 fps, a 360° LiDAR, high-rate egomotion and auto-labelled 3D boxes.",
+      "domain": "driving",
+      "family": "physical-ai-av",
+      "release_date": "2025-05",
+      "last_update": "2026-09",
+      "organizations": [
+        "nvidia"
+      ],
+      "homepage": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles"
+        ],
+        "code": [
+          "https://github.com/NVlabs/physical_ai_av"
+        ]
+      },
+      "papers": [],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub_gated"
+        ],
+        "cost": "free",
+        "eligibility": "Governed by the NVIDIA AV dataset licence accepted on the Hugging Face Hub.",
+        "registration_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles",
+        "evidence": [
+          {
+            "url": "https://huggingface.co/api/datasets/nvidia/PhysicalAI-Autonomous-Vehicles",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Hugging Face API reports gated=auto, public, custom licence (nvidia-av-dataset), created 2025-05-27, last modified 2026-09-12."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "note": "About 0.45 GB per clip for cameras, LiDAR and calibration; the full release spans hundreds of terabytes. Data is packed in chunks of about 100 clips."
+        },
+        "history": [
+          {
+            "date": "2025-05",
+            "status": "available-registration",
+            "event": "Released on the Hugging Face Hub.",
+            "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles"
+          },
+          {
+            "date": "2026-09",
+            "event": "Latest repository update (26.09 snapshot).",
+            "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "NVIDIA-AV-Dataset-License",
+            "name": "NVIDIA Autonomous Vehicles dataset licence",
+            "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles/blob/main/LICENSE.pdf",
+            "applies_to": [
+              "data",
+              "annotations"
+            ]
+          }
+        ],
+        "permissions": {},
+        "notes": "Permissions not assessed; read the licence PDF before use."
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "NVIDIA Hyperion 8",
+        "driving_mode": "mixed",
+        "locations": [],
+        "locations_note": "Recorded by NVIDIA's fleet in several countries; cities are not published. Derived NuRec scenes include European roads.",
+        "environment": [
+          "urban",
+          "suburban",
+          "highway"
+        ]
+      },
+      "scale": {
+        "logs": 307332,
+        "log_unit": "clips",
+        "scene_duration_s": 20,
+        "hours": 1707,
+        "km": 69265.7
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "radar",
+        "boxes_3d"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 7,
+          "name": "f-theta (fisheye) cameras",
+          "hz": 30,
+          "ids": [
+            "FTCAM_F0",
+            "FTCAM_TELE_F0",
+            "FTCAM_R0",
+            "FTCAM_L0",
+            "FTCAM_R1",
+            "FTCAM_L1",
+            "FTCAM_TELE_B0"
+          ],
+          "notes": "Front wide 120°, front tele 30°, cross left/right 120°, rear left/right 70°, rear tele 30°."
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "360° roof LiDAR",
+          "hz": 10,
+          "ids": [
+            "LIDAR_TOP"
+          ],
+          "notes": "Draco-compressed point clouds with per-point timestamps."
+        },
+        {
+          "type": "radar",
+          "notes": "Radar archives are published per radar name; the number of radars is not confirmed in this record."
+        },
+        {
+          "type": "imu",
+          "count": 1,
+          "notes": "Egomotion at 67–100 Hz from a real-time and an offline-smoothed source."
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "classes": 10,
+          "hz": 10,
+          "method": "auto",
+          "notes": "Offline auto-labelled cuboids with track tokens."
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "auto"
+        }
+      ],
+      "maps": {
+        "available": false,
+        "type": "none"
+      },
+      "splits": [
+        {
+          "name": "train",
+          "unit": "clips"
+        },
+        {
+          "name": "val",
+          "unit": "clips"
+        },
+        {
+          "name": "test",
+          "unit": "clips"
+        }
+      ],
+      "benchmarks": [],
+      "formats": {
+        "raw": [
+          "parquet (calibration",
+          "egomotion",
+          "labels",
+          "LiDAR)",
+          "MP4 camera video",
+          "chunked zip archives"
+        ],
+        "devkit": {
+          "name": "physical_ai_av",
+          "url": "https://github.com/NVlabs/physical_ai_av",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/physical-ai-av/"
+          }
+        ],
+        "known_issues": [
+          "Some clips ship without LiDAR or egomotion and cannot be converted."
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "physical-ai-av"
+          ],
+          "docs": "https://kesai.eu/py123d/datasets/physical-ai-av/",
+          "status": "stable",
+          "notes": "Converts straight from the chunk archives without extracting them."
+        }
+      },
+      "relations": [
+        {
+          "type": "shares_rig_with",
+          "target": "ncore",
+          "external": false,
+          "note": "NCore repackages Hyperion 8.1 clips in the NCore V4 format."
+        },
+        {
+          "type": "companion",
+          "target": "nurec",
+          "external": false,
+          "note": "NuRec scenes are neural reconstructions of PAI-AV clips."
+        }
+      ],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of a Physical AI AV clip, as measured by py123d.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_physical-ai-av.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {
+        "huggingface": "nvidia/PhysicalAI-Autonomous-Vehicles"
+      },
+      "sources": {
+        "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "sensors": "https://kesai.eu/py123d/datasets/physical-ai-av/",
+        "annotations": "https://kesai.eu/py123d/datasets/physical-ai-av/",
+        "availability.download_size": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "No paper; the licence permissions, the radar count and the recording countries are not recorded."
+      }
+    },
+    {
+      "slug": "pandaset",
+      "name": "PandaSet",
+      "aliases": [],
+      "tagline": "Hesai and Scale AI's short but richly labelled dataset with a 64-beam spinning and a forward solid-state LiDAR, six cameras, 3D cuboids and point-wise segmentation, under a commercial-friendly licence.",
+      "domain": "driving",
+      "release_date": "2020",
+      "organizations": [
+        "hesai",
+        "scale-ai"
+      ],
+      "homepage": "https://web.archive.org/web/20250410080318/https://pandaset.org/",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/georghess/pandaset"
+        ],
+        "code": [
+          "https://github.com/scaleapi/pandaset-devkit"
+        ]
+      },
+      "papers": [
+        {
+          "title": "PandaSet: Advanced Sensor Suite Dataset for Autonomous Driving",
+          "venue": "ITSC 2021",
+          "year": 2021,
+          "arxiv": "2112.12610",
+          "url": "https://arxiv.org/abs/2112.12610",
+          "bibtex": "@inproceedings{Xiao2021ITSC,\n  title={PandaSet: Advanced sensor suite dataset for autonomous driving},\n  author={Xiao, Pengchuan and Shao, Zhenlei and Hao, Steven and Zhang, Zishuo and Chai, Xiaolin and Jiao, Judy and Li, Zesong and Wu, Jian and Sun, Kai and Jiang, Kun and others},\n  booktitle={IEEE International Intelligent Transportation Systems Conference (ITSC)},\n  year={2021}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "deprecated-but-downloadable",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub",
+          "direct"
+        ],
+        "cost": "free",
+        "evidence": [
+          {
+            "url": "https://scale.com/open-av-datasets/pandaset",
+            "checked": "2026-10-14",
+            "wayback": "http://web.archive.org/web/20250612045125/https://scale.com/open-av-datasets/pandaset",
+            "http_status": 404,
+            "note": "The official download page returns 404. Wayback snapshots show it alive until 2025-06-12 and gone by 2025-12-19."
+          },
+          {
+            "url": "https://web.archive.org/web/20250410080318/https://pandaset.org/",
+            "checked": "2026-10-14",
+            "note": "The former project domain pandaset.org now serves unrelated gambling content (observed 2026-10-14). Do not link to the live domain; the Wayback snapshot shows the original site."
+          },
+          {
+            "url": "https://github.com/scaleapi/pandaset-devkit/issues/151",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Devkit issue \"Still available to download this dataset?\" opened 2023-11-22 reports a broken download page; still open."
+          },
+          {
+            "url": "https://huggingface.co/api/datasets/georghess/pandaset",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Unofficial Hugging Face mirror is public (not gated), licensed CC BY 4.0, last modified 2024-04-25."
+          }
+        ],
+        "mirrors": [
+          {
+            "host": "Hugging Face (georghess)",
+            "url": "https://huggingface.co/datasets/georghess/pandaset",
+            "official": false,
+            "license": "CC-BY-4.0",
+            "last_verified": "2026-10-14",
+            "note": "Single pandaset.zip of about 44.5 GB with all 103 logs; used by py123d's downloader."
+          },
+          {
+            "host": "Kaggle (usharengaraju)",
+            "url": "https://www.kaggle.com/datasets/usharengaraju/pandaset-dataset",
+            "official": false,
+            "last_verified": "2026-10-14"
+          }
+        ],
+        "download_size": {
+          "compressed_gb": 44.5,
+          "note": "Size of the Hugging Face mirror archive."
+        },
+        "history": [
+          {
+            "date": "2020",
+            "status": "available-registration",
+            "event": "Released by Hesai and Scale AI at pandaset.org with a free registration.",
+            "source": "https://web.archive.org/web/20201202135111/https://pandaset.org/"
+          },
+          {
+            "date": "2023-11",
+            "event": "Users report the download page as \"webpage not found\" (devkit issue 151).",
+            "source": "https://github.com/scaleapi/pandaset-devkit/issues/151"
+          },
+          {
+            "date": "2024-04",
+            "event": "Unofficial full mirror published on the Hugging Face Hub under CC BY 4.0.",
+            "source": "https://huggingface.co/datasets/georghess/pandaset"
+          },
+          {
+            "date": "2025-12",
+            "status": "deprecated-but-downloadable",
+            "event": "Scale AI's dataset page returns 404 (first seen in Wayback on 2025-12-19).",
+            "source": "http://web.archive.org/web/20251219030545/https://scale.com/open-av-datasets/pandaset"
+          },
+          {
+            "date": "2026-10",
+            "event": "The pandaset.org domain serves unrelated content; only archived copies of the site remain.",
+            "source": "https://web.archive.org/web/20250410080318/https://pandaset.org/"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "CC-BY-4.0",
+            "name": "Creative Commons Attribution 4.0 with PandaSet Dataset Terms of Use",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "applies_to": [
+              "data",
+              "annotations"
+            ]
+          },
+          {
+            "id": "Apache-2.0",
+            "name": "Apache License 2.0 (devkit)",
+            "url": "https://github.com/scaleapi/pandaset-devkit/blob/master/LICENSE",
+            "applies_to": [
+              "code"
+            ]
+          }
+        ],
+        "permissions": {
+          "commercial": true,
+          "redistribution": true,
+          "derivatives": true,
+          "attribution_required": true,
+          "share_alike": false
+        },
+        "privacy": "The terms forbid using the data to identify people; privacy requests went to Scale AI.",
+        "notes": "The Dataset Terms of Use add publicity, privacy and termination clauses on top of CC BY 4.0. The terms text is preserved in the py123d documentation."
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Hesai test vehicle",
+        "driving_mode": "human",
+        "period": {
+          "start": "2019",
+          "end": "2020"
+        },
+        "locations": [
+          {
+            "city": "San Francisco",
+            "region": "California",
+            "country": "US",
+            "lat": 37.77,
+            "lon": -122.42
+          },
+          {
+            "city": "El Camino Real (Silicon Valley)",
+            "region": "California",
+            "country": "US",
+            "lat": 37.42,
+            "lon": -122.1
+          }
+        ],
+        "environment": [
+          "urban",
+          "suburban"
+        ],
+        "conditions": [
+          "day",
+          "night"
+        ]
+      },
+      "scale": {
+        "logs": 103,
+        "log_unit": "scenes",
+        "scene_duration_s": 8,
+        "hours": 0.2,
+        "km": 8.3,
+        "frames": 8240
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "boxes_3d",
+        "segmentation"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 6,
+          "name": "five wide-angle cameras and one long-focus front camera",
+          "hz": 10,
+          "resolution": "1920×1080",
+          "ids": [
+            "PCAM_F0",
+            "PCAM_L0",
+            "PCAM_R0",
+            "PCAM_L1",
+            "PCAM_R1",
+            "PCAM_B0"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "spinning roof LiDAR",
+          "model": "Hesai Pandar64",
+          "hz": 10,
+          "beams": 64,
+          "range_m": 200,
+          "ids": [
+            "LIDAR_TOP"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "forward solid-state LiDAR",
+          "model": "Hesai PandarGT",
+          "hz": 10,
+          "ids": [
+            "LIDAR_FRONT"
+          ]
+        },
+        {
+          "type": "gnss",
+          "count": 1
+        },
+        {
+          "type": "imu",
+          "count": 1
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "classes": 28,
+          "hz": 10,
+          "method": "human"
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "human"
+        },
+        {
+          "type": "semantic_seg_lidar",
+          "classes": 37,
+          "hz": 10,
+          "method": "human",
+          "coverage": "76 of 103 scenes"
+        }
+      ],
+      "maps": {
+        "available": false,
+        "type": "none"
+      },
+      "splits": [],
+      "benchmarks": [],
+      "formats": {
+        "raw": [
+          "gzipped pickles (LiDAR",
+          "cuboids",
+          "segmentation)",
+          "JPEG images",
+          "JSON poses and timestamps"
+        ],
+        "devkit": {
+          "name": "pandaset-devkit",
+          "url": "https://github.com/scaleapi/pandaset-devkit",
+          "language": "Python",
+          "maintained": false
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/pandaset/"
+          }
+        ],
+        "known_issues": [
+          "LiDAR sweeps are not motion-compensated.",
+          "Boxes in the overlap of both LiDARs are annotated twice; py123d keeps those of the top LiDAR."
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "pandaset",
+            "pandaset-stream"
+          ],
+          "extra": "py123d[hf]",
+          "docs": "https://kesai.eu/py123d/datasets/pandaset/",
+          "status": "stable",
+          "notes": "The downloader and stream mode pull the community Hugging Face mirror."
+        }
+      },
+      "relations": [],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of a PandaSet scene, as measured by py123d.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_pandaset.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {
+        "huggingface": "georghess/pandaset"
+      },
+      "sources": {
+        "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "sensors": "https://arxiv.org/abs/2112.12610",
+        "annotations": "https://arxiv.org/abs/2112.12610",
+        "availability": "https://kesai.eu/py123d/datasets/pandaset/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "high",
+        "notes": "The release month in 2020 and the exact collection period are not confirmed. Status change to discontinued would need the mirrors to disappear."
+      }
+    },
+    {
+      "slug": "truckdrive",
+      "name": "TruckDrive",
+      "aliases": [],
+      "tagline": "Torc Robotics' long-range highway dataset for heavy trucks, with multi-camera and multi-LiDAR (FMCW and Ouster) rigs, 3D boxes and lane maps.",
+      "domain": "driving",
+      "release_date": "2026-03",
+      "last_update": "2026-07",
+      "organizations": [
+        "torc-robotics"
+      ],
+      "homepage": "https://github.com/torc-ai/TruckDrive",
+      "links": {
+        "download": [
+          "https://huggingface.co/datasets/Torc-Robotics/TruckDrive"
+        ],
+        "code": [
+          "https://github.com/torc-ai/TruckDrive"
+        ]
+      },
+      "papers": [
+        {
+          "title": "TruckDrive: Long-Range Autonomous Highway Driving Dataset",
+          "venue": "arXiv preprint",
+          "year": 2026,
+          "arxiv": "2603.02413",
+          "url": "https://arxiv.org/abs/2603.02413",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "hf_hub_gated"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial licence accepted on the Hugging Face Hub.",
+        "registration_url": "https://huggingface.co/datasets/Torc-Robotics/TruckDrive",
+        "evidence": [
+          {
+            "url": "https://huggingface.co/api/datasets/Torc-Robotics/TruckDrive",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Hugging Face API reports gated=auto, public, custom non-commercial licence, created 2026-06-15, last modified 2026-07-19."
+          },
+          {
+            "url": "https://github.com/torc-ai/TruckDrive",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Repository online."
+          }
+        ],
+        "mirrors": [],
+        "history": [
+          {
+            "date": "2026-03",
+            "event": "Paper published on arXiv.",
+            "source": "https://arxiv.org/abs/2603.02413"
+          },
+          {
+            "date": "2026-06",
+            "status": "available-registration",
+            "event": "Data released on the Hugging Face Hub.",
+            "source": "https://huggingface.co/datasets/Torc-Robotics/TruckDrive"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "TruckDrive-NC",
+            "name": "TruckDrive dataset licence (non-commercial)",
+            "url": "https://huggingface.co/datasets/Torc-Robotics/TruckDrive/blob/main/LICENSE-NONCOMMERCIAL.txt",
+            "applies_to": [
+              "data",
+              "annotations",
+              "maps"
+            ]
+          }
+        ],
+        "permissions": {
+          "commercial": false
+        }
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Heavy truck",
+        "driving_mode": "mixed",
+        "locations": [],
+        "locations_note": "Highways in the United States; routes are not itemised in this record.",
+        "environment": [
+          "highway"
+        ]
+      },
+      "scale": {
+        "log_unit": "scenes",
+        "notes": "Scene count, hours and distance are not recorded yet."
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "hd_map",
+        "boxes_3d"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "name": "Leopard Imaging cameras with pinhole calibration"
+        },
+        {
+          "type": "lidar",
+          "count": 1,
+          "name": "merged FMCW LiDAR stream",
+          "model": "Aeva"
+        },
+        {
+          "type": "lidar",
+          "count": 3,
+          "model": "Ouster"
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "coverage": "train and val scenes",
+          "notes": "Long-range labels for highway operation."
+        },
+        {
+          "type": "lanes",
+          "notes": "Lane-line and lane-segment annotations with topology."
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "hd_vector",
+        "scope": "per_log",
+        "format": "lane lines and lane segments per scene",
+        "layers": [
+          "lanes",
+          "road lines"
+        ]
+      },
+      "splits": [
+        {
+          "name": "train",
+          "unit": "scenes"
+        },
+        {
+          "name": "val",
+          "unit": "scenes"
+        },
+        {
+          "name": "test",
+          "unit": "scenes",
+          "hidden_ground_truth": true,
+          "notes": "No trajectories or annotations; py123d skips test scenes."
+        }
+      ],
+      "benchmarks": [],
+      "formats": {
+        "raw": [
+          "per-scene archives for cameras",
+          "LiDAR",
+          "poses",
+          "calibration and annotations"
+        ],
+        "devkit": {
+          "name": "TruckDrive repository",
+          "url": "https://github.com/torc-ai/TruckDrive",
+          "language": "Python",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/truckdrive/"
+          }
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "truckdrive",
+            "truckdrive-stream"
+          ],
+          "extra": "py123d[hf]",
+          "docs": "https://kesai.eu/py123d/datasets/truckdrive/",
+          "status": "experimental"
+        }
+      },
+      "relations": [],
+      "figures": {},
+      "community": {
+        "huggingface": "Torc-Robotics/TruckDrive"
+      },
+      "sources": {
+        "sensors": "https://kesai.eu/py123d/datasets/truckdrive/",
+        "availability": "https://huggingface.co/datasets/Torc-Robotics/TruckDrive"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "low",
+        "notes": "Scale, camera count and frequencies, recording locations and the licence details must be filled from the paper and the dataset card."
+      }
+    },
+    {
+      "slug": "wod-motion",
+      "name": "Waymo Open Dataset – Motion",
+      "aliases": [
+        "WOMD",
+        "Waymo Open Motion Dataset",
+        "WOD-Motion"
+      ],
+      "tagline": "More than 100,000 twenty-second scenarios of auto-labelled agent tracks with 3D maps and traffic-light states, built for motion forecasting and simulation agents.",
+      "domain": "driving",
+      "family": "waymo-open-dataset",
+      "release_date": "2021-03",
+      "organizations": [
+        "waymo"
+      ],
+      "homepage": "https://waymo.com/open/data/motion/",
+      "links": {
+        "download": [
+          "https://waymo.com/open/download/"
+        ],
+        "code": [
+          "https://github.com/waymo-research/waymo-open-dataset"
+        ],
+        "challenge": "https://waymo.com/open/challenges/"
+      },
+      "papers": [
+        {
+          "title": "Large Scale Interactive Motion Forecasting for Autonomous Driving: The Waymo Open Motion Dataset",
+          "venue": "ICCV 2021",
+          "year": 2021,
+          "arxiv": "2104.10133",
+          "url": "https://arxiv.org/abs/2104.10133",
+          "bibtex": "@inproceedings{Ettinger2021ICCV,\n  title={Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset},\n  author={Ettinger, Scott and Cheng, Shuyang and Caine, Benjamin and Liu, Chenxi and Zhao, Hang and Pradhan, Sabeek and Chai, Yuning and Sapp, Ben and Qi, Charles R and Zhou, Yin and others},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},\n  pages={9710--9719},\n  year={2021}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "registration",
+          "cloud_bucket"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial use under the Waymo Dataset License Agreement; requires a Google account.",
+        "registration_url": "https://waymo.com/open/licensing/",
+        "evidence": [
+          {
+            "url": "https://waymo.com/open/data/motion/",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "Page online. After licence acceptance the motion bucket is readable without further credentials (py123d streams from it anonymously)."
+          },
+          {
+            "url": "https://waymo.com/open/",
+            "checked": "2026-10-14",
+            "wayback": "http://web.archive.org/web/20261010073601/https://waymo.com/open/",
+            "http_status": 200,
+            "note": "Portal online."
+          }
+        ],
+        "mirrors": [],
+        "history": [
+          {
+            "date": "2021-03",
+            "status": "available-registration",
+            "event": "Released with the first Motion Prediction Challenge.",
+            "source": "https://waymo.com/open/data/motion/"
+          },
+          {
+            "date": "2023",
+            "event": "WOMD-LiDAR added LiDAR data for a subset; later versions added camera embeddings.",
+            "source": "https://waymo.com/open/data/motion/"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "Waymo-Dataset-License-NC",
+            "name": "Waymo Dataset License Agreement for Non-Commercial Use",
+            "url": "https://waymo.com/open/terms/",
+            "applies_to": [
+              "data",
+              "annotations",
+              "maps"
+            ]
+          },
+          {
+            "id": "Apache-2.0",
+            "name": "Apache License 2.0 with code-specific exceptions (tooling)",
+            "url": "https://github.com/waymo-research/waymo-open-dataset/blob/master/LICENSE",
+            "applies_to": [
+              "code"
+            ]
+          }
+        ],
+        "terms_url": "https://waymo.com/open/terms/",
+        "permissions": {
+          "commercial": false,
+          "redistribution": false,
+          "derivatives": true,
+          "attribution_required": true
+        }
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Waymo driver fleet",
+        "driving_mode": "mixed",
+        "locations": [],
+        "locations_note": "Recorded in several US cities served by Waymo; the release does not label scenarios with cities.",
+        "environment": [
+          "urban",
+          "suburban"
+        ]
+      },
+      "scale": {
+        "logs": 103354,
+        "log_unit": "scenarios",
+        "scene_duration_s": 20,
+        "hours": 574.1,
+        "km": 10323.5,
+        "notes": "Distance is computed by py123d from the non-overlapping 20-second training files only."
+      },
+      "modalities": [
+        "ego_pose",
+        "hd_map",
+        "boxes_3d",
+        "traffic_lights",
+        "trajectories"
+      ],
+      "sensors": [],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "hz": 10,
+          "method": "auto",
+          "notes": "Tracks produced by Waymo's offboard perception; three agent classes."
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "auto"
+        },
+        {
+          "type": "trajectories",
+          "hz": 10,
+          "method": "auto",
+          "notes": "Scenario protos mark the tracks to predict and objects of interest."
+        },
+        {
+          "type": "traffic_light_state",
+          "hz": 10,
+          "method": "auto"
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "hd_vector",
+        "dimensions": "3d",
+        "scope": "per_log",
+        "format": "protobuf map features per scenario",
+        "layers": [
+          "lanes",
+          "road lines",
+          "road edges",
+          "crosswalks",
+          "speed bumps",
+          "stop signs",
+          "driveways"
+        ],
+        "notes": "py123d reports polyline-to-polygon artefacts and known map bugs."
+      },
+      "splits": [
+        {
+          "name": "training",
+          "unit": "scenarios"
+        },
+        {
+          "name": "validation",
+          "unit": "scenarios"
+        },
+        {
+          "name": "testing",
+          "unit": "scenarios",
+          "hidden_ground_truth": true,
+          "notes": "Futures are withheld for the challenge."
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "motion_forecasting",
+          "name": "Motion Prediction Challenge",
+          "url": "https://waymo.com/open/challenges/",
+          "eval_server": "open"
+        },
+        {
+          "task": "occupancy_prediction",
+          "name": "Occupancy and Flow Prediction Challenge",
+          "url": "https://waymo.com/open/challenges/",
+          "eval_server": "open"
+        },
+        {
+          "task": "simulation",
+          "name": "Sim Agents Challenge",
+          "url": "https://waymo.com/open/challenges/",
+          "eval_server": "open"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "TFRecord scenario protos"
+        ],
+        "devkit": {
+          "name": "waymo-open-dataset",
+          "url": "https://github.com/waymo-research/waymo-open-dataset",
+          "language": "Python / TensorFlow",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/wod_motion/",
+            "notes": "Scenario metadata exposed through the aux custom modality."
+          }
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "wod-motion",
+            "wod-motion-stream"
+          ],
+          "extra": "py123d[waymo]",
+          "docs": "https://kesai.eu/py123d/datasets/wod_motion/",
+          "status": "experimental"
+        }
+      },
+      "relations": [
+        {
+          "type": "companion",
+          "target": "wod-perception",
+          "external": false,
+          "note": "Same licence and portal; Perception carries the raw sensors."
+        }
+      ],
+      "figures": {},
+      "community": {},
+      "sources": {
+        "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "annotations": "https://kesai.eu/py123d/datasets/wod_motion/",
+        "maps": "https://kesai.eu/py123d/datasets/wod_motion/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "Current version number and split sizes are not recorded; the WOMD-LiDAR date should be confirmed."
+      }
+    },
+    {
+      "slug": "wod-perception",
+      "name": "Waymo Open Dataset – Perception",
+      "aliases": [
+        "WOD Perception",
+        "WOD-Perception",
+        "Waymo Open Perception Dataset"
+      ],
+      "tagline": "Waymo's 1,150-segment sensor dataset with five cameras, five LiDARs, dense 3D and 2D labels, segmentation, keypoints and HD map features.",
+      "domain": "driving",
+      "family": "waymo-open-dataset",
+      "version": "v1.4.3 (TFRecord); v2.0.1 (modular parquet)",
+      "release_date": "2019-08",
+      "last_update": "2024",
+      "organizations": [
+        "waymo"
+      ],
+      "homepage": "https://waymo.com/open/data/perception/",
+      "links": {
+        "download": [
+          "https://waymo.com/open/download/"
+        ],
+        "code": [
+          "https://github.com/waymo-research/waymo-open-dataset"
+        ],
+        "challenge": "https://waymo.com/open/challenges/"
+      },
+      "papers": [
+        {
+          "title": "Scalability in Perception for Autonomous Driving: Waymo Open Dataset",
+          "venue": "CVPR 2020",
+          "year": 2020,
+          "arxiv": "1912.04838",
+          "url": "https://arxiv.org/abs/1912.04838",
+          "bibtex": "@inproceedings{Sun2020CVPR,\n  title={Scalability in perception for autonomous driving: Waymo open dataset},\n  author={Sun, Pei and Kretzschmar, Henrik and Dotiwalla, Xerxes and Chouard, Aurelien and Patnaik, Vijaysai and Tsui, Paul and Guo, James and Zhou, Yin and Chai, Yuning and Caine, Benjamin and others},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  pages={2446--2454},\n  year={2020}\n}\n",
+          "required_citation": true
+        }
+      ],
+      "availability": {
+        "status": "available-registration",
+        "last_verified": "2026-10-14",
+        "verified_by": "agent",
+        "access_methods": [
+          "registration",
+          "cloud_bucket"
+        ],
+        "cost": "free",
+        "eligibility": "Non-commercial use under the Waymo Dataset License Agreement; requires a Google account.",
+        "registration_url": "https://waymo.com/open/licensing/",
+        "evidence": [
+          {
+            "url": "https://waymo.com/open/",
+            "checked": "2026-10-14",
+            "wayback": "http://web.archive.org/web/20261010073601/https://waymo.com/open/",
+            "http_status": 200,
+            "note": "Portal online."
+          },
+          {
+            "url": "https://waymo.com/open/data/perception/",
+            "checked": "2026-10-14",
+            "http_status": 200,
+            "note": "The page redirects anonymous visitors to a Google sign-in; the GCS bucket needs an authenticated client."
+          }
+        ],
+        "mirrors": [],
+        "download_size": {
+          "compressed_gb": 1000,
+          "note": "Roughly 1 TB for v1.4.3; individual segments are about 1 GB."
+        },
+        "history": [
+          {
+            "date": "2019-08",
+            "status": "available-registration",
+            "event": "v1.0 released with 1,000 segments.",
+            "source": "https://waymo.com/open/"
+          },
+          {
+            "date": "2020-03",
+            "event": "v1.2 grew to 1,150 segments and added the test split.",
+            "source": "https://github.com/waymo-research/waymo-open-dataset"
+          },
+          {
+            "date": "2022",
+            "event": "v1.3 and v1.4 added 3D semantic segmentation, keypoints, panoptic labels and HD map features.",
+            "source": "https://github.com/waymo-research/waymo-open-dataset"
+          },
+          {
+            "date": "2023-03",
+            "event": "v2.0 modular parquet format released alongside the TFRecord format.",
+            "source": "https://github.com/waymo-research/waymo-open-dataset"
+          }
+        ]
+      },
+      "legal": {
+        "licenses": [
+          {
+            "id": "Waymo-Dataset-License-NC",
+            "name": "Waymo Dataset License Agreement for Non-Commercial Use",
+            "url": "https://waymo.com/open/terms/",
+            "applies_to": [
+              "data",
+              "annotations",
+              "maps"
+            ]
+          },
+          {
+            "id": "Apache-2.0",
+            "name": "Apache License 2.0 with code-specific exceptions (tooling)",
+            "url": "https://github.com/waymo-research/waymo-open-dataset/blob/master/LICENSE",
+            "applies_to": [
+              "code"
+            ]
+          }
+        ],
+        "terms_url": "https://waymo.com/open/terms/",
+        "permissions": {
+          "commercial": false,
+          "redistribution": false,
+          "derivatives": true,
+          "attribution_required": true
+        },
+        "privacy": "Faces and licence plates are blurred."
+      },
+      "collection": {
+        "reality": "real",
+        "platform": "Waymo fifth-generation driver (Chrysler Pacifica)",
+        "driving_mode": "mixed",
+        "locations": [
+          {
+            "city": "Phoenix",
+            "region": "Arizona",
+            "country": "US",
+            "lat": 33.45,
+            "lon": -112.07
+          },
+          {
+            "city": "Mountain View",
+            "region": "California",
+            "country": "US",
+            "lat": 37.39,
+            "lon": -122.08
+          },
+          {
+            "city": "San Francisco",
+            "region": "California",
+            "country": "US",
+            "lat": 37.77,
+            "lon": -122.42
+          }
+        ],
+        "locations_note": "Later versions added segments from further US cities that are not itemised here.",
+        "environment": [
+          "urban",
+          "suburban"
+        ],
+        "conditions": [
+          "day",
+          "night",
+          "rain"
+        ]
+      },
+      "scale": {
+        "logs": 1150,
+        "log_unit": "segments",
+        "scene_duration_s": 20,
+        "hours": 6.4,
+        "km": 154,
+        "boxes_3d": 12000000
+      },
+      "modalities": [
+        "ego_pose",
+        "camera",
+        "lidar",
+        "hd_map",
+        "boxes_3d",
+        "segmentation"
+      ],
+      "sensors": [
+        {
+          "type": "camera",
+          "count": 5,
+          "name": "front and side cameras",
+          "hz": 10,
+          "resolution": "1920×1280 (front) and 1920×1040 (sides)",
+          "ids": [
+            "PCAM_F0",
+            "PCAM_L0",
+            "PCAM_R0",
+            "PCAM_L1",
+            "PCAM_R1"
+          ]
+        },
+        {
+          "type": "lidar",
+          "count": 5,
+          "name": "one mid-range and four short-range LiDARs",
+          "hz": 10,
+          "range_m": 75,
+          "ids": [
+            "LIDAR_TOP",
+            "LIDAR_FRONT",
+            "LIDAR_SIDE_LEFT",
+            "LIDAR_SIDE_RIGHT",
+            "LIDAR_BACK"
+          ],
+          "notes": "The top LiDAR reaches about 75 m, the four perimeter LiDARs about 20 m. Two returns per shot."
+        }
+      ],
+      "annotations": [
+        {
+          "type": "boxes_3d",
+          "classes": 4,
+          "hz": 10,
+          "method": "human",
+          "notes": "Vehicles, pedestrians, cyclists and signs; about 12 M boxes."
+        },
+        {
+          "type": "boxes_2d",
+          "hz": 10,
+          "method": "human"
+        },
+        {
+          "type": "tracking_ids",
+          "hz": 10,
+          "method": "human"
+        },
+        {
+          "type": "semantic_seg_lidar",
+          "classes": 23,
+          "method": "human",
+          "coverage": "subset of frames (v1.3.1+)"
+        },
+        {
+          "type": "panoptic_seg",
+          "method": "human",
+          "coverage": "subset of camera frames (v1.4+)"
+        },
+        {
+          "type": "keypoints",
+          "method": "human",
+          "coverage": "subset of pedestrians and cyclists (v1.3.2+)"
+        }
+      ],
+      "maps": {
+        "available": true,
+        "type": "hd_vector",
+        "dimensions": "3d",
+        "scope": "per_log",
+        "format": "protobuf map features (v1.4.2+)",
+        "layers": [
+          "lanes",
+          "road lines",
+          "road edges",
+          "crosswalks",
+          "speed bumps",
+          "stop signs",
+          "driveways"
+        ],
+        "notes": "Map features were added in v1.4.2 for the frames with 3D segmentation labels; py123d notes polyline-to-polygon artefacts."
+      },
+      "splits": [
+        {
+          "name": "training",
+          "count": 798,
+          "unit": "segments"
+        },
+        {
+          "name": "validation",
+          "count": 202,
+          "unit": "segments"
+        },
+        {
+          "name": "testing",
+          "count": 150,
+          "unit": "segments",
+          "hidden_ground_truth": true
+        }
+      ],
+      "benchmarks": [
+        {
+          "task": "3d_detection",
+          "name": "Waymo Open Dataset 3D detection",
+          "url": "https://waymo.com/open/challenges/",
+          "eval_server": "open"
+        },
+        {
+          "task": "3d_tracking",
+          "url": "https://waymo.com/open/challenges/",
+          "eval_server": "open"
+        },
+        {
+          "task": "semantic_segmentation",
+          "url": "https://waymo.com/open/challenges/",
+          "eval_server": "open"
+        }
+      ],
+      "formats": {
+        "raw": [
+          "TFRecord (v1.x)",
+          "parquet components (v2.x)"
+        ],
+        "devkit": {
+          "name": "waymo-open-dataset",
+          "url": "https://github.com/waymo-research/waymo-open-dataset",
+          "language": "Python / TensorFlow",
+          "maintained": true
+        },
+        "loaders": [
+          {
+            "name": "py123d",
+            "url": "https://kesai.eu/py123d/datasets/wod_perception/",
+            "notes": "Reads v1.4.3 TFRecords with lightweight protobufs."
+          },
+          {
+            "name": "mmdetection3d",
+            "url": "https://github.com/open-mmlab/mmdetection3d"
+          }
+        ],
+        "known_issues": [
+          "py123d does not support v2.0.1 because the modular release lacks map data."
+        ]
+      },
+      "tooling": {
+        "py123d": {
+          "configs": [
+            "wod-perception",
+            "wod-perception-stream"
+          ],
+          "extra": "py123d[waymo]",
+          "docs": "https://kesai.eu/py123d/datasets/wod_perception/",
+          "status": "stable",
+          "notes": "Streaming needs an authenticated Google Cloud client (gcloud auth application-default login)."
+        }
+      },
+      "relations": [
+        {
+          "type": "companion",
+          "target": "wod-motion",
+          "external": false,
+          "note": "Same licence and portal; Motion has no raw sensors."
+        }
+      ],
+      "figures": {
+        "sensor_timeline": {
+          "file": "assets/sensor_timeline.svg",
+          "caption": "Sensor recording timeline of a WOD Perception segment, as measured by py123d.",
+          "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_wod-perception.svg",
+          "license": "Apache-2.0"
+        }
+      },
+      "community": {},
+      "sources": {
+        "scale.hours": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "scale.km": "https://github.com/kesai-labs/py123d#-supported-datasets",
+        "scale.logs": "https://waymo.com/open/data/perception/",
+        "sensors": "https://arxiv.org/abs/1912.04838",
+        "splits": "https://waymo.com/open/data/perception/",
+        "availability.download_size": "https://kesai.eu/py123d/datasets/wod_perception/"
+      },
+      "curation": {
+        "created": "2026-10-14",
+        "updated": "2026-10-14",
+        "contributors": [
+          "Claude (agent draft)"
+        ],
+        "schema_version": "0.1.0",
+        "confidence": "medium",
+        "notes": "Version history dates are from memory of the changelog and should be checked against the repository tags."
+      }
+    }
+  ]
+}

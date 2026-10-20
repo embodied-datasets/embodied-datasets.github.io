@@ -1,0 +1,213 @@
+{
+  "slug": "truckdrive",
+  "name": "TruckDrive",
+  "aliases": [],
+  "tagline": "Torc Robotics' long-range highway dataset for heavy trucks, with multi-camera and multi-LiDAR (FMCW and Ouster) rigs, 3D boxes and lane maps.",
+  "domain": "driving",
+  "release_date": "2026-03",
+  "last_update": "2026-07",
+  "organizations": [
+    "torc-robotics"
+  ],
+  "homepage": "https://github.com/torc-ai/TruckDrive",
+  "links": {
+    "download": [
+      "https://huggingface.co/datasets/Torc-Robotics/TruckDrive"
+    ],
+    "code": [
+      "https://github.com/torc-ai/TruckDrive"
+    ]
+  },
+  "papers": [
+    {
+      "title": "TruckDrive: Long-Range Autonomous Highway Driving Dataset",
+      "venue": "arXiv preprint",
+      "year": 2026,
+      "arxiv": "2603.02413",
+      "url": "https://arxiv.org/abs/2603.02413",
+      "required_citation": true
+    }
+  ],
+  "availability": {
+    "status": "available-registration",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "hf_hub_gated"
+    ],
+    "cost": "free",
+    "eligibility": "Non-commercial licence accepted on the Hugging Face Hub.",
+    "registration_url": "https://huggingface.co/datasets/Torc-Robotics/TruckDrive",
+    "evidence": [
+      {
+        "url": "https://huggingface.co/api/datasets/Torc-Robotics/TruckDrive",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Hugging Face API reports gated=auto, public, custom non-commercial licence, created 2026-06-15, last modified 2026-07-19."
+      },
+      {
+        "url": "https://github.com/torc-ai/TruckDrive",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Repository online."
+      }
+    ],
+    "mirrors": [],
+    "history": [
+      {
+        "date": "2026-03",
+        "event": "Paper published on arXiv.",
+        "source": "https://arxiv.org/abs/2603.02413"
+      },
+      {
+        "date": "2026-06",
+        "status": "available-registration",
+        "event": "Data released on the Hugging Face Hub.",
+        "source": "https://huggingface.co/datasets/Torc-Robotics/TruckDrive"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "TruckDrive-NC",
+        "name": "TruckDrive dataset licence (non-commercial)",
+        "url": "https://huggingface.co/datasets/Torc-Robotics/TruckDrive/blob/main/LICENSE-NONCOMMERCIAL.txt",
+        "applies_to": [
+          "data",
+          "annotations",
+          "maps"
+        ]
+      }
+    ],
+    "permissions": {
+      "commercial": false
+    }
+  },
+  "collection": {
+    "reality": "real",
+    "platform": "Heavy truck",
+    "driving_mode": "mixed",
+    "locations": [],
+    "locations_note": "Highways in the United States; routes are not itemised in this record.",
+    "environment": [
+      "highway"
+    ]
+  },
+  "scale": {
+    "log_unit": "scenes",
+    "notes": "Scene count, hours and distance are not recorded yet."
+  },
+  "modalities": [
+    "ego_pose",
+    "camera",
+    "lidar",
+    "hd_map",
+    "boxes_3d"
+  ],
+  "sensors": [
+    {
+      "type": "camera",
+      "name": "Leopard Imaging cameras with pinhole calibration"
+    },
+    {
+      "type": "lidar",
+      "count": 1,
+      "name": "merged FMCW LiDAR stream",
+      "model": "Aeva"
+    },
+    {
+      "type": "lidar",
+      "count": 3,
+      "model": "Ouster"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "boxes_3d",
+      "coverage": "train and val scenes",
+      "notes": "Long-range labels for highway operation."
+    },
+    {
+      "type": "lanes",
+      "notes": "Lane-line and lane-segment annotations with topology."
+    }
+  ],
+  "maps": {
+    "available": true,
+    "type": "hd_vector",
+    "scope": "per_log",
+    "format": "lane lines and lane segments per scene",
+    "layers": [
+      "lanes",
+      "road lines"
+    ]
+  },
+  "splits": [
+    {
+      "name": "train",
+      "unit": "scenes"
+    },
+    {
+      "name": "val",
+      "unit": "scenes"
+    },
+    {
+      "name": "test",
+      "unit": "scenes",
+      "hidden_ground_truth": true,
+      "notes": "No trajectories or annotations; py123d skips test scenes."
+    }
+  ],
+  "benchmarks": [],
+  "formats": {
+    "raw": [
+      "per-scene archives for cameras",
+      "LiDAR",
+      "poses",
+      "calibration and annotations"
+    ],
+    "devkit": {
+      "name": "TruckDrive repository",
+      "url": "https://github.com/torc-ai/TruckDrive",
+      "language": "Python",
+      "maintained": true
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://kesai.eu/py123d/datasets/truckdrive/"
+      }
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "truckdrive",
+        "truckdrive-stream"
+      ],
+      "extra": "py123d[hf]",
+      "docs": "https://kesai.eu/py123d/datasets/truckdrive/",
+      "status": "experimental"
+    }
+  },
+  "relations": [],
+  "figures": {},
+  "community": {
+    "huggingface": "Torc-Robotics/TruckDrive"
+  },
+  "sources": {
+    "sensors": "https://kesai.eu/py123d/datasets/truckdrive/",
+    "availability": "https://huggingface.co/datasets/Torc-Robotics/TruckDrive"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "low",
+    "notes": "Scale, camera count and frequencies, recording locations and the licence details must be filled from the paper and the dataset card."
+  }
+}

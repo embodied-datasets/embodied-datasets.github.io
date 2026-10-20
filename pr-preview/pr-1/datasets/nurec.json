@@ -1,0 +1,246 @@
+{
+  "slug": "nurec",
+  "name": "NuRec (PhysicalAI-AV NuRec)",
+  "aliases": [
+    "PhysicalAI-Autonomous-Vehicles-NuRec"
+  ],
+  "tagline": "Neural-reconstruction scenes of NVIDIA driving clips – 3D Gaussian reconstructions with ego poses, auto-labelled tracks and HD maps for closed-loop simulation.",
+  "domain": "driving",
+  "family": "physical-ai-av",
+  "version": "Releases 26.01 and 26.04",
+  "release_date": "2025-06",
+  "last_update": "2026-07",
+  "organizations": [
+    "nvidia"
+  ],
+  "homepage": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec",
+  "links": {
+    "download": [
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec"
+    ],
+    "code": [
+      "https://github.com/NVlabs/alpasim"
+    ]
+  },
+  "papers": [],
+  "availability": {
+    "status": "available-registration",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "hf_hub_gated"
+    ],
+    "cost": "free",
+    "eligibility": "Governed by the NVIDIA AV dataset licence accepted on the Hugging Face Hub.",
+    "registration_url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec",
+    "evidence": [
+      {
+        "url": "https://huggingface.co/api/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Hugging Face API reports gated=auto, public, custom licence (nvidia-av-dataset), created 2025-06-05, last modified 2026-07-30."
+      }
+    ],
+    "mirrors": [],
+    "download_size": {
+      "note": "Each scene is one .usdz archive of about 2 GB."
+    },
+    "history": [
+      {
+        "date": "2025-06",
+        "status": "available-registration",
+        "event": "Repository created on the Hugging Face Hub.",
+        "source": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec"
+      },
+      {
+        "date": "2026-01",
+        "event": "Release 26.01 (916 scenes; some ship only an OpenDRIVE map).",
+        "source": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst"
+      },
+      {
+        "date": "2026-04",
+        "event": "Release 26.04 (1,607 scenes, all with clipgt map layers).",
+        "source": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "NVIDIA-AV-Dataset-License",
+        "name": "NVIDIA Autonomous Vehicles dataset licence",
+        "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles-NuRec/blob/main/LICENSE.pdf",
+        "applies_to": [
+          "data",
+          "annotations",
+          "maps",
+          "reconstructions"
+        ]
+      }
+    ],
+    "permissions": {},
+    "notes": "Permissions not assessed; read the licence PDF before use."
+  },
+  "collection": {
+    "reality": "hybrid",
+    "platform": "NVIDIA Hyperion rigs (several vehicle platforms, wheelbases 2.73–3.22 m)",
+    "driving_mode": "mixed",
+    "locations": [],
+    "locations_note": "Reconstructed from real drives in the US and Europe; cities are not published."
+  },
+  "scale": {
+    "logs": 1607,
+    "log_unit": "scenes",
+    "scene_duration_s": 20,
+    "hours": 8.9,
+    "notes": "Scenes of release 26.04; release 26.01 adds 916 scenes, some of them reconstructions of the same drives."
+  },
+  "modalities": [
+    "ego_pose",
+    "hd_map",
+    "boxes_3d",
+    "reconstruction"
+  ],
+  "sensors": [],
+  "annotations": [
+    {
+      "type": "boxes_3d",
+      "hz": 10,
+      "method": "auto",
+      "notes": "Cuboid tracks interpolated onto a 10 Hz grid; py123d smooths positions and drops tracks shorter than 3 s like NVIDIA's simulator."
+    },
+    {
+      "type": "tracking_ids",
+      "hz": 10,
+      "method": "auto"
+    }
+  ],
+  "maps": {
+    "available": true,
+    "type": "hd_vector",
+    "dimensions": "3d",
+    "scope": "per_log",
+    "format": "clipgt parquet layers, with an OpenDRIVE map.xodr fallback",
+    "layers": [
+      "lanes with connectivity and speed limits",
+      "lane groups",
+      "road edges",
+      "crosswalks",
+      "stop zones",
+      "road lines",
+      "intersections",
+      "drivable areas",
+      "walkways",
+      "traffic-light and sign geometry"
+    ],
+    "notes": "Maps converted from map.xodr are sparser; their speed limits are mislabelled as mph in European scenes."
+  },
+  "splits": [
+    {
+      "name": "nurec-curated_train",
+      "count": 1761,
+      "unit": "scenes",
+      "notes": "Named scenes from both releases curated for the AlpaSim end-to-end challenge."
+    },
+    {
+      "name": "nurec-curated_val",
+      "count": 441,
+      "unit": "scenes"
+    },
+    {
+      "name": "nurec-2601_train",
+      "count": 916,
+      "unit": "scenes",
+      "notes": "Every scene of release 26.01."
+    },
+    {
+      "name": "nurec-2604_train",
+      "count": 1607,
+      "unit": "scenes",
+      "notes": "Every scene of release 26.04."
+    }
+  ],
+  "benchmarks": [
+    {
+      "task": "simulation",
+      "name": "AlpaSim end-to-end challenge",
+      "url": "https://github.com/NVlabs/alpasim",
+      "eval_server": "unknown"
+    }
+  ],
+  "formats": {
+    "raw": [
+      ".usdz scene archives (rig trajectories",
+      "clipgt parquet layers",
+      "map.xodr",
+      "3D Gaussian checkpoint)"
+    ],
+    "devkit": {
+      "name": "AlpaSim",
+      "url": "https://github.com/NVlabs/alpasim",
+      "language": "Python",
+      "maintained": true
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst",
+        "notes": "Converts the driving log and map; reconstruction assets are left untouched."
+      }
+    ],
+    "known_issues": [
+      "No per-timestep traffic-light states; only the geometry of lights and signs.",
+      "Rig timestamps drift by milliseconds and track timestamps run on a separate clock."
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "nurec-curated",
+        "nurec-2601",
+        "nurec-2604",
+        "nurec-curated-stream",
+        "nurec-2601-stream",
+        "nurec-2604-stream",
+        "nurec-pai"
+      ],
+      "extra": "py123d[nurec]",
+      "docs": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst",
+      "status": "experimental",
+      "notes": "nurec-pai adds the cameras and LiDAR of the underlying Physical AI AV clip to each scene. Docs page not yet deployed to kesai.eu."
+    }
+  },
+  "relations": [
+    {
+      "type": "reconstruction_of",
+      "target": "physical-ai-av",
+      "external": false,
+      "note": "Every scene reconstructs one Physical AI AV clip."
+    },
+    {
+      "type": "companion",
+      "target": "ncore",
+      "external": false
+    }
+  ],
+  "figures": {},
+  "community": {
+    "huggingface": "nvidia/PhysicalAI-Autonomous-Vehicles-NuRec"
+  },
+  "sources": {
+    "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "splits": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst",
+    "maps": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst",
+    "availability.download_size": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/nurec.rst"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "medium",
+    "notes": "Reality is marked hybrid because the scenes are reconstructions of real drives. No paper; licence permissions not assessed."
+  }
+}

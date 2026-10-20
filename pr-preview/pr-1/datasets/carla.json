@@ -1,0 +1,251 @@
+{
+  "slug": "carla",
+  "name": "CARLA",
+  "aliases": [
+    "CARLA Simulator"
+  ],
+  "tagline": "The open-source urban driving simulator behind most synthetic driving datasets; it generates sensor data, maps and labels on demand instead of shipping a fixed dataset.",
+  "domain": "driving",
+  "family": "carla",
+  "version": "0.9.16 (Unreal Engine 4) and 0.10 (Unreal Engine 5)",
+  "release_date": "2017-11",
+  "last_update": "2025",
+  "organizations": [
+    "cvc-uab",
+    "intel-labs"
+  ],
+  "homepage": "https://carla.org/",
+  "links": {
+    "download": [
+      "https://github.com/carla-simulator/carla/releases"
+    ],
+    "code": [
+      "https://github.com/carla-simulator/carla"
+    ],
+    "docs": "https://carla.readthedocs.io/",
+    "leaderboard": "https://leaderboard.carla.org/"
+  },
+  "papers": [
+    {
+      "title": "CARLA: An Open Urban Driving Simulator",
+      "venue": "CoRL 2017",
+      "year": 2017,
+      "arxiv": "1711.03938",
+      "url": "https://arxiv.org/abs/1711.03938",
+      "bibtex": "@inproceedings{Dosovitskiy2017CORL,\n  title={{CARLA}: {An} Open Urban Driving Simulator},\n  author={Alexey Dosovitskiy and German Ros and Felipe Codevilla and Antonio Lopez and Vladlen Koltun},\n  booktitle={Proceedings of the 1st Annual Conference on Robot Learning (CoRL)},\n  year={2017}\n}\n",
+      "required_citation": true
+    }
+  ],
+  "availability": {
+    "status": "available",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "source_code",
+      "direct"
+    ],
+    "cost": "free",
+    "evidence": [
+      {
+        "url": "https://carla.org/",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Website online; packaged releases are published on GitHub."
+      },
+      {
+        "url": "https://github.com/carla-simulator/carla",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Repository active."
+      }
+    ],
+    "mirrors": [],
+    "history": [
+      {
+        "date": "2017-11",
+        "status": "available",
+        "event": "Open-sourced with the CoRL 2017 paper.",
+        "source": "https://arxiv.org/abs/1711.03938"
+      },
+      {
+        "date": "2024-12",
+        "event": "CARLA 0.10 on Unreal Engine 5 released; 0.9.x remains the version most datasets and leaderboards use.",
+        "source": "https://carla.org/"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "MIT",
+        "name": "MIT License (simulator code)",
+        "url": "https://github.com/carla-simulator/carla/blob/master/LICENSE",
+        "applies_to": [
+          "code"
+        ]
+      },
+      {
+        "id": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0 (CARLA assets, maps and meshes)",
+        "url": "https://github.com/carla-simulator/carla/blob/master/LICENSE",
+        "applies_to": [
+          "data",
+          "maps"
+        ]
+      }
+    ],
+    "permissions": {
+      "commercial": true,
+      "redistribution": true,
+      "derivatives": true,
+      "attribution_required": true,
+      "share_alike": false
+    },
+    "notes": "Unreal Engine itself is licensed separately by Epic Games."
+  },
+  "collection": {
+    "reality": "synthetic",
+    "simulator": {
+      "name": "CARLA"
+    },
+    "driving_mode": "expert-policy",
+    "locations": [],
+    "locations_note": "Fictional towns (Town01–Town15 and others); no real-world location.",
+    "environment": [
+      "urban",
+      "suburban",
+      "highway",
+      "rural"
+    ],
+    "conditions": [
+      "day",
+      "night",
+      "rain",
+      "fog",
+      "configurable weather"
+    ]
+  },
+  "scale": {
+    "log_unit": "routes",
+    "notes": "Variable. CARLA is a generator; scale depends on the data-collection run. See the CARLA-generated datasets in this family for concrete numbers."
+  },
+  "modalities": [
+    "ego_pose",
+    "camera",
+    "lidar",
+    "radar",
+    "hd_map",
+    "boxes_3d",
+    "traffic_lights",
+    "segmentation"
+  ],
+  "sensors": [],
+  "annotations": [
+    {
+      "type": "boxes_3d",
+      "method": "auto",
+      "notes": "Ground truth from the simulator for all actors."
+    },
+    {
+      "type": "traffic_light_state",
+      "method": "auto"
+    },
+    {
+      "type": "semantic_seg_image",
+      "method": "auto",
+      "notes": "Semantic, instance and depth cameras are built-in sensors."
+    },
+    {
+      "type": "depth",
+      "method": "auto"
+    }
+  ],
+  "maps": {
+    "available": true,
+    "type": "opendrive",
+    "dimensions": "3d",
+    "scope": "global",
+    "format": "OpenDRIVE (.xodr) per town",
+    "georeferenced": false,
+    "notes": "py123d converts the OpenDRIVE town maps with its standalone OpenDRIVE parser."
+  },
+  "splits": [],
+  "benchmarks": [
+    {
+      "task": "end_to_end_driving",
+      "name": "CARLA Leaderboard 2.0",
+      "url": "https://leaderboard.carla.org/",
+      "eval_server": "open"
+    }
+  ],
+  "formats": {
+    "raw": [
+      "Python API streams; on-disk format chosen by the collection framework"
+    ],
+    "devkit": {
+      "name": "CARLA Python API",
+      "url": "https://carla.readthedocs.io/",
+      "language": "Python / C++",
+      "maintained": true
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://kesai.eu/py123d/datasets/carla/",
+        "notes": "Demo data and OpenDRIVE map parser."
+      },
+      {
+        "name": "LEAD",
+        "url": "https://github.com/kesai-labs/lead",
+        "notes": "Data collection with a privileged expert, writes 123D logs directly."
+      }
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "opendrive"
+      ],
+      "docs": "https://kesai.eu/py123d/datasets/carla/",
+      "status": "experimental",
+      "notes": "The py123d documentation covers the bundled demo data only; use LEAD to collect CARLA data in 123D format."
+    }
+  },
+  "relations": [
+    {
+      "type": "derived_from",
+      "target": "griffin",
+      "external": false,
+      "note": "Griffin is rendered with CARLA (and AirSim)."
+    },
+    {
+      "type": "derived_from",
+      "target": "l3ad",
+      "external": false,
+      "note": "L3AD is collected in CARLA with the LEAD expert."
+    }
+  ],
+  "figures": {
+    "sensor_timeline": {
+      "file": "assets/sensor_timeline.svg",
+      "caption": "Sensor recording timeline of py123d's CARLA demo data.",
+      "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_carla.svg",
+      "license": "Apache-2.0"
+    }
+  },
+  "community": {},
+  "sources": {
+    "legal": "https://github.com/carla-simulator/carla/blob/master/LICENSE",
+    "tooling": "https://kesai.eu/py123d/datasets/carla/"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "medium",
+    "notes": "Recorded as the synthetic-generator case. The 0.10 release date should be confirmed."
+  }
+}

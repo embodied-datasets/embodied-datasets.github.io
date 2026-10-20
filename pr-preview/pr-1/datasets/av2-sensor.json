@@ -1,0 +1,339 @@
+{
+  "slug": "av2-sensor",
+  "name": "Argoverse 2 Sensor",
+  "aliases": [
+    "AV2 Sensor",
+    "AV2-Sensor"
+  ],
+  "tagline": "Argo AI's 1,000-log perception dataset from six US cities with seven ring cameras, a stereo pair, two LiDARs, 3D HD maps and 3D cuboids in 30 categories.",
+  "domain": "driving",
+  "family": "argoverse-2",
+  "version": "v2.0",
+  "release_date": "2021-06",
+  "organizations": [
+    "argo-ai"
+  ],
+  "homepage": "https://www.argoverse.org/av2.html",
+  "links": {
+    "download": [
+      "https://www.argoverse.org/av2.html#download-link"
+    ],
+    "code": [
+      "https://github.com/argoverse/av2-api"
+    ],
+    "leaderboard": "https://eval.ai/web/challenges/challenge-page/1710/leaderboard"
+  },
+  "papers": [
+    {
+      "title": "Argoverse 2: Next Generation Datasets for Self-Driving Perception and Forecasting",
+      "venue": "NeurIPS 2021 Datasets and Benchmarks",
+      "year": 2021,
+      "arxiv": "2301.00493",
+      "url": "https://arxiv.org/abs/2301.00493",
+      "bibtex": "@inproceedings{Wilson2021NEURIPS,\n  author = {Benjamin Wilson and William Qi and Tanmay Agarwal and John Lambert and Jagjeet Singh and Siddhesh Khandelwal and Bowen Pan and Ratnesh Kumar and Andrew Hartnett and Jhony Kaesemodel Pontes and Deva Ramanan and Peter Carr and James Hays},\n  title = {Argoverse 2: Next Generation Datasets for Self-Driving Perception and Forecasting},\n  booktitle = {Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks},\n  year = {2021}\n}\n",
+      "required_citation": true
+    }
+  ],
+  "availability": {
+    "status": "available",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "cloud_bucket"
+    ],
+    "cost": "free",
+    "eligibility": "Non-commercial use under CC BY-NC-SA 4.0 and the Argoverse terms of use.",
+    "evidence": [
+      {
+        "url": "https://www.argoverse.org/av2.html",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Website online and still maintained after Argo AI's shutdown."
+      },
+      {
+        "url": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/av2.rst",
+        "checked": "2026-10-14",
+        "note": "py123d downloads from s3://argoverse/datasets/av2/sensor/ without AWS credentials; the bucket is publicly readable."
+      }
+    ],
+    "mirrors": [],
+    "download_size": {
+      "compressed_gb": 250,
+      "note": "About 250 MB per log across 1,000 logs, as measured by py123d."
+    },
+    "history": [
+      {
+        "date": "2021-06",
+        "status": "available",
+        "event": "Argoverse 2 released (Sensor, Lidar, Motion Forecasting and Map Change datasets).",
+        "source": "https://www.argoverse.org/av2.html"
+      },
+      {
+        "date": "2022-10",
+        "event": "Argo AI shut down. The datasets stayed on the public S3 bucket and the website kept working.",
+        "source": "https://www.argoverse.org/about.html"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "CC-BY-NC-SA-4.0",
+        "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0",
+        "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "applies_to": [
+          "data",
+          "annotations",
+          "maps"
+        ]
+      },
+      {
+        "id": "MIT",
+        "name": "MIT License (av2-api)",
+        "url": "https://github.com/argoverse/av2-api/blob/main/LICENSE",
+        "applies_to": [
+          "code"
+        ]
+      }
+    ],
+    "terms_url": "https://www.argoverse.org/about.html#terms-of-use",
+    "permissions": {
+      "commercial": false,
+      "redistribution": true,
+      "derivatives": true,
+      "attribution_required": true,
+      "share_alike": true
+    }
+  },
+  "collection": {
+    "reality": "real",
+    "platform": "Argo AI test fleet (Ford Fusion Hybrid)",
+    "driving_mode": "mixed",
+    "locations": [
+      {
+        "city": "Austin",
+        "region": "Texas",
+        "country": "US",
+        "lat": 30.27,
+        "lon": -97.74
+      },
+      {
+        "city": "Detroit",
+        "region": "Michigan",
+        "country": "US",
+        "lat": 42.33,
+        "lon": -83.05
+      },
+      {
+        "city": "Miami",
+        "region": "Florida",
+        "country": "US",
+        "lat": 25.76,
+        "lon": -80.19
+      },
+      {
+        "city": "Pittsburgh",
+        "region": "Pennsylvania",
+        "country": "US",
+        "lat": 40.44,
+        "lon": -79.99
+      },
+      {
+        "city": "Palo Alto",
+        "region": "California",
+        "country": "US",
+        "lat": 37.44,
+        "lon": -122.14
+      },
+      {
+        "city": "Washington",
+        "region": "District of Columbia",
+        "country": "US",
+        "lat": 38.91,
+        "lon": -77.04
+      }
+    ],
+    "environment": [
+      "urban",
+      "suburban"
+    ]
+  },
+  "scale": {
+    "logs": 1000,
+    "log_unit": "logs",
+    "scene_duration_s": 15,
+    "hours": 4.4,
+    "km": 87.5
+  },
+  "modalities": [
+    "ego_pose",
+    "camera",
+    "lidar",
+    "hd_map",
+    "boxes_3d"
+  ],
+  "sensors": [
+    {
+      "type": "camera",
+      "count": 7,
+      "name": "ring cameras",
+      "hz": 20,
+      "resolution": "2048×1550",
+      "ids": [
+        "PCAM_F0",
+        "PCAM_R0",
+        "PCAM_R1",
+        "PCAM_R2",
+        "PCAM_L0",
+        "PCAM_L1",
+        "PCAM_L2"
+      ]
+    },
+    {
+      "type": "camera",
+      "count": 2,
+      "name": "stereo cameras",
+      "hz": 20,
+      "resolution": "2048×1550",
+      "ids": [
+        "PCAM_STEREO_L",
+        "PCAM_STEREO_R"
+      ]
+    },
+    {
+      "type": "lidar",
+      "count": 2,
+      "name": "stacked roof LiDARs",
+      "model": "Velodyne VLP-32C",
+      "hz": 10,
+      "beams": 32,
+      "ids": [
+        "LIDAR_TOP",
+        "LIDAR_DOWN"
+      ],
+      "notes": "Two 32-beam sensors stacked for 64-beam-equivalent coverage."
+    }
+  ],
+  "annotations": [
+    {
+      "type": "boxes_3d",
+      "classes": 30,
+      "hz": 10,
+      "method": "human"
+    },
+    {
+      "type": "tracking_ids",
+      "hz": 10,
+      "method": "human"
+    }
+  ],
+  "maps": {
+    "available": true,
+    "type": "hd_vector",
+    "dimensions": "3d",
+    "scope": "per_log",
+    "format": "JSON lane graph plus ground-height raster per log",
+    "georeferenced": true,
+    "layers": [
+      "lane segments",
+      "lane boundaries",
+      "pedestrian crossings",
+      "drivable area",
+      "ground height"
+    ]
+  },
+  "splits": [
+    {
+      "name": "train",
+      "count": 700,
+      "unit": "logs"
+    },
+    {
+      "name": "val",
+      "count": 150,
+      "unit": "logs"
+    },
+    {
+      "name": "test",
+      "count": 150,
+      "unit": "logs",
+      "hidden_ground_truth": true
+    }
+  ],
+  "benchmarks": [
+    {
+      "task": "3d_detection",
+      "name": "AV2 3D object detection",
+      "url": "https://eval.ai/web/challenges/challenge-page/1710/overview",
+      "eval_server": "unknown"
+    },
+    {
+      "task": "3d_tracking",
+      "name": "AV2 3D tracking",
+      "url": "https://www.argoverse.org/av2.html",
+      "eval_server": "unknown"
+    }
+  ],
+  "formats": {
+    "raw": [
+      "Feather tables (annotations",
+      "poses",
+      "calibration)",
+      "JPEG images",
+      "Feather LiDAR sweeps",
+      "JSON maps"
+    ],
+    "devkit": {
+      "name": "av2-api",
+      "url": "https://github.com/argoverse/av2-api",
+      "language": "Python / Rust",
+      "maintained": true
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://kesai.eu/py123d/datasets/av2/"
+      }
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "av2-sensor",
+        "av2-sensor-stream"
+      ],
+      "extra": "py123d[av2]",
+      "docs": "https://kesai.eu/py123d/datasets/av2/",
+      "status": "stable",
+      "notes": "The stream config pulls selected logs from S3 and needs no cloud account; it is py123d's default demo dataset."
+    }
+  },
+  "relations": [],
+  "figures": {
+    "sensor_timeline": {
+      "file": "assets/sensor_timeline.svg",
+      "caption": "Sensor recording timeline of an Argoverse 2 Sensor log, as measured by py123d.",
+      "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_av2-sensor.svg",
+      "license": "Apache-2.0"
+    }
+  },
+  "community": {},
+  "sources": {
+    "scale.hours": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "scale.km": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "scale.logs": "https://www.argoverse.org/av2.html",
+    "sensors": "https://arxiv.org/abs/2301.00493",
+    "collection.locations": "https://www.argoverse.org/av2.html",
+    "availability.download_size": "https://kesai.eu/py123d/datasets/av2/"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "high",
+    "notes": "Evaluation-server status on EvalAI is not confirmed."
+  }
+}

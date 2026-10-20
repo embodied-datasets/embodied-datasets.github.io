@@ -1,0 +1,370 @@
+{
+  "slug": "wod-perception",
+  "name": "Waymo Open Dataset – Perception",
+  "aliases": [
+    "WOD Perception",
+    "WOD-Perception",
+    "Waymo Open Perception Dataset"
+  ],
+  "tagline": "Waymo's 1,150-segment sensor dataset with five cameras, five LiDARs, dense 3D and 2D labels, segmentation, keypoints and HD map features.",
+  "domain": "driving",
+  "family": "waymo-open-dataset",
+  "version": "v1.4.3 (TFRecord); v2.0.1 (modular parquet)",
+  "release_date": "2019-08",
+  "last_update": "2024",
+  "organizations": [
+    "waymo"
+  ],
+  "homepage": "https://waymo.com/open/data/perception/",
+  "links": {
+    "download": [
+      "https://waymo.com/open/download/"
+    ],
+    "code": [
+      "https://github.com/waymo-research/waymo-open-dataset"
+    ],
+    "challenge": "https://waymo.com/open/challenges/"
+  },
+  "papers": [
+    {
+      "title": "Scalability in Perception for Autonomous Driving: Waymo Open Dataset",
+      "venue": "CVPR 2020",
+      "year": 2020,
+      "arxiv": "1912.04838",
+      "url": "https://arxiv.org/abs/1912.04838",
+      "bibtex": "@inproceedings{Sun2020CVPR,\n  title={Scalability in perception for autonomous driving: Waymo open dataset},\n  author={Sun, Pei and Kretzschmar, Henrik and Dotiwalla, Xerxes and Chouard, Aurelien and Patnaik, Vijaysai and Tsui, Paul and Guo, James and Zhou, Yin and Chai, Yuning and Caine, Benjamin and others},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  pages={2446--2454},\n  year={2020}\n}\n",
+      "required_citation": true
+    }
+  ],
+  "availability": {
+    "status": "available-registration",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "registration",
+      "cloud_bucket"
+    ],
+    "cost": "free",
+    "eligibility": "Non-commercial use under the Waymo Dataset License Agreement; requires a Google account.",
+    "registration_url": "https://waymo.com/open/licensing/",
+    "evidence": [
+      {
+        "url": "https://waymo.com/open/",
+        "checked": "2026-10-14",
+        "wayback": "http://web.archive.org/web/20261010073601/https://waymo.com/open/",
+        "http_status": 200,
+        "note": "Portal online."
+      },
+      {
+        "url": "https://waymo.com/open/data/perception/",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "The page redirects anonymous visitors to a Google sign-in; the GCS bucket needs an authenticated client."
+      }
+    ],
+    "mirrors": [],
+    "download_size": {
+      "compressed_gb": 1000,
+      "note": "Roughly 1 TB for v1.4.3; individual segments are about 1 GB."
+    },
+    "history": [
+      {
+        "date": "2019-08",
+        "status": "available-registration",
+        "event": "v1.0 released with 1,000 segments.",
+        "source": "https://waymo.com/open/"
+      },
+      {
+        "date": "2020-03",
+        "event": "v1.2 grew to 1,150 segments and added the test split.",
+        "source": "https://github.com/waymo-research/waymo-open-dataset"
+      },
+      {
+        "date": "2022",
+        "event": "v1.3 and v1.4 added 3D semantic segmentation, keypoints, panoptic labels and HD map features.",
+        "source": "https://github.com/waymo-research/waymo-open-dataset"
+      },
+      {
+        "date": "2023-03",
+        "event": "v2.0 modular parquet format released alongside the TFRecord format.",
+        "source": "https://github.com/waymo-research/waymo-open-dataset"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "Waymo-Dataset-License-NC",
+        "name": "Waymo Dataset License Agreement for Non-Commercial Use",
+        "url": "https://waymo.com/open/terms/",
+        "applies_to": [
+          "data",
+          "annotations",
+          "maps"
+        ]
+      },
+      {
+        "id": "Apache-2.0",
+        "name": "Apache License 2.0 with code-specific exceptions (tooling)",
+        "url": "https://github.com/waymo-research/waymo-open-dataset/blob/master/LICENSE",
+        "applies_to": [
+          "code"
+        ]
+      }
+    ],
+    "terms_url": "https://waymo.com/open/terms/",
+    "permissions": {
+      "commercial": false,
+      "redistribution": false,
+      "derivatives": true,
+      "attribution_required": true
+    },
+    "privacy": "Faces and licence plates are blurred."
+  },
+  "collection": {
+    "reality": "real",
+    "platform": "Waymo fifth-generation driver (Chrysler Pacifica)",
+    "driving_mode": "mixed",
+    "locations": [
+      {
+        "city": "Phoenix",
+        "region": "Arizona",
+        "country": "US",
+        "lat": 33.45,
+        "lon": -112.07
+      },
+      {
+        "city": "Mountain View",
+        "region": "California",
+        "country": "US",
+        "lat": 37.39,
+        "lon": -122.08
+      },
+      {
+        "city": "San Francisco",
+        "region": "California",
+        "country": "US",
+        "lat": 37.77,
+        "lon": -122.42
+      }
+    ],
+    "locations_note": "Later versions added segments from further US cities that are not itemised here.",
+    "environment": [
+      "urban",
+      "suburban"
+    ],
+    "conditions": [
+      "day",
+      "night",
+      "rain"
+    ]
+  },
+  "scale": {
+    "logs": 1150,
+    "log_unit": "segments",
+    "scene_duration_s": 20,
+    "hours": 6.4,
+    "km": 154,
+    "boxes_3d": 12000000
+  },
+  "modalities": [
+    "ego_pose",
+    "camera",
+    "lidar",
+    "hd_map",
+    "boxes_3d",
+    "segmentation"
+  ],
+  "sensors": [
+    {
+      "type": "camera",
+      "count": 5,
+      "name": "front and side cameras",
+      "hz": 10,
+      "resolution": "1920×1280 (front) and 1920×1040 (sides)",
+      "ids": [
+        "PCAM_F0",
+        "PCAM_L0",
+        "PCAM_R0",
+        "PCAM_L1",
+        "PCAM_R1"
+      ]
+    },
+    {
+      "type": "lidar",
+      "count": 5,
+      "name": "one mid-range and four short-range LiDARs",
+      "hz": 10,
+      "range_m": 75,
+      "ids": [
+        "LIDAR_TOP",
+        "LIDAR_FRONT",
+        "LIDAR_SIDE_LEFT",
+        "LIDAR_SIDE_RIGHT",
+        "LIDAR_BACK"
+      ],
+      "notes": "The top LiDAR reaches about 75 m, the four perimeter LiDARs about 20 m. Two returns per shot."
+    }
+  ],
+  "annotations": [
+    {
+      "type": "boxes_3d",
+      "classes": 4,
+      "hz": 10,
+      "method": "human",
+      "notes": "Vehicles, pedestrians, cyclists and signs; about 12 M boxes."
+    },
+    {
+      "type": "boxes_2d",
+      "hz": 10,
+      "method": "human"
+    },
+    {
+      "type": "tracking_ids",
+      "hz": 10,
+      "method": "human"
+    },
+    {
+      "type": "semantic_seg_lidar",
+      "classes": 23,
+      "method": "human",
+      "coverage": "subset of frames (v1.3.1+)"
+    },
+    {
+      "type": "panoptic_seg",
+      "method": "human",
+      "coverage": "subset of camera frames (v1.4+)"
+    },
+    {
+      "type": "keypoints",
+      "method": "human",
+      "coverage": "subset of pedestrians and cyclists (v1.3.2+)"
+    }
+  ],
+  "maps": {
+    "available": true,
+    "type": "hd_vector",
+    "dimensions": "3d",
+    "scope": "per_log",
+    "format": "protobuf map features (v1.4.2+)",
+    "layers": [
+      "lanes",
+      "road lines",
+      "road edges",
+      "crosswalks",
+      "speed bumps",
+      "stop signs",
+      "driveways"
+    ],
+    "notes": "Map features were added in v1.4.2 for the frames with 3D segmentation labels; py123d notes polyline-to-polygon artefacts."
+  },
+  "splits": [
+    {
+      "name": "training",
+      "count": 798,
+      "unit": "segments"
+    },
+    {
+      "name": "validation",
+      "count": 202,
+      "unit": "segments"
+    },
+    {
+      "name": "testing",
+      "count": 150,
+      "unit": "segments",
+      "hidden_ground_truth": true
+    }
+  ],
+  "benchmarks": [
+    {
+      "task": "3d_detection",
+      "name": "Waymo Open Dataset 3D detection",
+      "url": "https://waymo.com/open/challenges/",
+      "eval_server": "open"
+    },
+    {
+      "task": "3d_tracking",
+      "url": "https://waymo.com/open/challenges/",
+      "eval_server": "open"
+    },
+    {
+      "task": "semantic_segmentation",
+      "url": "https://waymo.com/open/challenges/",
+      "eval_server": "open"
+    }
+  ],
+  "formats": {
+    "raw": [
+      "TFRecord (v1.x)",
+      "parquet components (v2.x)"
+    ],
+    "devkit": {
+      "name": "waymo-open-dataset",
+      "url": "https://github.com/waymo-research/waymo-open-dataset",
+      "language": "Python / TensorFlow",
+      "maintained": true
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://kesai.eu/py123d/datasets/wod_perception/",
+        "notes": "Reads v1.4.3 TFRecords with lightweight protobufs."
+      },
+      {
+        "name": "mmdetection3d",
+        "url": "https://github.com/open-mmlab/mmdetection3d"
+      }
+    ],
+    "known_issues": [
+      "py123d does not support v2.0.1 because the modular release lacks map data."
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "wod-perception",
+        "wod-perception-stream"
+      ],
+      "extra": "py123d[waymo]",
+      "docs": "https://kesai.eu/py123d/datasets/wod_perception/",
+      "status": "stable",
+      "notes": "Streaming needs an authenticated Google Cloud client (gcloud auth application-default login)."
+    }
+  },
+  "relations": [
+    {
+      "type": "companion",
+      "target": "wod-motion",
+      "external": false,
+      "note": "Same licence and portal; Motion has no raw sensors."
+    }
+  ],
+  "figures": {
+    "sensor_timeline": {
+      "file": "assets/sensor_timeline.svg",
+      "caption": "Sensor recording timeline of a WOD Perception segment, as measured by py123d.",
+      "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_wod-perception.svg",
+      "license": "Apache-2.0"
+    }
+  },
+  "community": {},
+  "sources": {
+    "scale.hours": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "scale.km": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "scale.logs": "https://waymo.com/open/data/perception/",
+    "sensors": "https://arxiv.org/abs/1912.04838",
+    "splits": "https://waymo.com/open/data/perception/",
+    "availability.download_size": "https://kesai.eu/py123d/datasets/wod_perception/"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "medium",
+    "notes": "Version history dates are from memory of the changelog and should be checked against the repository tags."
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "slug": "nuplan",
+  "name": "nuPlan",
+  "aliases": [
+    "nuPlan v1.1"
+  ],
+  "tagline": "Motional's large-scale planning dataset with more than a thousand hours of auto-labelled logs, HD maps and a closed-loop simulator, from four cities.",
+  "domain": "driving",
+  "family": "nuscenes",
+  "version": "v1.1",
+  "release_date": "2021-12",
+  "last_update": "2023",
+  "organizations": [
+    "motional"
+  ],
+  "homepage": "https://www.nuscenes.org/nuplan",
+  "links": {
+    "download": [
+      "https://www.nuplan.org/download"
+    ],
+    "code": [
+      "https://github.com/motional/nuplan-devkit"
+    ],
+    "challenge": "https://www.nuscenes.org/nuplan"
+  },
+  "papers": [
+    {
+      "title": "Towards learning-based planning: The nuPlan benchmark for real-world autonomous driving",
+      "venue": "ICRA 2024",
+      "year": 2024,
+      "arxiv": "2403.04133",
+      "url": "https://arxiv.org/abs/2403.04133",
+      "bibtex": "@inproceedings{Karnchanachari2024ICRA,\n  title={Towards learning-based planning: The nuPlan benchmark for real-world autonomous driving},\n  author={Karnchanachari, Napat and Geromichalos, Dimitris and Tan, Kok Seang and Li, Nanxiang and Eriksen, Christopher and Yaghoubi, Shakiba and Mehdipour, Noushin and Bernasconi, Gianmarco and Fong, Whye Kit and Guo, Yiluan and Caesar, Holger},\n  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},\n  year={2024}\n}\n",
+      "required_citation": true
+    },
+    {
+      "title": "nuPlan: A closed-loop ML-based planning benchmark for autonomous vehicles",
+      "venue": "CVPR 2021 Workshops",
+      "year": 2021,
+      "arxiv": "2106.11810",
+      "url": "https://arxiv.org/abs/2106.11810",
+      "bibtex": "@article{Caesar2021CVPRW,\n  title={nuPlan: A closed-loop ML-based planning benchmark for autonomous vehicles},\n  author={Caesar, Holger and Kabzan, Juraj and Tan, Kok Seang and Fong, Whye Kit and Wolff, Eric and Lang, Alex and Fletcher, Luke and Beijbom, Oscar and Omari, Sammy},\n  booktitle={CVPR Workshop on Autonomous Driving},\n  year={2021}\n}\n",
+      "required_citation": false
+    }
+  ],
+  "availability": {
+    "status": "available",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "cloud_bucket",
+      "direct"
+    ],
+    "cost": "free",
+    "eligibility": "Non-commercial use under the nuPlan terms; the licence file sits next to the archives in the bucket.",
+    "evidence": [
+      {
+        "url": "https://motional-nuplan.s3-ap-northeast-1.amazonaws.com/LICENSE",
+        "checked": "2026-10-14",
+        "wayback": "http://web.archive.org/web/20240813215407/https://motional-nuplan.s3-ap-northeast-1.amazonaws.com/LICENSE",
+        "http_status": 200,
+        "note": "The public S3 bucket answers anonymously; py123d downloads logs, maps and sensor shards from it without credentials."
+      },
+      {
+        "url": "https://www.nuscenes.org/nuplan",
+        "checked": "2026-10-14",
+        "wayback": "http://web.archive.org/web/20260621035850/https://www.nuscenes.org/nuplan",
+        "http_status": 200,
+        "note": "Dataset page online."
+      }
+    ],
+    "mirrors": [],
+    "download_size": {
+      "compressed_gb": 135,
+      "note": "Logs and maps for train, val and test. The mini set is about 11 GB. Camera and LiDAR shards add hundreds of GB per split."
+    },
+    "history": [
+      {
+        "date": "2021-12",
+        "status": "available",
+        "event": "First public release (v0.x) with the planning devkit.",
+        "source": "https://www.nuscenes.org/nuplan"
+      },
+      {
+        "date": "2023",
+        "event": "v1.1 logs and sensor blobs for a 120-hour subset; nuPlan Challenge at the CVPR 2023 workshop.",
+        "source": "https://www.nuscenes.org/nuplan"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "CC-BY-NC-SA-4.0",
+        "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0",
+        "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "applies_to": [
+          "data",
+          "annotations",
+          "maps"
+        ]
+      },
+      {
+        "id": "Apache-2.0",
+        "name": "Apache License 2.0 (devkit)",
+        "url": "https://github.com/motional/nuplan-devkit/blob/master/LICENSE.txt",
+        "applies_to": [
+          "code"
+        ]
+      }
+    ],
+    "terms_url": "https://www.nuscenes.org/terms-of-use",
+    "permissions": {
+      "commercial": false,
+      "redistribution": true,
+      "derivatives": true,
+      "attribution_required": true,
+      "share_alike": true
+    }
+  },
+  "collection": {
+    "reality": "real",
+    "platform": "Motional robotaxi fleet",
+    "driving_mode": "mixed",
+    "period": {
+      "start": "2021"
+    },
+    "locations": [
+      {
+        "city": "Boston",
+        "region": "Massachusetts",
+        "country": "US",
+        "lat": 42.36,
+        "lon": -71.06
+      },
+      {
+        "city": "Pittsburgh",
+        "region": "Pennsylvania",
+        "country": "US",
+        "lat": 40.44,
+        "lon": -79.99
+      },
+      {
+        "city": "Las Vegas",
+        "region": "Nevada",
+        "country": "US",
+        "lat": 36.17,
+        "lon": -115.14
+      },
+      {
+        "city": "Singapore",
+        "country": "SG",
+        "lat": 1.35,
+        "lon": 103.82
+      }
+    ],
+    "environment": [
+      "urban"
+    ]
+  },
+  "scale": {
+    "logs": 15910,
+    "log_unit": "logs",
+    "hours": 1174.3,
+    "km": 17808.6,
+    "notes": "Motional quotes about 1,282 hours; the figures here are measured by py123d from the released v1.1 databases. About 120 hours carry camera and LiDAR data."
+  },
+  "modalities": [
+    "ego_pose",
+    "camera",
+    "lidar",
+    "hd_map",
+    "boxes_3d",
+    "traffic_lights"
+  ],
+  "sensors": [
+    {
+      "type": "camera",
+      "count": 8,
+      "name": "surround cameras",
+      "hz": 10,
+      "ids": [
+        "PCAM_F0",
+        "PCAM_R0",
+        "PCAM_R1",
+        "PCAM_R2",
+        "PCAM_L0",
+        "PCAM_L1",
+        "PCAM_L2",
+        "PCAM_B0"
+      ],
+      "notes": "Released for the 120-hour sensor subset only."
+    },
+    {
+      "type": "lidar",
+      "count": 5,
+      "name": "merged point cloud",
+      "hz": 20,
+      "ids": [
+        "LIDAR_TOP",
+        "LIDAR_FRONT",
+        "LIDAR_SIDE_LEFT",
+        "LIDAR_SIDE_RIGHT",
+        "LIDAR_BACK"
+      ],
+      "notes": "Shipped as one merged point cloud per sweep; released for the sensor subset only."
+    }
+  ],
+  "annotations": [
+    {
+      "type": "boxes_3d",
+      "hz": 20,
+      "method": "auto",
+      "notes": "Auto-labelled tracks; some boxes are noisy."
+    },
+    {
+      "type": "tracking_ids",
+      "hz": 20,
+      "method": "auto"
+    },
+    {
+      "type": "traffic_light_state",
+      "hz": 20,
+      "method": "auto",
+      "notes": "Inferred from vehicle movements, so labels can be wrong."
+    }
+  ],
+  "maps": {
+    "available": true,
+    "type": "hd_vector",
+    "dimensions": "2d",
+    "scope": "per_location",
+    "format": "GeoPackage (map.gpkg per city)",
+    "georeferenced": true,
+    "layers": [
+      "lanes",
+      "lane connectors",
+      "intersections",
+      "crosswalks",
+      "walkways",
+      "carparks",
+      "stop lines",
+      "road edges",
+      "traffic lights"
+    ]
+  },
+  "splits": [
+    {
+      "name": "train",
+      "unit": "logs"
+    },
+    {
+      "name": "val",
+      "unit": "logs"
+    },
+    {
+      "name": "test",
+      "unit": "logs"
+    },
+    {
+      "name": "mini",
+      "count": 64,
+      "unit": "logs",
+      "notes": "Smoke-test subset with its own train, val and test partition."
+    }
+  ],
+  "benchmarks": [
+    {
+      "task": "planning",
+      "name": "nuPlan Challenge 2023 (closed-loop planning)",
+      "url": "https://www.nuscenes.org/nuplan",
+      "eval_server": "closed",
+      "notes": "The challenge concluded in 2023; the devkit simulator keeps working offline."
+    }
+  ],
+  "formats": {
+    "raw": [
+      "SQLite .db log databases",
+      "JPEG camera shards",
+      ".pcd merged point clouds",
+      "GeoPackage maps"
+    ],
+    "devkit": {
+      "name": "nuplan-devkit",
+      "url": "https://github.com/motional/nuplan-devkit",
+      "language": "Python",
+      "maintained": false,
+      "notes": "Last tagged release v1.2; pinned dependencies (SQLAlchemy 1.4) age badly."
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://kesai.eu/py123d/datasets/nuplan/"
+      },
+      {
+        "name": "NAVSIM",
+        "url": "https://github.com/autonomousvision/navsim",
+        "notes": "Builds its benchmark on nuPlan logs."
+      }
+    ],
+    "known_issues": [
+      "Synchronisation offsets between sensors and ego state in the sensor subset.",
+      "Sensor shards are uncompressed tar archives despite their .zip name and hold about 150 million files."
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "nuplan",
+        "nuplan-mini",
+        "nuplan-stream",
+        "nuplan-mini-stream",
+        "nuplan-tar"
+      ],
+      "extra": "py123d[nuplan] plus nuplan-devkit v1.2",
+      "docs": "https://kesai.eu/py123d/datasets/nuplan/",
+      "status": "stable",
+      "notes": "nuplan-tar reads camera images and LiDAR sweeps straight from the downloaded sensor archives after indexing them once."
+    }
+  },
+  "relations": [
+    {
+      "type": "companion",
+      "target": "nuscenes",
+      "external": false,
+      "note": "Same organization and terms of use."
+    }
+  ],
+  "figures": {
+    "sensor_timeline": {
+      "file": "assets/sensor_timeline.svg",
+      "caption": "Sensor recording timeline of the nuPlan mini split, as measured by py123d.",
+      "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_nuplan-mini.svg",
+      "license": "Apache-2.0"
+    }
+  },
+  "community": {},
+  "sources": {
+    "scale": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "sensors": "https://kesai.eu/py123d/datasets/nuplan/",
+    "annotations": "https://kesai.eu/py123d/datasets/nuplan/",
+    "availability.download_size": "https://kesai.eu/py123d/datasets/nuplan/",
+    "maps": "https://kesai.eu/py123d/datasets/nuplan/"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "medium",
+    "notes": "Release dates of v0.x and v1.1 should be confirmed against the devkit changelog. Split sizes are not recorded."
+  }
+}

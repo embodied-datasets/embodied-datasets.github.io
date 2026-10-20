@@ -1,0 +1,409 @@
+{
+  "slug": "nuscenes",
+  "name": "nuScenes",
+  "aliases": [
+    "nuScenes v1.0"
+  ],
+  "tagline": "Motional's 1,000-scene multimodal benchmark from Boston and Singapore with six cameras, a LiDAR, five radars and HD maps.",
+  "domain": "driving",
+  "family": "nuscenes",
+  "version": "v1.0 (trainval, test, mini) with map expansion v1.3 and CAN bus expansion",
+  "release_date": "2019-03",
+  "last_update": "2021",
+  "organizations": [
+    "motional"
+  ],
+  "homepage": "https://www.nuscenes.org/nuscenes",
+  "links": {
+    "download": [
+      "https://www.nuscenes.org/download"
+    ],
+    "code": [
+      "https://github.com/nutonomy/nuscenes-devkit"
+    ],
+    "leaderboard": "https://www.nuscenes.org/object-detection"
+  },
+  "papers": [
+    {
+      "title": "nuScenes: A multimodal dataset for autonomous driving",
+      "venue": "CVPR 2020",
+      "year": 2020,
+      "arxiv": "1903.11027",
+      "url": "https://arxiv.org/abs/1903.11027",
+      "bibtex": "@inproceedings{Caesar2020CVPR,\n  title={nuScenes: A multimodal dataset for autonomous driving},\n  author={Caesar, Holger and Bankiti, Varun and Lang, Alex H and Vora, Sourabh and Liong, Venice Erin and Xu, Qiang and Krishnan, Anush and Pan, Yu and Baldan, Giancarlo and Beijbom, Oscar},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  year={2020}\n}\n",
+      "required_citation": true
+    }
+  ],
+  "availability": {
+    "status": "available-registration",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "registration",
+      "direct"
+    ],
+    "cost": "free",
+    "eligibility": "Non-commercial use under the nuScenes Terms of Use; commercial licences are negotiated with Motional.",
+    "registration_url": "https://www.nuscenes.org/sign-up",
+    "evidence": [
+      {
+        "url": "https://www.nuscenes.org/nuscenes",
+        "checked": "2026-10-14",
+        "wayback": "http://web.archive.org/web/20260930101904/https://www.nuscenes.org/nuscenes",
+        "http_status": 200,
+        "note": "Dataset page online. Downloads require an account and acceptance of the terms; py123d's downloader wraps the same login flow."
+      }
+    ],
+    "mirrors": [],
+    "download_size": {
+      "compressed_gb": 700,
+      "note": "All archives. The mini split is about 0.6 GB; the smallest useful trainval slice is about 75 GB."
+    },
+    "checksums_published": true,
+    "history": [
+      {
+        "date": "2019-03",
+        "status": "available-registration",
+        "event": "v1.0 full release (trainval and test splits).",
+        "source": "https://www.nuscenes.org/nuscenes"
+      },
+      {
+        "date": "2020",
+        "event": "nuScenes-lidarseg point-wise labels released.",
+        "source": "https://www.nuscenes.org/nuscenes"
+      },
+      {
+        "date": "2021",
+        "event": "nuScenes-panoptic released.",
+        "source": "https://www.nuscenes.org/nuscenes"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "CC-BY-NC-SA-4.0",
+        "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0",
+        "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "applies_to": [
+          "data",
+          "annotations",
+          "maps"
+        ]
+      },
+      {
+        "id": "Apache-2.0",
+        "name": "Apache License 2.0 (devkit)",
+        "url": "https://github.com/nutonomy/nuscenes-devkit/blob/master/LICENSE.txt",
+        "applies_to": [
+          "code"
+        ]
+      }
+    ],
+    "terms_url": "https://www.nuscenes.org/terms-of-use",
+    "permissions": {
+      "commercial": false,
+      "redistribution": true,
+      "derivatives": true,
+      "attribution_required": true,
+      "share_alike": true
+    },
+    "privacy": "Faces and licence plates are blurred in the published images."
+  },
+  "collection": {
+    "reality": "real",
+    "platform": "Renault Zoe passenger car with roof-mounted sensor rig",
+    "vehicle": "Renault Zoe",
+    "num_vehicles": 2,
+    "driving_mode": "human",
+    "locations": [
+      {
+        "city": "Boston",
+        "region": "Massachusetts",
+        "country": "US",
+        "lat": 42.36,
+        "lon": -71.06
+      },
+      {
+        "city": "Singapore",
+        "country": "SG",
+        "lat": 1.35,
+        "lon": 103.82
+      }
+    ],
+    "environment": [
+      "urban"
+    ],
+    "conditions": [
+      "day",
+      "night",
+      "rain"
+    ]
+  },
+  "scale": {
+    "logs": 1000,
+    "log_unit": "scenes",
+    "scene_duration_s": 20,
+    "hours": 5.6,
+    "km": 100.9,
+    "frames": 40000,
+    "annotated_frames": 40000,
+    "boxes_3d": 1400000,
+    "notes": "Frames are the 2 Hz keyframes; 1.4 M camera images and 390 k LiDAR sweeps exist in total."
+  },
+  "modalities": [
+    "ego_pose",
+    "camera",
+    "lidar",
+    "radar",
+    "hd_map",
+    "boxes_3d",
+    "segmentation"
+  ],
+  "sensors": [
+    {
+      "type": "camera",
+      "count": 6,
+      "name": "surround cameras",
+      "hz": 12,
+      "resolution": "1600×900",
+      "fov_deg": 70,
+      "ids": [
+        "PCAM_F0",
+        "PCAM_R0",
+        "PCAM_R1",
+        "PCAM_L0",
+        "PCAM_L1",
+        "PCAM_B0"
+      ],
+      "notes": "The rear camera has a 110° field of view."
+    },
+    {
+      "type": "lidar",
+      "count": 1,
+      "name": "roof LiDAR",
+      "model": "Velodyne HDL-32E",
+      "hz": 20,
+      "beams": 32,
+      "range_m": 70,
+      "ids": [
+        "LIDAR_TOP"
+      ]
+    },
+    {
+      "type": "radar",
+      "count": 5,
+      "model": "Continental ARS 408-21",
+      "hz": 13,
+      "range_m": 250
+    },
+    {
+      "type": "gnss",
+      "count": 1
+    },
+    {
+      "type": "imu",
+      "count": 1
+    },
+    {
+      "type": "can",
+      "count": 1,
+      "notes": "Published separately as the CAN bus expansion."
+    }
+  ],
+  "annotations": [
+    {
+      "type": "boxes_3d",
+      "classes": 23,
+      "hz": 2,
+      "method": "human",
+      "notes": "Boxes carry visibility and activity attributes."
+    },
+    {
+      "type": "tracking_ids",
+      "hz": 2,
+      "method": "human"
+    },
+    {
+      "type": "semantic_seg_lidar",
+      "classes": 32,
+      "hz": 2,
+      "method": "human",
+      "coverage": "nuScenes-lidarseg expansion"
+    },
+    {
+      "type": "panoptic_seg",
+      "hz": 2,
+      "method": "human",
+      "coverage": "nuScenes-panoptic expansion (LiDAR)"
+    }
+  ],
+  "maps": {
+    "available": true,
+    "type": "hd_vector",
+    "dimensions": "2d",
+    "scope": "per_location",
+    "format": "JSON layers (map expansion v1.3) plus rasterised basemaps",
+    "georeferenced": false,
+    "layers": [
+      "lanes",
+      "lane dividers",
+      "road segments",
+      "road blocks",
+      "crosswalks",
+      "walkways",
+      "stop lines",
+      "carparks",
+      "traffic lights"
+    ]
+  },
+  "splits": [
+    {
+      "name": "train",
+      "count": 700,
+      "unit": "scenes"
+    },
+    {
+      "name": "val",
+      "count": 150,
+      "unit": "scenes"
+    },
+    {
+      "name": "test",
+      "count": 150,
+      "unit": "scenes",
+      "hidden_ground_truth": true
+    },
+    {
+      "name": "mini",
+      "count": 10,
+      "unit": "scenes",
+      "notes": "Ten scenes drawn from train and val for quick experiments."
+    }
+  ],
+  "benchmarks": [
+    {
+      "task": "3d_detection",
+      "name": "nuScenes detection task",
+      "url": "https://www.nuscenes.org/object-detection",
+      "eval_server": "unknown"
+    },
+    {
+      "task": "3d_tracking",
+      "name": "nuScenes tracking task",
+      "url": "https://www.nuscenes.org/tracking",
+      "eval_server": "unknown"
+    },
+    {
+      "task": "motion_forecasting",
+      "name": "nuScenes prediction task",
+      "url": "https://www.nuscenes.org/prediction",
+      "eval_server": "unknown"
+    },
+    {
+      "task": "semantic_segmentation",
+      "name": "nuScenes lidarseg task",
+      "url": "https://www.nuscenes.org/lidar-segmentation",
+      "eval_server": "unknown"
+    },
+    {
+      "task": "panoptic_segmentation",
+      "name": "nuScenes panoptic task",
+      "url": "https://www.nuscenes.org/panoptic",
+      "eval_server": "unknown"
+    }
+  ],
+  "formats": {
+    "raw": [
+      "JSON metadata tables",
+      "JPEG images",
+      "binary .pcd.bin LiDAR sweeps",
+      ".pcd radar sweeps"
+    ],
+    "devkit": {
+      "name": "nuscenes-devkit",
+      "url": "https://github.com/nutonomy/nuscenes-devkit",
+      "language": "Python",
+      "maintained": true
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://kesai.eu/py123d/datasets/nuscenes/"
+      },
+      {
+        "name": "mmdetection3d",
+        "url": "https://github.com/open-mmlab/mmdetection3d"
+      },
+      {
+        "name": "OpenPCDet",
+        "url": "https://github.com/open-mmlab/OpenPCDet"
+      }
+    ],
+    "known_issues": [
+      "The HD maps are 2D only."
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "nuscenes",
+        "nuscenes-mini",
+        "nuscenes-stream",
+        "nuscenes-mini-stream",
+        "nuscenes-interpolated",
+        "nuscenes-interpolated-mini"
+      ],
+      "extra": "py123d[nuscenes]",
+      "docs": "https://kesai.eu/py123d/datasets/nuscenes/",
+      "status": "stable",
+      "notes": "The interpolated configs upsample the 2 Hz keyframe annotations to 10 Hz using the intermediate LiDAR sweeps and CAN bus data."
+    }
+  },
+  "relations": [
+    {
+      "type": "companion",
+      "target": "nuplan",
+      "external": false,
+      "note": "Same organization, terms of use and devkit conventions."
+    },
+    {
+      "type": "companion",
+      "target": "nureasoning",
+      "external": false,
+      "note": "Shares the nuScenes terms of use."
+    }
+  ],
+  "figures": {
+    "sensor_timeline": {
+      "file": "assets/sensor_timeline.svg",
+      "caption": "Sensor recording timeline of the nuScenes mini split, as measured by py123d.",
+      "source": "https://github.com/kesai-labs/py123d/blob/main/docs/_static/timeplots/sensor_overview_nuscenes-mini.svg",
+      "license": "Apache-2.0"
+    }
+  },
+  "community": {
+    "semantic_scholar": "arXiv:1903.11027"
+  },
+  "sources": {
+    "scale.hours": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "scale.km": "https://github.com/kesai-labs/py123d#-supported-datasets",
+    "scale.logs": "https://www.nuscenes.org/nuscenes",
+    "scale.boxes_3d": "https://www.nuscenes.org/nuscenes",
+    "sensors": "https://arxiv.org/abs/1903.11027",
+    "annotations": "https://www.nuscenes.org/nuscenes",
+    "splits": "https://www.nuscenes.org/nuscenes",
+    "availability.download_size": "https://kesai.eu/py123d/datasets/nuscenes/",
+    "tooling": "https://kesai.eu/py123d/datasets/nuscenes/"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "high",
+    "notes": "Drafted from the py123d documentation and the nuScenes paper. Please confirm the release month and the panoptic release year."
+  }
+}

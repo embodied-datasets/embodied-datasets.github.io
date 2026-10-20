@@ -1,0 +1,366 @@
+{
+  "slug": "kitscenes-multimodal",
+  "name": "KITScenes Multimodal",
+  "aliases": [
+    "KITScenes"
+  ],
+  "tagline": "KIT's European urban dataset with nine global-shutter cameras, seven long-range LiDARs, three 4D radars and the most complete Lanelet2 HD maps of any public driving dataset.",
+  "domain": "driving",
+  "family": "kitscenes",
+  "version": "Early release",
+  "release_date": "2026-05",
+  "last_update": "2026-06",
+  "organizations": [
+    "kit-mrt"
+  ],
+  "homepage": "https://kitscenes.com/multimodal/",
+  "links": {
+    "download": [
+      "https://huggingface.co/datasets/KIT-MRT/KITScenes-Multimodal"
+    ],
+    "code": [
+      "https://github.com/KIT-MRT/kitscenes"
+    ]
+  },
+  "papers": [
+    {
+      "title": "The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset",
+      "venue": "arXiv preprint",
+      "year": 2026,
+      "arxiv": "2606.02956",
+      "url": "https://arxiv.org/abs/2606.02956",
+      "required_citation": true
+    }
+  ],
+  "availability": {
+    "status": "available-registration",
+    "last_verified": "2026-10-14",
+    "verified_by": "agent",
+    "access_methods": [
+      "hf_hub_gated"
+    ],
+    "cost": "free",
+    "eligibility": "Non-commercial use under CC BY-NC 4.0 and the KITScenes terms.",
+    "registration_url": "https://huggingface.co/datasets/KIT-MRT/KITScenes-Multimodal",
+    "evidence": [
+      {
+        "url": "https://huggingface.co/api/datasets/KIT-MRT/KITScenes-Multimodal",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Hugging Face API reports gated=auto, public, CC BY-NC 4.0, created 2026-05-02, last modified 2026-06-03."
+      },
+      {
+        "url": "https://kitscenes.com/multimodal/",
+        "checked": "2026-10-14",
+        "http_status": 200,
+        "note": "Project page online, labelled \"Early Release\"."
+      }
+    ],
+    "mirrors": [],
+    "download_size": {
+      "note": "Each scene is a single archive of 2–5 GB."
+    },
+    "history": [
+      {
+        "date": "2026-05",
+        "status": "available-registration",
+        "event": "Early release on the Hugging Face Hub.",
+        "source": "https://huggingface.co/datasets/KIT-MRT/KITScenes-Multimodal"
+      },
+      {
+        "date": "2026-06",
+        "event": "Paper published on arXiv.",
+        "source": "https://arxiv.org/abs/2606.02956"
+      }
+    ]
+  },
+  "legal": {
+    "licenses": [
+      {
+        "id": "CC-BY-NC-4.0",
+        "name": "Creative Commons Attribution-NonCommercial 4.0 with KITScenes terms",
+        "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+        "applies_to": [
+          "data",
+          "maps"
+        ]
+      }
+    ],
+    "permissions": {
+      "commercial": false,
+      "redistribution": true,
+      "derivatives": true,
+      "attribution_required": true,
+      "share_alike": false
+    }
+  },
+  "collection": {
+    "reality": "real",
+    "platform": "Research vehicle \"Joy\" (BMW 7 Series with roof sensor rack)",
+    "vehicle": "BMW 7 Series",
+    "num_vehicles": 1,
+    "driving_mode": "human",
+    "locations": [
+      {
+        "city": "Karlsruhe",
+        "region": "Baden-Württemberg",
+        "country": "DE",
+        "lat": 49.01,
+        "lon": 8.4
+      },
+      {
+        "city": "Frankfurt am Main",
+        "region": "Hesse",
+        "country": "DE",
+        "lat": 50.11,
+        "lon": 8.68
+      },
+      {
+        "city": "Sindelfingen",
+        "region": "Baden-Württemberg",
+        "country": "DE",
+        "lat": 48.71,
+        "lon": 9
+      }
+    ],
+    "environment": [
+      "urban"
+    ]
+  },
+  "scale": {
+    "logs": 1000,
+    "log_unit": "scenes",
+    "scene_duration_s": 20,
+    "hours": 5.6,
+    "map_area_km2": 62,
+    "notes": "The project page says \"more than 1,000 scenes\"; hours are computed from scenes × duration."
+  },
+  "modalities": [
+    "ego_pose",
+    "camera",
+    "lidar",
+    "radar",
+    "hd_map"
+  ],
+  "sensors": [
+    {
+      "type": "camera",
+      "count": 6,
+      "name": "surround ring cameras (global shutter, rectified)",
+      "hz": 10,
+      "ids": [
+        "PCAM_F0",
+        "PCAM_L0",
+        "PCAM_L1",
+        "PCAM_B0",
+        "PCAM_R0",
+        "PCAM_R1"
+      ],
+      "notes": "All nine cameras together deliver 72.5 megapixels per frame."
+    },
+    {
+      "type": "camera",
+      "count": 2,
+      "name": "tilted stereo pair",
+      "hz": 10,
+      "ids": [
+        "PCAM_STEREO_L",
+        "PCAM_STEREO_R"
+      ]
+    },
+    {
+      "type": "camera",
+      "count": 1,
+      "name": "high-resolution front camera",
+      "hz": 10,
+      "ids": [
+        "PCAM_F1"
+      ]
+    },
+    {
+      "type": "lidar",
+      "count": 1,
+      "name": "128-channel roof LiDAR",
+      "hz": 10,
+      "beams": 128,
+      "range_m": 400,
+      "ids": [
+        "LIDAR_TOP"
+      ]
+    },
+    {
+      "type": "lidar",
+      "count": 4,
+      "name": "long-range LiDARs",
+      "hz": 10,
+      "ids": [
+        "LIDAR_FRONT",
+        "LIDAR_BACK",
+        "LIDAR_SIDE_LEFT",
+        "LIDAR_SIDE_RIGHT"
+      ]
+    },
+    {
+      "type": "lidar",
+      "count": 2,
+      "name": "tilted corner LiDARs",
+      "hz": 10,
+      "ids": [
+        "LIDAR_FRONT_LEFT",
+        "LIDAR_FRONT_RIGHT"
+      ]
+    },
+    {
+      "type": "radar",
+      "count": 3,
+      "name": "4D imaging radars",
+      "model": "Continental ARS548",
+      "hz": 10,
+      "ids": [
+        "RADAR_FRONT",
+        "RADAR_BACK_LEFT",
+        "RADAR_BACK_RIGHT"
+      ],
+      "notes": "With RCS and Doppler velocity."
+    },
+    {
+      "type": "gnss",
+      "count": 1,
+      "notes": "GNSS/INS measurements are published but not converted by py123d."
+    }
+  ],
+  "annotations": [],
+  "maps": {
+    "available": true,
+    "type": "lanelet2",
+    "dimensions": "3d",
+    "scope": "per_log",
+    "format": "Lanelet2 OSM with UTM origin",
+    "georeferenced": true,
+    "layers": [
+      "lanelets with topology",
+      "crosswalks",
+      "stop lines",
+      "road edges",
+      "road lines",
+      "traffic lights (3D)",
+      "traffic signs (3D)",
+      "poles"
+    ],
+    "notes": "Validated in closed-loop drives with Autoware, so the maps are drivable as published."
+  },
+  "splits": [
+    {
+      "name": "train",
+      "unit": "scenes"
+    },
+    {
+      "name": "val",
+      "unit": "scenes"
+    },
+    {
+      "name": "test",
+      "unit": "scenes"
+    },
+    {
+      "name": "test_e2e",
+      "unit": "scenes",
+      "notes": "Test split of the end-to-end driving benchmark."
+    },
+    {
+      "name": "overlap_train_val",
+      "unit": "scenes"
+    }
+  ],
+  "benchmarks": [
+    {
+      "task": "end_to_end_driving",
+      "name": "Multimodal E2E Driving",
+      "url": "https://kitscenes.com/multimodal/",
+      "eval_server": "unknown"
+    },
+    {
+      "task": "map_perception",
+      "name": "Relational HD Map Perception",
+      "url": "https://kitscenes.com/multimodal/",
+      "eval_server": "unknown"
+    },
+    {
+      "task": "novel_view_synthesis",
+      "url": "https://kitscenes.com/multimodal/",
+      "eval_server": "unknown"
+    },
+    {
+      "task": "depth_estimation",
+      "name": "Monocular depth estimation",
+      "url": "https://kitscenes.com/multimodal/",
+      "eval_server": "unknown"
+    }
+  ],
+  "formats": {
+    "raw": [
+      "per-scene tar archives; JPEG images",
+      "parquet LiDAR and radar",
+      "Lanelet2 OSM maps",
+      "text poses"
+    ],
+    "devkit": {
+      "name": "kitscenes",
+      "url": "https://github.com/KIT-MRT/kitscenes",
+      "language": "Python",
+      "maintained": true
+    },
+    "loaders": [
+      {
+        "name": "py123d",
+        "url": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/kitscenes.rst"
+      }
+    ],
+    "known_issues": [
+      "No 3D bounding boxes in the early release.",
+      "LiDAR points and radar velocities are not ego-motion compensated.",
+      "Timestamps are relative to the scene start; no absolute time is published."
+    ]
+  },
+  "tooling": {
+    "py123d": {
+      "configs": [
+        "kitscenes",
+        "kitscenes-stream"
+      ],
+      "extra": "py123d[hf]",
+      "docs": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/kitscenes.rst",
+      "status": "experimental",
+      "notes": "Converts ego trajectory, all cameras, LiDARs and radars and the per-scene Lanelet2 maps without the lanelet2 library. Docs page not yet deployed to kesai.eu."
+    }
+  },
+  "relations": [
+    {
+      "type": "companion",
+      "target": "KITScenes LongTail",
+      "external": true,
+      "url": "https://arxiv.org/abs/2603.23607",
+      "note": "Same vehicle and group; a language-and-reasoning oriented dataset."
+    }
+  ],
+  "figures": {},
+  "community": {
+    "huggingface": "KIT-MRT/KITScenes-Multimodal"
+  },
+  "sources": {
+    "scale": "https://kitscenes.com/multimodal/",
+    "sensors": "https://github.com/kesai-labs/py123d/blob/main/docs/datasets/kitscenes.rst",
+    "maps": "https://kitscenes.com/multimodal/",
+    "availability": "https://huggingface.co/datasets/KIT-MRT/KITScenes-Multimodal"
+  },
+  "curation": {
+    "created": "2026-10-14",
+    "updated": "2026-10-14",
+    "contributors": [
+      "Claude (agent draft)"
+    ],
+    "schema_version": "0.1.0",
+    "confidence": "medium",
+    "notes": "Split sizes and camera resolutions are not recorded; the dataset is an early preview and will change."
+  }
+}
