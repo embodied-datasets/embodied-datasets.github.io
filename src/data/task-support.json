@@ -1,0 +1,233 @@
+{
+  "d0001": {
+    "name": "KITTI",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "semantic": {
+        "status": "official",
+        "scope": "Pixel-level semantic labeling benchmark",
+        "source": "https://www.cvlibs.net/datasets/kitti/",
+        "reason": "Official benchmark suite explicitly lists this task; use its dedicated task download and split, not the object-detection split."
+      },
+      "instance": {
+        "status": "official",
+        "scope": "Instance-level semantic labeling benchmark",
+        "source": "https://www.cvlibs.net/datasets/kitti/",
+        "reason": "Official benchmark suite explicitly lists this task; use its dedicated task download and split, not the object-detection split."
+      },
+      "tracking": {
+        "status": "official",
+        "scope": "Multi-object tracking benchmark",
+        "source": "https://www.cvlibs.net/datasets/kitti/",
+        "reason": "Official benchmark suite explicitly lists this task; use its dedicated task download and split, not the object-detection split."
+      },
+      "depth": {
+        "status": "official",
+        "scope": "Depth prediction and completion benchmarks",
+        "source": "https://www.cvlibs.net/datasets/kitti/",
+        "reason": "Official benchmark suite explicitly lists this task; use its dedicated task download and split, not the object-detection split."
+      },
+      "flow": {
+        "status": "official",
+        "scope": "Optical flow benchmarks",
+        "source": "https://www.cvlibs.net/datasets/kitti/",
+        "reason": "Official benchmark suite explicitly lists this task; use its dedicated task download and split, not the object-detection split."
+      },
+      "localization": {
+        "status": "official",
+        "scope": "Visual odometry benchmark",
+        "source": "https://www.cvlibs.net/datasets/kitti/",
+        "reason": "Official benchmark suite explicitly lists this task; use its dedicated task download and split, not the object-detection split."
+      }
+    }
+  },
+  "d0002": {
+    "name": "Cityscapes",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "semantic": {
+        "status": "official",
+        "scope": "Pixel-level semantic labeling",
+        "source": "https://www.cityscapes-dataset.com/benchmarks/",
+        "reason": "Official benchmark suite provides this task and evaluation server."
+      },
+      "instance": {
+        "status": "official",
+        "scope": "Instance-level semantic labeling",
+        "source": "https://www.cityscapes-dataset.com/benchmarks/",
+        "reason": "Official benchmark suite provides this task and evaluation server."
+      },
+      "panoptic": {
+        "status": "official",
+        "scope": "Panoptic semantic labeling",
+        "source": "https://www.cityscapes-dataset.com/benchmarks/",
+        "reason": "Official benchmark suite provides this task and evaluation server."
+      }
+    }
+  },
+  "d0003": {
+    "name": "nuScenes",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "semantic": {
+        "status": "official",
+        "scope": "nuScenes-lidarseg expansion",
+        "source": "https://github.com/nutonomy/nuscenes-devkit",
+        "reason": "Official lidar semantic labels and evaluation code; requires the lidarseg expansion."
+      },
+      "panoptic": {
+        "status": "official",
+        "scope": "Panoptic nuScenes expansion",
+        "source": "https://github.com/nutonomy/nuscenes-devkit",
+        "reason": "Official point-cloud panoptic labels and evaluation; requires the panoptic expansion."
+      },
+      "tracking": {
+        "status": "official",
+        "scope": "nuScenes tracking challenge",
+        "source": "https://github.com/nutonomy/nuscenes-devkit",
+        "reason": "Official devkit documents tracking evaluation and its AMOTA metrics."
+      },
+      "trajectory": {
+        "status": "official",
+        "scope": "nuScenes prediction challenge",
+        "source": "https://github.com/nutonomy/nuscenes-devkit",
+        "reason": "Official devkit includes the prediction challenge; use prediction-specific targets and splits."
+      }
+    }
+  },
+  "d0005": {
+    "name": "BDD100K",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "semantic": {
+        "status": "official",
+        "scope": "Image semantic segmentation",
+        "source": "https://github.com/bdd100k/bdd100k",
+        "reason": "Dataset authors explicitly list this task; labels and splits are task-specific."
+      },
+      "instance": {
+        "status": "official",
+        "scope": "Image instance segmentation",
+        "source": "https://github.com/bdd100k/bdd100k",
+        "reason": "Dataset authors explicitly list this task; labels and splits are task-specific."
+      },
+      "tracking": {
+        "status": "official",
+        "scope": "Multi-object detection tracking",
+        "source": "https://github.com/bdd100k/bdd100k",
+        "reason": "Dataset authors explicitly list this task; labels and splits are task-specific."
+      }
+    }
+  },
+  "d0006": {
+    "name": "Argoverse",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "tracking": {
+        "status": "official",
+        "scope": "Argoverse 1 3D Tracking dataset",
+        "source": "https://www.argoverse.org/av1.html",
+        "reason": "Official release defines this component and its task annotations; components require separate downloads."
+      },
+      "trajectory": {
+        "status": "official",
+        "scope": "Argoverse 1 Motion Forecasting dataset",
+        "source": "https://www.argoverse.org/av1.html",
+        "reason": "Official release defines this component and its task annotations; components require separate downloads."
+      },
+      "depth": {
+        "status": "official",
+        "scope": "Argoverse 1 Stereo dataset",
+        "source": "https://www.argoverse.org/av1.html",
+        "reason": "Official release defines this component and its task annotations; components require separate downloads."
+      }
+    }
+  },
+  "d0007": {
+    "name": "Argoverse 2",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "tracking": {
+        "status": "official",
+        "scope": "Argoverse 2 Sensor dataset",
+        "source": "https://www.argoverse.org/av2.html",
+        "reason": "Official release defines this task and component; Sensor and Motion Forecasting are distinct datasets and splits."
+      },
+      "trajectory": {
+        "status": "official",
+        "scope": "Argoverse 2 Motion Forecasting dataset",
+        "source": "https://www.argoverse.org/av2.html",
+        "reason": "Official release defines this task and component; Sensor and Motion Forecasting are distinct datasets and splits."
+      }
+    }
+  },
+  "d0008": {
+    "name": "KITTI-360",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "semantic": {
+        "status": "official",
+        "scope": "2D and 3D semantic segmentation",
+        "source": "https://www.cvlibs.net/datasets/kitti-360/",
+        "reason": "Official site lists this leaderboard; follow its task-specific evaluation protocol."
+      },
+      "instance": {
+        "status": "official",
+        "scope": "2D and 3D instance segmentation",
+        "source": "https://www.cvlibs.net/datasets/kitti-360/",
+        "reason": "Official site lists this leaderboard; follow its task-specific evaluation protocol."
+      },
+      "localization": {
+        "status": "official",
+        "scope": "Semantic SLAM localization benchmark",
+        "source": "https://www.cvlibs.net/datasets/kitti-360/",
+        "reason": "Official site lists this leaderboard; follow its task-specific evaluation protocol."
+      }
+    }
+  },
+  "d0014": {
+    "name": "nuPlan",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "planning": {
+        "status": "official",
+        "scope": "nuPlan planning benchmark",
+        "source": "https://github.com/motional/nuplan-devkit",
+        "reason": "Official planning benchmark and simulation/evaluation framework; not a generic trajectory-prediction label."
+      }
+    }
+  },
+  "d0015": {
+    "name": "DSEC",
+    "checked": "2026-10-19",
+    "verified_by": "agent",
+    "tasks": {
+      "semantic": {
+        "status": "official",
+        "scope": "DSEC-Semantic expansion",
+        "source": "https://dsec.ifi.uzh.ch/dsec-semantic/",
+        "reason": "Official semantic expansion for eleven sequences. Labels are model-generated after image warping, not manually annotated ground truth."
+      },
+      "flow": {
+        "status": "official",
+        "scope": "DSEC-Flow benchmark",
+        "source": "https://dsec.ifi.uzh.ch/uzh/dsec-flow-optical-flow-benchmark/",
+        "reason": "Official event optical-flow benchmark with its task-specific evaluation."
+      },
+      "depth": {
+        "status": "official",
+        "scope": "DSEC stereo disparity benchmark",
+        "source": "https://dsec.ifi.uzh.ch/",
+        "reason": "Official stereo dataset supplies ground-truth disparity for event-based stereo evaluation; this is stereo depth, not a monocular depth benchmark."
+      }
+    }
+  }
+}

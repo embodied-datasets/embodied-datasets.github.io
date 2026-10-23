@@ -1,101 +1,285 @@
 ---
-import Base from '../layouts/Base.astro';
-import DatasetCard from '../components/DatasetCard.astro';
-import StatTile from '../components/StatTile.astro';
-import Timeline from '../components/Timeline.astro';
-import Icon from '../components/Icon.astro';
-import { getDatasets, getFamilies, getOrganizations, countries } from '../lib/data.ts';
-import { STATUS } from '../schema/vocab.ts';
-import { SITE, url, fmtCompact } from '../lib/site.ts';
+import papers from '../data/driving-papers.json';
+import { getTaskSupport, taskNames } from '../lib/task-support.mjs';
+import { iconMarkup } from '../lib/facet-icons.mjs';
+import { getReview } from '../lib/review.mjs';
+import { cardMetadata } from '../lib/card-metadata.mjs';
+import { groups, cardTags, filterFacets } from '../lib/explore.mjs';
+import { url } from '../lib/site';
+import '@fontsource-variable/inter';
 
-const [datasets, families, orgs] = await Promise.all([getDatasets(), getFamilies(), getOrganizations()]);
-const orgName = (id: string) => orgs.find((o) => o.id === id)?.data.name ?? id;
-const n = datasets.length;
-const byStatus = STATUS.map((s) => ({ s, items: datasets.filter((d) => d.data.availability.status === s.id) })).filter((x) => x.items.length > 0);
-const count = (...ids: string[]) => datasets.filter((d) => ids.includes(d.data.availability.status)).length;
-const open = count('available');
-const registration = count('available-registration', 'available-application');
-const gone = count('deprecated-but-downloadable', 'partially-available', 'discontinued', 'superseded');
-const hours = datasets.reduce((acc, d) => acc + (d.data.scale.hours ?? 0), 0);
-const countrySet = new Set(datasets.flatMap((d) => countries(d.data)));
-const latestVerified = datasets.map((d) => d.data.availability.last_verified).sort().at(-1);
+const taskDescriptions = {
+ detection2d: 'Bounding boxes in image space', detection3d: 'Objects in 3D space',
+ semantic: 'Per-pixel or per-point semantic labels', instance: 'Separate instances of each object',
+ panoptic: 'Semantic and instance labels together', trajectory: 'Forecast future agent trajectories',
+ planning: 'Plan driving actions and motion', tracking: 'Follow objects across time',
+ depth: 'Estimate or complete scene depth', flow: 'Estimate pixel motion between frames',
+ localization: 'Localization, odometry and mapping',
+};
+const taskSections = groups.find(group => group.id === 'task')!.options.map(([id, label]) => {
+ const matches = filterFacets(papers, [id]);
+ const featured = [...matches].sort((a, b) => Number(!!cardMetadata[b.name]?.image) - Number(!!cardMetadata[a.name]?.image) || Number(!!b.name) - Number(!!a.name) || b.year - a.year).slice(0, 5);
+ return { id, label, description: taskDescriptions[id], count: matches.length, papers: featured };
+});
+const exhibitLanes = [0,1,2].map(lane => papers.filter((_,i)=>i%3===lane));
+const years = [...new Set(papers.map(p => p.year))].sort((a,b)=>b-a);
 ---
-<Base title={SITE.name}>
-  <section class="hero">
-    <div class="eyebrow">Robot datasets wiki · driving first</div>
-    <h1>Which driving datasets can you still download?</h1>
-    <p class="lead">
-      {SITE.name} keeps one schema-validated record per autonomous driving dataset: sensors, annotations, maps,
-      licences, and above all a dated, evidence-backed <strong>availability status</strong>. Datasets disappear quietly;
-      this wiki notices.
-    </p>
-    <div class="row" style="margin-top:1.2rem; gap:0.6rem">
-      <a class="btn primary" href={url('/datasets/')}><Icon name="database" size={16} /> Browse datasets</a>
-      <a class="btn" href={url('/status/')}><Icon name="shield" size={16} /> Availability report</a>
-      <a class="btn" href={url('/contribute/')}><Icon name="edit" size={16} /> Contribute a record</a>
-    </div>
-  </section>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content="Explore driving datasets by task, sensor, condition and location."/><title>Driving Data</title></head>
+<body>
 
-  <div class="grid tiles">
-    <StatTile value={n} label="datasets recorded" sub="every dataset py123d supports" />
-    <StatTile value={open} label="open, no account needed" />
-    <StatTile value={registration} label="free after registration" />
-    <StatTile value={gone} label="official source gone" sub="mirror-only, partial or discontinued" />
-    <StatTile value={fmtCompact(Math.round(hours))} label="hours of driving tracked" />
-    <StatTile value={countrySet.size} label="countries with recordings" />
-  </div>
+<button id="task-menu-toggle" type="button" aria-controls="task-sidebar" aria-expanded="false">Filters ☰</button>
+<aside id="task-sidebar" aria-label="Dataset filters"><div class="sidebar-heading">Explore by<button id="close-task-menu" type="button" aria-label="Close filters">×</button></div>
+{groups.filter(group=>group.id!=='location').map(group=><fieldset class="sidebar-filter"><legend>{group.id === 'task' ? 'Task (official)' : group.label}</legend>{group.options.map(([id,label])=><label><input type="checkbox" data-facet={id}/>{['sensors','conditions'].includes(group.id) && <span class="sidebar-facet-icon" set:html={iconMarkup(id)}/>}<span>{label}</span></label>)}</fieldset>)}
+<fieldset class="sidebar-filter"><legend>Readiness</legend><label><input type="checkbox" data-facet="py123d"/><span class="sidebar-facet-icon format-supported" set:html={iconMarkup('py123d')}/><span>123D supported</span></label></fieldset>
+<div class="location-soon"><span>Location</span><small>Coming soon</small></div>
+<p class="filter-help">Matches all selected filters.</p>
+</aside>
+<dialog id="dataset-cart" aria-labelledby="cart-title">
+ <div class="cart-heading"><div><span class="cart-eyebrow">YOUR WORKSPACE</span><h2 id="cart-title">My datasets <span id="collection-count">0</span></h2></div><button id="close-cart" type="button" aria-label="Close dataset cart">×</button></div>
+ <p id="selection-hint">Select datasets to compare and plan your setup.</p>
+ <div id="cart-coverage"></div>
+ <div id="selection-preview" aria-label="Selected datasets"></div>
+ <div class="cart-footer"><a id="collection-link" href={url('/?collection=1')}>Compare &amp; prepare <span aria-hidden="true">→</span></a><small>Review labels, splits and download access.</small></div>
+</dialog>
+<main id="main">
+ <div class="search-dock">
+ <section class="search-home" aria-label="Dataset search">
+  <div class="header-intro"><h1>Shop for driving datasets. <span>Spend less time preparing, more time researching.</span></h1></div>
+  <button id="open-cart" class="cart-trigger" type="button" aria-haspopup="dialog" aria-controls="dataset-cart"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3h2l3 12h11l3-9H6M9 20h.01M18 20h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>My datasets <span id="cart-count" aria-live="polite">0</span></button>
+  <form id="search-form" hidden><textarea id="query" aria-label="Search" tabindex="-1"></textarea></form>
 
-  <section class="section">
-    <h2>Availability at a glance</h2>
-    <div class="status-bar" role="img" aria-label="Share of datasets per availability status">
-      {byStatus.map((x) => <span class={`c-${x.s.color}`} style={`width:${((x.items.length / n) * 100).toFixed(1)}%`} title={`${x.s.label}: ${x.items.length}`}></span>)}
-    </div>
-    <div class="legend">
-      {byStatus.map((x) => <span><span class={`sw c-${x.s.color}`}></span>{x.s.label} · {x.items.length}</span>)}
-    </div>
-    <p style="margin-top:0.9rem">
-      Every status is backed by a dated check of the download page, the hosting API or an archived snapshot.
-      Official sources that vanished (PandaSet's download page, for instance) are tracked with their mirrors and a
-      history of what happened when. Last verification in the database: <b>{latestVerified}</b>.{' '}
-      <a href={url('/status/')}>Read the full availability report →</a>
-    </p>
-  </section>
 
-  <section class="section">
-    <h2>Datasets</h2>
-    <div class="grid cards">
-      {datasets.map((e) => <DatasetCard entry={e} orgNames={e.data.organizations.map(orgName)} />)}
-    </div>
-    <p style="margin-top:1rem"><a href={url('/datasets/')}>Compare them side by side in the filterable table →</a></p>
-  </section>
+ </section>
+ <div class="pixel-road" aria-hidden="true"><div class="pixel-car-run"><svg class="pixel-car" width="96" height="48" viewBox="0 0 48 24" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#91a8c5" d="M14 4h20v4h4v4h8v8H2v-8h8V8h4z"/>
+  <path fill="#e2ebf4" d="M16 7h7v5H12V10h4zm11 0h5v3h3v2h-8z"/>
+  <path fill="#405674" d="M8 17h8v7H8zm24 0h8v7h-8z"/>
+ </svg></div></div>
+ </div>
+ <section class="icon-guide" aria-label="Dataset icon guide">
 
-  <section class="section">
-    <h2>Release timeline</h2>
-    <div class="card" style="padding:1rem 0.75rem">
-      <Timeline datasets={datasets} families={families} compact />
-    </div>
-    <p class="small muted" style="margin-top:0.5rem">Dots mark the first release, coloured by today's availability; bars show the span to the last known update. <a href={url('/timeline/')}>Full timeline →</a></p>
-  </section>
+  <details><summary>Icon guide <span>Sensors, conditions &amp; format</span></summary>
+   <div class="icon-guide-content">
+   {groups.filter(g=>['sensors','conditions'].includes(g.id)).map(group=><div class="icon-guide-row"><span class="icon-guide-category">{group.label}</span><div>{group.options.map(([id,label])=><button type="button" data-card-facet={id} title={`Filter by ${label}`} aria-label={`Filter by ${label}`}><span set:html={iconMarkup(id)}/><span>{label}</span></button>)}</div></div>)}
+   <div class="icon-guide-row"><span class="icon-guide-category">Format</span><div><button type="button" data-card-facet="py123d" title="Filter by 123D supported" aria-label="Filter by 123D supported"><span class="format-supported" set:html={iconMarkup('py123d')}/><span>123D supported</span></button><span class="legend-static"><span set:html={iconMarkup('py123d-not-listed')}/>123D not listed</span></div></div>
+   </div>
+  </details>
+ </section>
+ <section class="browse-toolbar" aria-label="Browse datasets"><div class="examples-heading"><h2>Explore datasets <span id="gallery-count" aria-live="polite"></span></h2><label class="dataset-name-search"><span class="sr-only">Search datasets by name</span><input id="dataset-name" type="search" placeholder="Search dataset names…" autocomplete="off"/></label><div class="gallery-actions"><label class="catalog-sort-label">Sort <select id="catalog-sort" aria-label="Sort datasets"><option value="relevance">Default</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label><label class="supported-only"><input type="checkbox" data-facet="py123d"/>Show 123D supported only</label><button id="pause-gallery" type="button" aria-pressed="false">Pause motion</button><button id="browse-examples" type="button">View all →</button></div></div></section>
+ <div class="active-filter-bar"><div id="selected-facets" hidden><div id="facet-chips" aria-label="Selected choices"></div><button id="clear-facets" type="button">Clear all</button></div>
+</div>
+ <section id="examples" aria-label="Dataset exhibition"><p id="gallery-empty" hidden>No datasets match these choices. Try removing a filter.</p>
+ {exhibitLanes.map((lane,index)=><div class="exhibit-lane" aria-label={`Dataset row ${index+1}`} tabindex="0"><div class="exhibit-track">{lane.map(paper=><article class="example-card" data-paper-id={paper.id}><label class="card-select"><input type="checkbox" data-pick={paper.id} aria-label={`Select ${paper.name || paper.title}`}/><span class="sr-only">Select dataset</span></label>
+   <div class="card-preview">
+    <span class="preview-empty"><span class="preview-initial">{(paper!.name || paper!.title).slice(0,2)}</span><small>Preview unavailable</small></span>
+    {cardMetadata[paper!.name]?.image && <img src={cardMetadata[paper!.name].image.startsWith('/') ? url(cardMetadata[paper!.name].image) : cardMetadata[paper!.name].image} alt={cardMetadata[paper!.name].imageAlt || `${paper!.name} official project preview`} style={{objectPosition: cardMetadata[paper!.name].imagePosition || 'center', transform: `scale(${cardMetadata[paper!.name].imageScale || 1})`, transformOrigin: 'top center'}} loading="lazy" referrerpolicy="no-referrer" />}
+    {cardMetadata[paper!.name]?.imageCaption && <span class="preview-caption">{cardMetadata[paper!.name].imageCaption}</span>}
+    {cardMetadata[paper!.name]?.image && <a class="image-source" href={cardMetadata[paper!.name].source} target="_blank" rel="noopener noreferrer">Source ↗</a>}
+   </div>
+   <div class="example-meta"><span>{paper!.year}</span><span>DATASET</span></div>
+   <h3><a href={paper!.paper} target="_blank" rel="noopener noreferrer">{paper!.name || 'Unnamed dataset'}</a></h3>
+   <div class="card-support"><div class="task-support-list" tabindex="0" aria-label="Task support and evidence">{Object.entries(getTaskSupport(paper.id)).map(([task,info])=><a class={`support-badge ${info.status}`} data-support-task={task} href={info.source} target="_blank" rel="noopener noreferrer" title={`${taskNames[task]}: ${info.scope || ''} ${info.reason}`} aria-label={`${taskNames[task]}: ${info.status === 'official' ? 'Official support' : 'Potential use'}. ${info.scope || ''} ${info.reason} Open evidence.`}>{taskNames[task]} · {info.status === 'official' ? 'Official' : 'Potential'}</a>)}</div></div>
+   <div class="card-tags">{groups.filter(group => ['sensors','conditions'].includes(group.id)).map(group => <div class="tag-row"><span class="tag-label">{group.label}</span><div>{(cardTags(paper).find(tags => tags.id === group.id)?.options || []).map(([id,label]) => <button type="button" class="card-tag" data-card-facet={id} title={label} aria-label={`Filter by ${label}`}><span set:html={iconMarkup(id)}/></button>)}{!cardTags(paper).find(tags => tags.id === group.id)?.options.length && <span class="metadata-placeholder" title="Not documented">—</span>}</div></div>)}{getReview(paper.id) && <div class="tag-row format-row"><span class="tag-label">Format</span><div><a class={`card-format-icon ${getReview(paper.id).py123d.status}`} href={getReview(paper.id).py123d.source} target="_blank" rel="noopener noreferrer" aria-label={getReview(paper.id).py123d.status==='supported'?'123D supported: open evidence':'123D not listed: open evidence'} title={(getReview(paper.id).py123d.status==='supported'?'123D supported':'123D not listed')+' — '+getReview(paper.id).py123d.scope}><span set:html={iconMarkup(getReview(paper.id).py123d.status==='supported'?'py123d':'py123d-not-listed')}/></a></div></div>}{!getReview(paper.id) && <div class="tag-row format-row"><span class="tag-label">Format</span><div><span class="metadata-placeholder" title="Not reviewed">—</span></div></div>}</div>
+   <a class="example-link" href={paper!.paper} target="_blank" rel="noopener noreferrer">View paper ↗</a>
+  </article>)}</div></div>)}
+ </section>
+ <section id="results" hidden aria-label="Search results">
+  <button id="back-to-tasks" type="button">← Back to datasets</button><div class="result-top"><div><div class="eyebrow small-label">THE COLLECTION</div><h2 id="result-count" aria-live="polite"></h2></div><div class="filters"><label><span class="sr-only">Publication year</span><select id="year"><option value="">All years</option>{years.map(y=><option value={y}>{y}</option>)}</select></label><label><span class="sr-only">Sort results</span><select id="sort"><option value="relevance">Best match</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label></div></div>
+  <div id="understood"></div><p class="source-note">Task and condition tags use paper titles and available official metadata. Check each paper for evaluation splits and labels.</p><p class="collection-note">Compare your evaluation candidates and export a preparation plan. Downloading and 123D conversion are not run by this prototype.</p>
+  <div id="result-list"></div><div id="empty" hidden><h3>No matching papers yet.</h3><p>Try a broader scenario, a sensor name, or remove the year filter.</p><button id="reset">Browse all papers →</button></div><button id="more" hidden>Show more results <span>↓</span></button>
+ </section>
+</main>
 
-  <section class="section">
-    <h2>How this wiki works</h2>
-    <div class="grid cards">
-      <div class="card">
-        <h3 style="margin-top:0"><Icon name="database" size={18} /> One file per dataset</h3>
-        <p class="small">Facts live in <code>datasets/&lt;slug&gt;/dataset.yaml</code>, prose in an optional <code>page.md</code>. Numbers in prose are shortcodes into the record, so there is one place to fix a fact.</p>
-      </div>
-      <div class="card">
-        <h3 style="margin-top:0"><Icon name="shield" size={18} /> Validated before merge</h3>
-        <p class="small">A strict schema rejects unknown fields and bad enums; cross-references (families, organizations, successors) are checked in CI. Invalid records cannot be merged.</p>
-      </div>
-      <div class="card">
-        <h3 style="margin-top:0"><Icon name="history" size={18} /> Evidence, not vibes</h3>
-        <p class="small">Each availability status carries a verification date, who verified it, the URL that was checked and, where possible, a Wayback snapshot. Status changes are recorded as dated history.</p>
-      </div>
-      <div class="card">
-        <h3 style="margin-top:0"><Icon name="code" size={18} /> Tooling</h3>
-        <p class="small">All recorded datasets are readable through <a href={SITE.py123d} rel="noopener">py123d</a>, which converts them into one Arrow format with a single API. Records link the matching conversion configs.</p>
-      </div>
-    </div>
-  </section>
-</Base>
+<script id="papers" type="application/json" set:html={JSON.stringify(papers).replace(/</g,'\\u003c')}></script>
+<script>
+import { startPixelTraffic } from '../lib/pixel-traffic';
+startPixelTraffic(document.querySelector<HTMLElement>('.pixel-road')!);
+import { renderReview } from '../lib/review-table';
+import { iconMarkup } from '../lib/facet-icons.mjs';
+import { getReview } from '../lib/review.mjs';
+import { searchPapers } from '../lib/discovery.mjs';
+import { labels, filterFacets, cardTags } from '../lib/explore.mjs';
+const data=JSON.parse(document.getElementById('papers')!.textContent!);
+const $=(id:string)=>document.getElementById(id)!;
+const input=$('query') as HTMLTextAreaElement,year=$('year') as HTMLSelectElement,sort=$('sort') as HTMLSelectElement;
+let shown=20,current:any[]=[],active=false;
+const nameInput=$('dataset-name') as HTMLInputElement;
+const normalizeName=(value:string)=>value.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]/gu,'');
+const selected=new Set<string>();
+const saved=new Set<string>();
+try{const stored=JSON.parse(localStorage.getItem('driving-data-selection')||'[]');if(Array.isArray(stored))for(const id of stored)if(data.some((r:any)=>r.id===id))saved.add(id);}catch{}
+let collectionMode=false, browseAll=false, gridMode=false;
+const cart=$('dataset-cart') as HTMLDialogElement;
+$('open-cart').addEventListener('click',()=>{closeTaskMenu();cart.showModal();});
+$('close-cart').addEventListener('click',()=>cart.close());
+cart.addEventListener('click',e=>{if(e.target===cart){const r=cart.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)cart.close();}});
+cart.addEventListener('close',()=> $('open-cart').focus());
+
+function syncSaved(){
+ document.querySelectorAll<HTMLInputElement>('[data-pick]').forEach(box=>{box.checked=saved.has(box.dataset.pick!);box.closest('article')?.classList.toggle('is-picked',box.checked);});
+ $('collection-count').textContent=String(saved.size);
+ $('cart-count').textContent=String(saved.size);
+ $('open-cart').setAttribute('aria-label',`My datasets, ${saved.size} selected`);
+ const tray=$('selection-preview');tray.replaceChildren();
+ for(const id of saved){
+  const row=data.find((r:any)=>r.id===id);if(!row)continue;
+  const item=element('div','','cart-item');
+  const original=galleryCards.find(c=>c.dataset.paperId===id)?.querySelector<HTMLImageElement>('.card-preview img');
+  if(original){const img=document.createElement('img');img.src=original.src;img.alt='';item.append(img);}else item.append(element('span',(row.name||'DD').slice(0,2),'cart-placeholder'));
+  const info=element('div','','cart-item-info');info.append(element('strong',row.name||'Unnamed dataset'));info.append(element('small',String(row.year)+(getReview(id)?' · Metadata reviewed':' · Metadata not reviewed')));item.append(info);
+  const remove=element('button','×','cart-remove') as HTMLButtonElement;remove.type='button';remove.setAttribute('aria-label','Remove '+(row.name||'Unnamed dataset')+' from selection');remove.addEventListener('click',()=>{saved.delete(id);syncSaved();if(collectionMode)showCollection();(tray.querySelector('button')||$('close-cart')).focus();});item.append(remove);tray.append(item);
+ }
+ if(!saved.size){tray.append(element('div','Your collection starts here. Check a dataset card to add it.','cart-empty'));}
+ $('selection-hint').textContent=saved.size?`${saved.size} ${saved.size===1?'dataset':'datasets'} selected for your research.`:'Select datasets to compare and plan your setup.';
+ const coverage=$('cart-coverage');coverage.replaceChildren();coverage.hidden=!saved.size;
+ if(saved.size){
+  const reviewed=[...saved].map(id=>getReview(id)).filter(Boolean);
+  coverage.append(element('span',`CONDITION COVERAGE · ${reviewed.length}/${saved.size} reviewed`,'coverage-label'));
+  const chips=element('div','','coverage-chips');
+  for(const [id,label] of [['night','Night'],['rain','Rain'],['snow','Snow'],['fog','Fog']]){const count=reviewed.filter(r=>r.facets.includes(id)).length;chips.append(element('span',`${label} ${count}`));}
+  coverage.append(chips,element('small','Counts use reviewed metadata only. Zero means not confirmed in your selection.'));
+ }
+ $('collection-link').setAttribute('aria-disabled',String(!saved.size));
+ $('collection-link').tabIndex=saved.size?0:-1;
+ try{localStorage.setItem('driving-data-selection',JSON.stringify([...saved]));}catch{}
+}
+$('collection-link').addEventListener('click',e=>{if(!saved.size)e.preventDefault();});
+
+function showCollection(){clearTimeout(filterTransition);collectionMode=true;active=true;document.body.classList.add('searching','collection-view');$('examples').hidden=true;$('results').hidden=false;current=data.filter((r:any)=>saved.has(r.id)).map((r:any)=>({...r,matched:[]}));$('result-count').textContent=`Compare your datasets · ${current.length}`;$('understood').replaceChildren();$('empty').hidden=!!current.length;$('empty').querySelector('h3')!.textContent='Start your research collection.';$('empty').querySelector('p')!.textContent='Choose a task, explore its datasets, and check the ones you want to compare for your research.';renderRows();syncSaved();}
+document.addEventListener('change',e=>{const box=e.target;if(!(box instanceof HTMLInputElement)||!box.dataset.pick)return;box.checked?saved.add(box.dataset.pick):saved.delete(box.dataset.pick);syncSaved();if(collectionMode)showCollection();});
+
+function element(tag:string,text:string,cls=''){const el=document.createElement(tag);el.textContent=text;if(cls)el.className=cls;return el;}
+let filterTransition:ReturnType<typeof setTimeout>;
+function render(){
+ collectionMode=false;active=false;document.body.classList.remove('collection-view','searching');
+ gridMode=selected.size>0||browseAll||!!nameInput.value.trim();
+ ($('catalog-sort') as HTMLSelectElement).value=sort.value;
+ current=filterFacets(searchPapers(data,'',{year:year.value,sort:sort.value}).results,[...selected]).filter((r:any)=>normalizeName(r.name||'').includes(normalizeName(nameInput.value)));syncFacets();
+ $('results').hidden=true;$('examples').hidden=false;
+ const params=new URLSearchParams();if(nameInput.value.trim())params.set('name',nameInput.value.trim());if(selected.size)params.set('facets',[...selected].join(','));if(browseAll)params.set('browse','1');if(sort.value!=='relevance')params.set('sort',sort.value);history.replaceState(null,'',location.pathname+(params.size?'?'+params.toString():''));
+ const gallery=$('examples');clearTimeout(filterTransition);gallery.classList.add('filter-changing');
+ filterTransition=setTimeout(()=>{
+ document.body.classList.toggle('catalog-grid',gridMode);
+ const byId=new Map(galleryCards.map(card=>[card.dataset.paperId,card]));
+ const ids=new Set(current.map(r=>r.id));
+ const cards=gridMode?current.map(r=>byId.get(r.id)).filter(Boolean):galleryCards.filter(card=>ids.has(card.dataset.paperId));
+ lanes.forEach((lane,index)=>{const track=lane.firstElementChild!;track.replaceChildren(...(gridMode?(index===0?cards:[]):cards.filter((_,i)=>i%lanes.length===index)));lane.hidden=!track.children.length;lane.scrollLeft=0;});
+ for(const card of cards){const badges=card.querySelector('.task-support-list');if(badges){const ordered=[...badges.children].sort((a,b)=>Number(selected.has((b as HTMLElement).dataset.supportTask!))-Number(selected.has((a as HTMLElement).dataset.supportTask!)));badges.append(...ordered);badges.scrollLeft=0;}}
+ motionRemainders.clear();
+ $('gallery-empty').hidden=cards.length>0;$('gallery-count').textContent=gridMode?`${cards.length} matching datasets`:'';syncSaved();gallery.classList.remove('filter-changing');
+ },motionPreference.matches?0:140);
+}
+
+function renderRows(){
+ if(collectionMode){renderReview($('result-list'),current);$('more').hidden=true;return;}
+ const list=$('result-list');list.replaceChildren();
+ for(const r of current.slice(0,shown)){
+  const card=element('article','','result');const pick=document.createElement('input');pick.type='checkbox';pick.dataset.pick=r.id;pick.checked=saved.has(r.id);pick.setAttribute('aria-label','Select '+(r.name||r.title));card.classList.toggle('is-picked',pick.checked);card.append(pick);const info=element('div',String(r.year),'result-year');card.append(info);
+  const body=element('div','','result-body');const title=element('a',r.name||'Unnamed dataset','result-name') as HTMLAnchorElement;title.href=r.paper;title.target='_blank';title.rel='noopener noreferrer';body.append(title);
+
+  const meta=element('div','','result-meta');if(r.matched.length){meta.append(element('span',r.complete?'Matches your search':'Partial match',r.complete?'match-label':'partial-label'));for(const t of r.matched)meta.append(element('span',t));}else meta.append(element('span','Dataset paper'));
+  const tags=element('div','','card-tags');
+  for(const group of cardTags(r)){const row=element('div','','tag-row');row.append(element('span',group.label,'tag-label'));const options=element('div','');for(const [id,label] of group.options){const button=element('button','','card-tag') as HTMLButtonElement;button.type='button';button.innerHTML=iconMarkup(id);button.title=label;button.dataset.cardFacet=id;button.setAttribute('aria-label','Filter by '+label);options.append(button);}row.append(options);tags.append(row);}body.append(tags);
+  body.append(meta);card.append(body);const link=element('a','↗','paper-link') as HTMLAnchorElement;link.href=r.paper;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label',`Open paper: ${r.name||r.title}`);card.append(link);list.append(card);
+ }
+ $('more').hidden=current.length<=shown;
+}
+function search(){clearTimeout(timer);shown=20;render();}
+$('search-form').addEventListener('submit',e=>{e.preventDefault();search();});
+input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();search();}if(e.key==='Escape'){input.value='';input.focus();}});
+let timer:ReturnType<typeof setTimeout>;input.addEventListener('input',()=>{if(active){clearTimeout(timer);timer=setTimeout(search,180);}});
+document.querySelectorAll<HTMLButtonElement>('[data-query]').forEach(b=>b.addEventListener('click',()=>{input.value=b.dataset.query!;search();}));
+function browse(e?:Event){e?.preventDefault();browseAll=true;selected.clear();nameInput.value='';input.value='';year.value='';sort.value='relevance';search();}
+$('reset').addEventListener('click',browse);
+$('browse-examples').addEventListener('click',browse);
+document.querySelectorAll<HTMLButtonElement>('[data-task-browse]').forEach(button=>button.addEventListener('click',()=>{selected.clear();selected.add(button.dataset.taskBrowse!);input.value='';year.value='';sort.value='relevance';search();window.scrollTo({top:0,behavior:'smooth'});}));
+$('back-to-tasks').addEventListener('click',()=>{browseAll=false;clearTimeout(timer);selected.clear();input.value='';year.value='';sort.value='relevance';active=false;collectionMode=false;document.body.classList.remove('collection-view');syncFacets();$('results').hidden=true;$('examples').hidden=false;document.body.classList.remove('searching');history.replaceState(null,'',location.pathname);render();window.scrollTo({top:0,behavior:'smooth'});});
+function setTaskOpen(id:string,open:boolean){const toggle=document.querySelector<HTMLButtonElement>(`[data-task-toggle="${id}"]`)!;toggle.setAttribute('aria-expanded',String(open));const content=$('cards-'+id);content.classList.toggle('collapsed',!open);content.inert=!open;}
+document.querySelectorAll<HTMLButtonElement>('[data-task-toggle]').forEach(b=>b.addEventListener('click',()=>setTaskOpen(b.dataset.taskToggle!,b.getAttribute('aria-expanded')!=='true')));
+const mobileMenu=matchMedia('(max-width:850px)');function syncMenuAccess(){$('task-sidebar').inert=mobileMenu.matches&&!$('task-sidebar').classList.contains('menu-open');}mobileMenu.addEventListener('change',syncMenuAccess);syncMenuAccess();
+function closeTaskMenu(){$('task-sidebar').classList.remove('menu-open');syncMenuAccess();$('task-menu-toggle').setAttribute('aria-expanded','false');}
+$('task-menu-toggle').addEventListener('click',()=>{const open=$('task-sidebar').classList.toggle('menu-open');$('task-menu-toggle').setAttribute('aria-expanded',String(open));syncMenuAccess();if(open)document.querySelector<HTMLInputElement>('[data-facet]')?.focus();});
+$('close-task-menu').addEventListener('click',()=>{closeTaskMenu();$('task-menu-toggle').focus();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeTaskMenu();}});
+document.querySelectorAll<HTMLAnchorElement>('[data-task-jump]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();const id=link.dataset.taskJump!;if(active)$('back-to-tasks').click();setTaskOpen(id,true);closeTaskMenu();history.replaceState(null,'',location.pathname+'#task-'+id);requestAnimationFrame(()=>{const top=$('task-'+id).getBoundingClientRect().top+window.scrollY-document.querySelector('.search-dock')!.getBoundingClientRect().height-20;window.scrollTo({top,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});}));
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');revealObserver.unobserve(entry.target);}}),{threshold:0.06});document.querySelectorAll('[data-reveal]').forEach(card=>revealObserver.observe(card));
+const sectionObserver=new IntersectionObserver(entries=>{const entry=entries.find(e=>e.isIntersecting);if(entry){document.querySelectorAll('[data-task-jump]').forEach(link=>{if(link.getAttribute('href')==='#'+entry.target.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});}},{rootMargin:'-35% 0px -45% 0px'});document.querySelectorAll('.task-section').forEach(section=>sectionObserver.observe(section));
+const dockObserver=new ResizeObserver(([entry])=>document.documentElement.style.setProperty('--dock-height',entry.target.getBoundingClientRect().height+'px'));dockObserver.observe(document.querySelector('.search-dock')!);
+
+year.addEventListener('change',search);sort.addEventListener('change',search);$('more').addEventListener('click',()=>{shown+=20;renderRows();});
+
+function syncFacets(){
+ document.querySelectorAll<HTMLInputElement>('[data-facet]').forEach(b=>b.checked=selected.has(b.dataset.facet!));
+ const chips=$('facet-chips');chips.replaceChildren();
+ for(const id of selected){const b=element('button',labels[id]+' ×','selected-chip') as HTMLButtonElement;b.type='button';b.setAttribute('aria-label','Remove '+labels[id]);b.addEventListener('click',()=>{selected.delete(id);search();});chips.append(b);}
+ $('selected-facets').hidden=!selected.size;
+}
+document.querySelectorAll<HTMLButtonElement>('[data-group]').forEach(button=>button.addEventListener('click',()=>{
+ const open=button.getAttribute('aria-expanded')!=='true';
+ document.querySelectorAll<HTMLButtonElement>('[data-group]').forEach(b=>b.setAttribute('aria-expanded',String(open&&b===button)));
+ document.querySelectorAll<HTMLElement>('[data-panel]').forEach(p=>{const show=open&&p.dataset.panel===button.dataset.group;const wasHidden=p.hidden;p.getAnimations().forEach(a=>a.cancel());if(show){p.hidden=false;p.animate([{opacity:0,transform:'translateY(-6px)'},{opacity:1,transform:'translateY(0)'}],{duration:matchMedia('(prefers-reduced-motion: reduce)').matches?0:180});}else if(!wasHidden){const animation=p.animate([{opacity:1},{opacity:0}],{duration:matchMedia('(prefers-reduced-motion: reduce)').matches?0:140});animation.onfinish=()=>{p.hidden=true;};}});
+}));
+document.querySelectorAll<HTMLInputElement>('[data-facet]').forEach(box=>box.addEventListener('change',()=>{const id=box.dataset.facet!;box.checked?selected.add(id):selected.delete(id);search();}));
+document.addEventListener('click',e=>{const button=(e.target as HTMLElement).closest<HTMLButtonElement>('[data-card-facet]');if(!button)return;selected.add(button.dataset.cardFacet!);search();window.scrollTo({top:0,behavior:'smooth'});});
+document.querySelectorAll<HTMLImageElement>('.card-preview img').forEach(img=>{const fallback=()=>{img.hidden=true;img.parentElement!.querySelector('.image-source')?.remove();};img.addEventListener('error',fallback);if(img.complete&&!img.naturalWidth)fallback();});
+$('clear-facets').addEventListener('click',()=>{selected.clear();search();});
+const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');let paused=motionPreference.matches;
+const lanes=[...document.querySelectorAll<HTMLElement>('.exhibit-lane')];
+for(const lane of lanes){const track=lane.firstElementChild!;const cards=[...track.children];for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]];}track.append(...cards);}
+const galleryCards=lanes.flatMap(lane=>[...lane.querySelectorAll<HTMLElement>('.example-card')]);
+function syncMotion(){const button=$('pause-gallery');button.setAttribute('aria-pressed',String(paused));button.textContent=paused?'Resume motion':'Pause motion';}syncMotion();
+$('pause-gallery').addEventListener('click',()=>{paused=!paused;syncMotion();});motionPreference.addEventListener('change',()=>{paused=motionPreference.matches;syncMotion();});
+const motionRemainders=new Map<HTMLElement,number>();let lastFrame=0;let galleryFrame:number;
+function moveGallery(now:number){const delta=Math.min((now-lastFrame)/1000,0.05);lastFrame=now;if(!paused&&!active&&!gridMode&&!cart.open&&!document.hidden){for(const [index,lane] of lanes.entries()){if(lane.matches(':hover')||lane.contains(document.activeElement))continue;const advance=(motionRemainders.get(lane)||0)+delta*(19+index*3);const pixels=Math.floor(advance);motionRemainders.set(lane,advance-pixels);lane.scrollLeft+=pixels;const track=lane.firstElementChild!;const first=track.firstElementChild as HTMLElement;if(!first||lane.scrollWidth<=lane.clientWidth)continue;const step=first.getBoundingClientRect().width+parseFloat(getComputedStyle(track).gap || '12');if(lane.scrollLeft>=step){track.append(first);lane.scrollLeft-=step;}}}galleryFrame=requestAnimationFrame(moveGallery);}galleryFrame=requestAnimationFrame(moveGallery);window.addEventListener('pagehide',()=>cancelAnimationFrame(galleryFrame));
+nameInput.addEventListener('input',()=>search());
+const params=new URLSearchParams(location.search);nameInput.value=params.get('name')||'';browseAll=params.has('browse');($('catalog-sort') as HTMLSelectElement).value=params.get('sort')||'relevance';
+$('catalog-sort').addEventListener('change',()=>{sort.value=($('catalog-sort') as HTMLSelectElement).value;browseAll=true;search();});
+const retiredFacets=new Set(['reviewed','india','china','korea','japan','germany','usa','africa']);
+for(const id of (params.get('facets')||'').split(','))if(Object.hasOwn(labels,id)&&!retiredFacets.has(id))selected.add(id);
+syncSaved();
+if(params.has('collection'))showCollection();
+else if(params.has('name')||params.has('q')||params.has('browse')||params.has('year')||selected.size){input.value='';year.value=params.get('year')||'';sort.value=params.get('sort')||'relevance';search();}
+</script>
+<style is:global>
+:root{font-family:'Inter Variable',Inter,Arial,sans-serif;color:#18181b;background:#fafaf9;--accent:#5b8def;--muted:#71717a;--border:#e4e4e7;font-synthesis:none;color-scheme:light}
+*{box-sizing:border-box}body{margin:0}button,textarea,select{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer}button,a,select{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #5b8def;outline-offset:5px}[hidden]{display:none!important}
+.search-home{width:min(100%,780px);min-height:100svh;margin:0 auto;padding:40px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.wordmark{display:flex;align-items:center;font-size:42px;font-weight:600;letter-spacing:-1.8px;margin-bottom:40px;line-height:1.2}.wordmark-light{font-weight:400;color:var(--accent)}.brand-icon{display:inline-flex;align-items:center;margin-right:16px;border:1.5px solid #27272a;border-radius:8px;width:39px;height:40px;font-size:33px;padding-left:6px;position:relative;font-weight:500;letter-spacing:-1px}.brand-icon span{position:absolute;font-size:20px;right:-6px;top:-10px;background:#fafaf9;color:var(--accent)}
+#search-form{width:100%}.search-box{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:0 3px 14px #18181b06;padding:18px 17px 18px 22px;transition:box-shadow .2s,border-color .2s}.search-box:focus-within{border-color:var(--accent);box-shadow:0 3px 18px #5b8def12}.search-icon{color:#8b8b94;flex-shrink:0}textarea{flex:1;min-width:0;width:100%;background:none;border:0;outline:0;resize:none;line-height:1.6;height:30px;padding:0;color:#18181b;font-size:18px}textarea::placeholder{color:#93939d}.search-actions{display:flex;flex-shrink:0}.submit{border:0;background:var(--accent);color:#fff;width:36px;height:36px;border-radius:10px;font-size:24px;line-height:1}.submit:hover{background:#4676d4}
+.suggestions{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:22px;font-size:11px}.suggestions>span{color:#93939d;margin-right:3px}.suggestions button{color:#71717a;border:1px solid var(--border);border-radius:24px;padding:9px 12px;background:transparent;font-size:11px}.suggestions button:hover{background:#5b8def0d;border-color:#b2c9f7;color:#3766c1}.suggestions button span{margin-left:9px;color:#5b8def}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#results{max-width:900px;margin:32px auto 60px;padding:0 30px}.result-top{display:flex;align-items:center;justify-content:space-between;gap:15px}.small-label{font-size:9px;letter-spacing:1.8px;color:var(--muted)}h2{font-size:24px;font-weight:480;letter-spacing:-.8px;margin:10px 0}.filters{display:flex;gap:8px}select{border:1px solid var(--border);background:#fafaf9;padding:9px 12px;border-radius:8px;font-size:12px;color:var(--muted);max-width:150px}.source-note{font-size:11px;line-height:1.7;color:var(--muted);margin:19px 0}.result{display:flex;gap:26px;border-top:1px solid var(--border);padding:25px 0;align-items:flex-start}.result-year{font-size:11px;color:var(--muted);padding-top:5px;min-width:32px}.result-body{flex:1;min-width:0}.result-name{font-size:19px;letter-spacing:-.4px;color:#4676d4;font-weight:530;line-height:1.4}.result-name:hover{text-decoration:underline}.paper-title{font-size:13px;color:var(--muted);line-height:1.7;margin:8px 0;overflow-wrap:anywhere}.result-meta{display:flex;gap:10px;flex-wrap:wrap;font-size:10px;color:var(--muted);margin-top:12px}.match-label{color:#4676d4}.partial-label{color:#8d7550}.paper-link{color:var(--accent);font-size:20px;padding:0 5px}#understood{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:15px}.terms-label{font-size:10px;color:var(--muted);margin-right:5px}.term{border-radius:5px;background:#5b8def15;color:#4676d4;font-size:10px;padding:5px 9px}#more,#reset{display:block;border:1px solid var(--border);border-radius:10px;background:white;color:#4676d4;font-size:12px;padding:13px 25px;margin:20px auto}#empty{text-align:center;padding:40px 10px}#empty h3{font-weight:500}#empty p{font-size:13px;color:var(--muted)}
+.searching .search-home{min-height:0;max-width:900px;width:100%;padding:35px 30px 0;align-items:flex-start}.searching .wordmark{font-size:23px;letter-spacing:-.8px;margin-bottom:25px}.searching .brand-icon{width:26px;height:27px;font-size:22px;margin-right:10px;padding-left:4px;border-radius:5px}.searching .brand-icon span{font-size:14px;top:-7px;right:-5px}.searching .suggestions{justify-content:flex-start;margin-top:16px}
+@media(max-width:650px){.wordmark{font-size:35px;margin-bottom:32px}.brand-icon{width:34px;height:35px;font-size:29px}.search-box{padding:14px;gap:10px}textarea{font-size:16px;height:27px}.submit{width:32px;height:32px}.suggestions{gap:8px;margin-top:20px}.suggestions>span{display:none}.suggestions button{font-size:10px;padding:8px 10px}.result-top{align-items:flex-start;flex-direction:column}.result{gap:14px}.result-name{font-size:17px}.result-year{font-size:10px}.searching .search-home,#results{padding-left:24px;padding-right:24px}#results{margin-top:30px}}
+.explore{width:100%;margin-top:22px}.explore-tabs{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap}.explore-label{font-size:11px;color:#93939d;margin-right:4px}.explore-toggle{display:flex;gap:14px;align-items:center;background:transparent;border:1px solid var(--border);border-radius:9px;padding:10px 14px;font-size:12px;color:#52525b}.explore-toggle span{color:#93939d}.explore-toggle:hover,.explore-toggle[aria-expanded="true"]{border-color:#b2c9f7;background:#5b8def0a;color:#3766c1}.explore-panel{margin-top:12px;padding:17px 18px 13px;border:1px solid var(--border);border-radius:13px;background:#fff}.option-list{display:flex;flex-wrap:wrap;gap:8px}.facet-option,.selected-chip{border:1px solid var(--border);border-radius:7px;background:transparent;padding:8px 11px;color:#71717a;font-size:12px}.facet-option:hover{border-color:#b2c9f7}.facet-option[aria-pressed="true"],.selected-chip{color:#3766c1;background:#5b8def13;border-color:#b2c9f7}.explore-panel p{font-size:10px;color:#93939d;margin:13px 0 0;line-height:1.6}#selected-facets{display:flex;align-items:center;gap:12px;margin-top:14px}#facet-chips{display:flex;gap:7px;flex-wrap:wrap}#clear-facets{border:0;background:none;color:#71717a;font-size:11px;white-space:nowrap}.searching .explore-tabs{justify-content:flex-start}.suggestions{margin-top:18px}@media(max-width:650px){.explore-tabs{gap:6px}.explore-label{display:none}.explore-toggle{padding:9px 10px;font-size:11px;gap:8px}.explore-panel{padding:13px}.facet-option{font-size:11px}.searching .suggestions{display:none}}
+/* Keep discovery controls in the same position before and after searching. */
+.search-dock{position:sticky;top:0;z-index:10;background:#fafaf9f7;backdrop-filter:blur(14px);border-bottom:1px solid var(--border);max-height:65svh;overflow-y:auto;scrollbar-width:thin}
+.search-home,.searching .search-home{min-height:0;width:100%;max-width:1080px;padding:28px 32px 22px;align-items:flex-start;justify-content:flex-start}
+.wordmark,.searching .wordmark{font-size:26px;letter-spacing:-1px;margin-bottom:22px}
+.brand-icon,.searching .brand-icon{width:29px;height:30px;font-size:25px;margin-right:11px;padding-left:4px;border-radius:6px}
+.brand-icon span,.searching .brand-icon span{font-size:15px;top:-8px;right:-5px}
+.search-box{padding:14px 16px 14px 20px;border-radius:14px}
+.explore{margin-top:15px}.explore-tabs,.searching .explore-tabs{justify-content:flex-start}
+.suggestions,.searching .suggestions{display:flex;justify-content:flex-start;margin-top:13px}
+#examples,#results{max-width:1080px;margin:0 auto;padding:30px 32px 60px}
+.examples-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.examples-heading h2{font-size:20px;margin:0;letter-spacing:-.4px}.examples-heading button{border:0;background:none;color:#71717a;font-size:12px;padding:8px}.examples-heading button:hover{color:var(--accent)}.examples-heading button span{margin-left:10px}
+.example-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.example-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:13px;padding:22px;min-height:218px;transition:border-color .18s,box-shadow .18s}.example-card:hover{border-color:#a8c2f4;box-shadow:0 4px 18px #5b8def0b}.example-meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#93939d}.example-meta span:last-child{font-size:17px;color:var(--accent)}.example-card h3{font-size:21px;font-weight:550;letter-spacing:-.5px;margin:19px 0 10px}.example-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 23px;overflow-wrap:anywhere}.example-link{margin-top:auto;color:#5b8def;font-size:11px}
+@media(max-width:800px){.example-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.search-home,.searching .search-home{padding:18px 20px 16px}.wordmark,.searching .wordmark{font-size:23px;margin-bottom:17px}.search-box{padding:11px 12px}.suggestions,.searching .suggestions{gap:6px}.suggestions button{font-size:9px;padding:7px 8px}.explore-tabs{gap:6px}.explore-toggle{padding:8px 9px}.search-dock{max-height:65svh}#examples,#results{padding:24px 20px 45px}.example-grid{grid-template-columns:1fr;gap:12px}.example-card{min-height:190px;padding:20px}.example-card h3{margin-top:14px}.examples-heading{margin-bottom:17px}}
+.card-preview{height:160px;margin:-22px -22px 18px;position:relative;overflow:hidden;border-radius:12px 12px 0 0;background:#eef1f6}.card-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#eef1f6}.preview-empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:22px;letter-spacing:-.6px;color:#8a99b2}.preview-empty small{font-size:10px;letter-spacing:0;margin-top:9px;color:#93939d}.image-source{position:absolute;bottom:8px;right:8px;background:#ffffffeb;padding:4px 7px;border-radius:4px;font-size:9px;color:#52525b}.card-tags{display:flex;flex-direction:column;gap:8px;margin:0 0 20px}.tag-row{display:flex;gap:8px;align-items:baseline}.tag-label{font-size:9px;color:#93939d;min-width:53px}.tag-row>div{display:flex;flex-wrap:wrap;gap:5px}.card-tag{border:1px solid #dce5f4;border-radius:5px;background:#f4f7fc;color:#5273a4;font-size:10px;padding:4px 7px}.card-tag:hover{background:#e6efff;border-color:#9bbcf5;color:#315caa}.result .card-tags{margin-top:14px;margin-bottom:8px}.example-card h3 a:hover{color:var(--accent)}
+@media(max-width:650px){.card-preview{margin:-20px -20px 18px;height:170px}}
+.task-directory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 36px}.task-directory a{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:#fff;border:1px solid var(--border);border-radius:9px;font-size:13px;color:#52525b}.task-directory a span:last-child{color:var(--accent)}.task-directory a:hover{border-color:#b2c9f7;color:#3766c1;background:#f4f7fc}.task-section{margin-bottom:40px;scroll-margin-top:calc(var(--dock-height,280px) + 20px)}.task-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.task-heading h2{font-size:19px;letter-spacing:-.4px;margin:0}.task-heading p{font-size:12px;color:var(--muted);margin:7px 0 0}.task-heading button,#back-to-tasks{border:0;background:transparent;font-size:12px;color:#5273a4;white-space:nowrap;padding:8px 0}.task-heading button span{margin-left:8px}#back-to-tasks{margin-bottom:20px}.task-section .example-card h3{font-size:19px}.task-section .example-card p{margin-bottom:18px}
+@media(max-width:650px){.task-directory{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:28px}.task-directory a{padding:13px;font-size:12px}.task-heading p{font-size:11px;line-height:1.5}.task-heading h2{font-size:18px}}
+#task-sidebar{position:fixed;left:0;top:0;bottom:0;width:220px;padding:30px 16px;background:#f4f5f7;border-right:1px solid var(--border);z-index:20;overflow-y:auto}.sidebar-heading{font-size:12px;font-weight:600;color:#71717a;padding:5px 12px 18px;display:flex;justify-content:space-between;align-items:center}#task-sidebar nav{display:flex;flex-direction:column;gap:5px}#task-sidebar nav a{font-size:12px;line-height:1.5;padding:11px 12px;border-radius:7px;color:#71717a}#task-sidebar nav a:hover,#task-sidebar nav a[aria-current]{background:#e7edfa;color:#3766c1}#main{margin-left:220px}.task-content{display:grid;grid-template-rows:1fr;opacity:1;transition:grid-template-rows .28s ease,opacity .22s ease}.task-content.collapsed{grid-template-rows:0fr;opacity:0}.task-content-inner{overflow:hidden;min-height:0}.task-heading .task-toggle{display:flex;align-items:center;gap:10px;font-size:19px;color:#18181b;font-weight:500;padding:0;white-space:normal;text-align:left}.task-chevron{display:inline-block;transition:transform .28s ease;color:#93939d}.task-toggle[aria-expanded="false"] .task-chevron{transform:rotate(-90deg)}.task-heading p{margin-left:26px}.task-section{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:26px}#task-menu-toggle,#close-task-menu{display:none}
+@media(max-width:1100px){.example-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){#main{margin-left:0}#task-sidebar{transform:translateX(-100%);transition:transform .25s ease;box-shadow:8px 0 35px #18181b15;width:240px}#task-sidebar.menu-open{transform:translateX(0)}#task-menu-toggle{display:block;position:fixed;right:18px;bottom:18px;z-index:21;background:#fff;color:#3766c1;border:1px solid #b2c9f7;border-radius:24px;padding:12px 18px;box-shadow:0 3px 16px #18181b12}#close-task-menu{display:block;background:none;border:0;color:#71717a;font-size:22px}.task-heading .task-toggle{font-size:17px}}
+@media(max-width:650px){.example-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.task-content,.task-chevron,#task-sidebar{transition:none}}
+</style>
+<style is:global>
+@import "../styles/discovery-refresh.css";
+@import "../styles/catalog-design.css";
+</style>
+</body></html>

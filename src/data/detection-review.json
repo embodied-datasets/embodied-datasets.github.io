@@ -1,0 +1,469 @@
+{
+  "d0001": {
+    "name": "KITTI",
+    "scope": "Object benchmark (not KITTI-360)",
+    "tasks": {
+      "detection2d": {
+        "status": "official",
+        "reason": "Official 2D object benchmark and image boxes.",
+        "source": "https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d"
+      },
+      "detection3d": {
+        "status": "official",
+        "reason": "Official 3D detection benchmark and cuboids.",
+        "source": "https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d"
+      }
+    },
+    "weather": "Weather stratification not verified.",
+    "labels": "2D boxes + 3D cuboids; car, pedestrian, cyclist evaluation.",
+    "split": "7,481 training / 7,518 test images. Test labels withheld; use a documented training split for local evaluation.",
+    "access": {
+      "status": "registration",
+      "url": "https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d",
+      "note": "Downloads lead to registration/login.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "not-listed",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "Not listed in the reviewed supported-datasets table; this is not a claim of incompatibility."
+    },
+    "facets": [
+      "camera",
+      "lidar"
+    ],
+    "sources": {
+      "tasks": "https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d",
+      "weather": "https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d",
+      "labels": "https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d",
+      "split": "https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d",
+      "access": "https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0003": {
+    "name": "nuScenes",
+    "scope": "nuScenes v1.0",
+    "tasks": {
+      "detection2d": {
+        "status": "potential",
+        "reason": "Project 3D cuboids into images using the official export script; projected boxes need a separate 2D evaluation protocol.",
+        "source": "https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/scripts/export_2d_annotations_as_json.py"
+      },
+      "detection3d": {
+        "status": "official",
+        "reason": "Official 10-class 3D detection task.",
+        "source": "https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/eval/detection/README.md"
+      }
+    },
+    "weather": "Rain and night scenes; per-split condition coverage needs checking.",
+    "labels": "3D cuboids; 10 detection classes, attributes and velocity.",
+    "split": "Train / validation labels public; test labels withheld and evaluated on the server.",
+    "access": {
+      "status": "registration",
+      "url": "https://www.nuscenes.org/download",
+      "note": "Account/terms required; authenticated download not tested.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "supported",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "nuScenes v1.0"
+    },
+    "facets": [
+      "camera",
+      "lidar",
+      "radar",
+      "rain",
+      "night"
+    ],
+    "sources": {
+      "tasks": "https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/eval/detection/README.md",
+      "labels": "https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/eval/detection/README.md",
+      "split": "https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/eval/detection/README.md",
+      "access": "https://github.com/nutonomy/nuscenes-devkit/blob/master/python-sdk/nuscenes/eval/detection/README.md",
+      "weather": "https://arxiv.org/abs/1903.11027"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0004": {
+    "name": "Waymo Open Dataset",
+    "scope": "Perception only; not Motion",
+    "tasks": {
+      "detection2d": {
+        "status": "official",
+        "reason": "Official camera bounding-box labels.",
+        "source": "https://waymo.com/open/about/"
+      },
+      "detection3d": {
+        "status": "official",
+        "reason": "Official LiDAR bounding-box labels.",
+        "source": "https://waymo.com/open/about/"
+      }
+    },
+    "weather": "Diverse conditions documented; weather breakdown not verified.",
+    "labels": "Camera 2D boxes and LiDAR 3D boxes. Label coverage differs by release and modality.",
+    "split": "Train / validation / test: confirm the chosen Perception release and annotation subset before evaluation.",
+    "access": {
+      "status": "registration",
+      "url": "https://waymo.com/open/download/",
+      "note": "Registration/terms required. Current authenticated download not tested.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "supported",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "Perception only; not Motion"
+    },
+    "facets": [
+      "camera",
+      "lidar"
+    ],
+    "sources": {
+      "tasks": "https://waymo.com/open/about/",
+      "weather": "https://waymo.com/open/about/",
+      "labels": "https://waymo.com/open/about/",
+      "split": "https://waymo.com/open/about/",
+      "access": "https://waymo.com/open/about/"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0007": {
+    "name": "Argoverse 2",
+    "scope": "Sensor dataset only",
+    "tasks": {
+      "detection2d": {
+        "status": "potential",
+        "reason": "Calibrated cameras and 3D cuboids permit projected 2D boxes; custom visibility and evaluation rules are needed.",
+        "source": "https://argoverse.github.io/user-guide/datasets/sensor.html"
+      },
+      "detection3d": {
+        "status": "official",
+        "reason": "Provider supplies 30-class 3D cuboid annotations.",
+        "source": "https://argoverse.github.io/user-guide/datasets/sensor.html"
+      }
+    },
+    "weather": "Weather-specific coverage not verified.",
+    "labels": "30-class cuboids at 10 Hz, restricted to the annotated region of interest.",
+    "split": "700 train / 150 validation / 150 test logs. Check test-label access before local evaluation.",
+    "access": {
+      "status": "public",
+      "url": "https://www.argoverse.org/av2.html#download-link",
+      "note": "Public S3 access documented by py123d; full archive not downloaded.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "supported",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "Sensor dataset only"
+    },
+    "facets": [
+      "camera",
+      "lidar"
+    ],
+    "sources": {
+      "tasks": "https://argoverse.github.io/user-guide/datasets/sensor.html",
+      "weather": "https://argoverse.github.io/user-guide/datasets/sensor.html",
+      "labels": "https://argoverse.github.io/user-guide/datasets/sensor.html",
+      "split": "https://argoverse.github.io/user-guide/datasets/sensor.html",
+      "access": "https://github.com/kesai-labs/py123d#-supported-datasets"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0026": {
+    "name": "PandaSet",
+    "scope": "PandaSet",
+    "tasks": {
+      "detection2d": {
+        "status": "potential",
+        "reason": "Camera calibration and cuboids allow projection; derived boxes are not an official 2D benchmark.",
+        "source": "https://github.com/scaleapi/pandaset-devkit"
+      },
+      "detection3d": {
+        "status": "official",
+        "reason": "Provider releases cuboid annotations.",
+        "source": "https://github.com/scaleapi/pandaset-devkit"
+      }
+    },
+    "weather": "Weather coverage not verified.",
+    "labels": "3D cuboids and semantic labels; semantic coverage is scene-dependent.",
+    "split": "Official detection evaluation split not verified; define and publish sequence-level splits.",
+    "access": {
+      "status": "registration",
+      "url": "https://pandaset.org/",
+      "note": "Official devkit directs users to a sign-up form for download links.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "supported",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "PandaSet"
+    },
+    "facets": [
+      "camera",
+      "lidar"
+    ],
+    "sources": {
+      "tasks": "https://github.com/scaleapi/pandaset-devkit",
+      "weather": "https://github.com/scaleapi/pandaset-devkit",
+      "labels": "https://github.com/scaleapi/pandaset-devkit",
+      "split": "https://github.com/scaleapi/pandaset-devkit",
+      "access": "https://github.com/scaleapi/pandaset-devkit"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0008": {
+    "name": "KITTI-360",
+    "scope": "KITTI-360 (not KITTI object benchmark)",
+    "tasks": {
+      "detection2d": {
+        "status": "potential",
+        "reason": "Instance annotations can be converted to boxes; requires a derived-label evaluation protocol.",
+        "source": "https://www.cvlibs.net/datasets/kitti-360/"
+      },
+      "detection3d": {
+        "status": "official",
+        "reason": "Official 3D bounding-box detection benchmark.",
+        "source": "https://www.cvlibs.net/datasets/kitti-360/"
+      }
+    },
+    "weather": "Weather-specific coverage not verified.",
+    "labels": "3D bounding primitives; 2D semantic and instance labels.",
+    "split": "Provider publishes train/validation split; verify detection-specific evaluation files.",
+    "access": {
+      "status": "registration",
+      "url": "https://www.cvlibs.net/datasets/kitti-360/download.php",
+      "note": "Registration and intended-use declaration required.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "supported",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "KITTI-360 (not KITTI object benchmark)"
+    },
+    "facets": [
+      "camera",
+      "lidar"
+    ],
+    "sources": {
+      "tasks": "https://www.cvlibs.net/datasets/kitti-360/",
+      "weather": "https://www.cvlibs.net/datasets/kitti-360/",
+      "labels": "https://www.cvlibs.net/datasets/kitti-360/",
+      "split": "https://www.cvlibs.net/datasets/kitti-360/",
+      "access": "https://www.cvlibs.net/datasets/kitti-360/"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0011": {
+    "name": "ACDC",
+    "scope": "Object detection benchmark",
+    "tasks": {
+      "detection2d": {
+        "status": "official",
+        "reason": "Provider explicitly supports object detection.",
+        "source": "https://acdc.vision.ee.ethz.ch/benchmarks"
+      }
+    },
+    "weather": "Fog, night, rain, snow.",
+    "labels": "Image bounding boxes for thing classes; AP evaluation. Train/validation annotation archive provided.",
+    "split": "Train/validation boxes cover 2,006 adverse-condition images. Test ground truth withheld; official server evaluates all weather or individual conditions.",
+    "access": {
+      "status": "documented",
+      "url": "https://acdc.vision.ee.ethz.ch/download",
+      "note": "Download page lists RGB and detection-label archives as available. Whether download requires login has not been verified.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "not-listed",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "Not listed in the reviewed supported-datasets table; this is not a claim of incompatibility."
+    },
+    "facets": [
+      "camera",
+      "fog",
+      "night",
+      "rain",
+      "snow"
+    ],
+    "sources": {
+      "tasks": "https://acdc.vision.ee.ethz.ch/benchmarks",
+      "weather": "https://acdc.vision.ee.ethz.ch/",
+      "labels": "https://acdc.vision.ee.ethz.ch/download",
+      "split": "https://acdc.vision.ee.ethz.ch/benchmarks",
+      "access": "https://acdc.vision.ee.ethz.ch/download"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0015": {
+    "name": "DSEC",
+    "scope": "DSEC + official DSEC-Detection extension",
+    "tasks": {
+      "detection2d": {
+        "status": "official",
+        "reason": "Official extension supplies image/event-view boxes and track IDs.",
+        "source": "https://dsec.ifi.uzh.ch/dsec-detection/"
+      }
+    },
+    "weather": "Challenging illumination; a weather taxonomy is not verified.",
+    "labels": "8-class 2D boxes, tracker-generated then manually corrected.",
+    "split": "Train/test sequences documented; merge extension sequences and labels with the original DSEC data.",
+    "access": {
+      "status": "public",
+      "url": "https://dsec.ifi.uzh.ch/dsec-detection/",
+      "note": "Direct archive links listed. Base DSEC data is also required.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "not-listed",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "Not listed in the reviewed supported-datasets table; this is not a claim of incompatibility."
+    },
+    "facets": [
+      "camera",
+      "event"
+    ],
+    "sources": {
+      "tasks": "https://dsec.ifi.uzh.ch/dsec-detection/",
+      "weather": "https://dsec.ifi.uzh.ch/dsec-detection/",
+      "labels": "https://dsec.ifi.uzh.ch/dsec-detection/",
+      "split": "https://dsec.ifi.uzh.ch/dsec-detection/",
+      "access": "https://dsec.ifi.uzh.ch/dsec-detection/"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0005": {
+    "name": "BDD100K",
+    "scope": "100K images + Detection 2020 labels",
+    "tasks": {
+      "detection2d": {
+        "status": "official",
+        "reason": "Official object detection images and revised labels.",
+        "source": "https://github.com/bdd100k/bdd100k/blob/master/doc/source/download.rst"
+      }
+    },
+    "weather": "Weather attributes: rain, snow, clear, overcast, partly cloudy, fog; time-of-day includes night.",
+    "labels": "2D boxes in Detection 2020 JSON; weather and time-of-day attributes.",
+    "split": "Image train/validation/test folders; published detection label files include train and validation.",
+    "access": {
+      "status": "public",
+      "url": "https://dl.cv.ethz.ch/bdd100k/data/",
+      "note": "Provider documentation points to the public data host; full archives not tested.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "not-listed",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "Not listed in the reviewed supported-datasets table; this is not a claim of incompatibility."
+    },
+    "facets": [
+      "camera",
+      "rain",
+      "snow",
+      "fog",
+      "night"
+    ],
+    "sources": {
+      "tasks": "https://github.com/bdd100k/bdd100k/blob/master/doc/source/download.rst",
+      "weather": "https://github.com/bdd100k/bdd100k/blob/master/doc/source/format.rst",
+      "labels": "https://github.com/bdd100k/bdd100k/blob/master/doc/source/download.rst",
+      "split": "https://github.com/bdd100k/bdd100k/blob/master/doc/source/download.rst",
+      "access": "https://github.com/bdd100k/bdd100k/blob/master/doc/source/download.rst"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0027": {
+    "name": "CADC",
+    "scope": "Canadian Adverse Driving Conditions",
+    "tasks": {
+      "detection2d": {
+        "status": "potential",
+        "reason": "Official demo projects 3D cuboids onto cameras; derived boxes need a separate protocol.",
+        "source": "https://github.com/mpitropov/cadc_devkit"
+      },
+      "detection3d": {
+        "status": "official",
+        "reason": "Provider supplies 3D annotation files and a detection-loader reference.",
+        "source": "https://github.com/mpitropov/cadc_devkit"
+      }
+    },
+    "weather": "Adverse winter conditions; severity/split breakdown needs verification.",
+    "labels": "3D cuboids with calibrated camera/LiDAR projections.",
+    "split": "Canonical detection split not verified; provider references an OpenPCDet loader.",
+    "access": {
+      "status": "documented",
+      "url": "https://github.com/mpitropov/cadc_devkit",
+      "note": "Download script documented; dataset host could not be verified in this review.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "not-listed",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "Not listed in the reviewed supported-datasets table; this is not a claim of incompatibility."
+    },
+    "facets": [
+      "camera",
+      "lidar"
+    ],
+    "sources": {
+      "tasks": "https://github.com/mpitropov/cadc_devkit",
+      "weather": "https://github.com/mpitropov/cadc_devkit",
+      "labels": "https://github.com/mpitropov/cadc_devkit",
+      "split": "https://github.com/mpitropov/cadc_devkit",
+      "access": "https://github.com/mpitropov/cadc_devkit"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  },
+  "d0030": {
+    "name": "RADIATE",
+    "scope": "Radar-image detection; not camera-box detection",
+    "tasks": {
+      "detection2d": {
+        "status": "official",
+        "reason": "Rotated 2D boxes are on radar images (BEV), not camera images. Do not compare directly to camera 2D AP.",
+        "source": "https://pro.hw.ac.uk/radiate/doc/dataset/"
+      }
+    },
+    "weather": "Sunny/overcast, rain, fog, snow and night.",
+    "labels": "8-class rotated radar-image boxes; no verified full 3D cuboid benchmark.",
+    "split": "Sequence protocol/split should be checked in the SDK; not verified here.",
+    "access": {
+      "status": "registration",
+      "url": "https://pro.hw.ac.uk/radiate/",
+      "note": "Provider directs users to register and download.",
+      "verification": "Documentation reviewed; file download not tested"
+    },
+    "py123d": {
+      "status": "not-listed",
+      "source": "https://github.com/kesai-labs/py123d#-supported-datasets",
+      "scope": "Not listed in the reviewed supported-datasets table; this is not a claim of incompatibility."
+    },
+    "facets": [
+      "camera",
+      "lidar",
+      "radar",
+      "rain",
+      "fog",
+      "snow",
+      "night"
+    ],
+    "sources": {
+      "tasks": "https://pro.hw.ac.uk/radiate/doc/dataset/",
+      "weather": "https://pro.hw.ac.uk/radiate/doc/dataset/",
+      "labels": "https://pro.hw.ac.uk/radiate/doc/dataset/",
+      "split": "https://pro.hw.ac.uk/radiate/doc/dataset/",
+      "access": "https://pro.hw.ac.uk/radiate/doc/dataset/"
+    },
+    "checked": "2026-10-19",
+    "verifiedBy": "agent"
+  }
+}

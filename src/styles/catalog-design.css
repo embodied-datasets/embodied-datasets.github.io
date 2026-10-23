@@ -1,0 +1,134 @@
+/* Research marketplace: shared surface, type and spacing rules. */
+:root{--catalog-ink:#26384f;--catalog-muted:#64748b;--catalog-line:#e0e7ef;--catalog-blue:#416fd6}
+body{background:#f5f7fa;color:var(--catalog-ink)}
+.search-dock{background:#fff;border-bottom:1px solid var(--catalog-line);box-shadow:none}
+.search-home,.searching .search-home{padding:20px 28px;align-items:center;gap:24px}
+.header-intro h1{font-size:19px;line-height:1.5;font-weight:600;color:var(--catalog-ink);letter-spacing:-.45px}
+.header-intro h1 span{font-weight:400;color:var(--catalog-muted)}
+.cart-trigger{background:var(--catalog-blue);border-color:var(--catalog-blue);color:#fff;font-weight:500;border-radius:8px;padding:10px 14px}
+.cart-trigger:hover{background:#345db9;border-color:#345db9}
+.cart-trigger>span{background:#fff;color:#345db9;font-weight:600}
+#task-sidebar{background:#fff;border-right:1px solid var(--catalog-line);padding:24px 14px 32px}
+.sidebar-heading{color:#63748b;padding:0 8px 20px;letter-spacing:1.4px}
+.sidebar-filter{margin-bottom:20px}
+.sidebar-filter legend{padding-left:8px;font-size:12px;color:var(--catalog-ink);margin-bottom:7px}
+.sidebar-filter label{font-size:12px;line-height:1.4;gap:8px;padding:6px 8px;border-radius:6px;color:#596b82}
+.sidebar-filter label:hover{background:#f4f7fb}
+.sidebar-filter label:has(:checked){background:#edf3ff;color:#345db9}
+.sidebar-filter input{width:15px;height:15px}
+.filter-help{font-size:11px;line-height:1.5;color:var(--catalog-muted);padding:0 8px}
+.icon-guide{padding:0 28px 10px;background:#fff}
+.icon-guide details{padding:10px 0;border-bottom:0}
+.icon-guide summary{font-size:11px;color:#5b6f8c}
+.project-papers{font-size:11px;color:#718097;padding:10px 0}
+.browse-toolbar{padding:18px 28px 14px;display:block}
+.browse-toolbar .examples-heading{display:flex;justify-content:space-between;gap:12px}
+.browse-toolbar .examples-heading h2{font-size:19px;color:var(--catalog-ink);letter-spacing:-.5px}
+.gallery-actions{gap:14px}
+.gallery-actions button,.catalog-sort-label{font-size:12px;color:#526781}
+#gallery-count{font-size:11px;color:var(--catalog-muted)}
+.active-filter-bar{padding:0 28px}
+#selected-facets{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+#selected-facets[hidden]{display:none}
+#facet-chips{display:flex;flex-wrap:wrap;gap:6px}
+.selected-chip{font-size:11px;background:#e9f0ff;border:1px solid #d7e3fa;color:#345db9;padding:6px 9px;border-radius:5px}
+#clear-facets{font-size:11px;color:#5b6f8c;white-space:nowrap}
+.collection-view .active-filter-bar{display:none}
+.exhibit-track{gap:12px;padding:0 28px;align-items:stretch}
+.exhibit-lane{margin-bottom:16px;padding:2px 0 4px}
+.exhibit-track .example-card,.exhibit-track .example-card:has(.card-support),.catalog-grid .exhibit-track .example-card{height:auto;min-height:280px;padding:10px 10px 12px;border:1px solid var(--catalog-line);border-radius:10px;background:#fff;box-shadow:0 2px 4px #26384f03;overflow:hidden}
+.exhibit-track .example-card:hover{border-color:#a7bad7;box-shadow:0 4px 14px #26384f0c}
+.exhibit-track .example-card.is-picked{border-color:#416fd6;box-shadow:0 0 0 1px #416fd6}
+.exhibit-track .card-preview{margin:-10px -10px 10px;aspect-ratio:16/9;height:auto;border-radius:9px 9px 0 0}
+.exhibit-track .example-card h3{font-size:15px;line-height:1.35;font-weight:600;letter-spacing:-.3px;margin:5px 0 8px;min-height:40px;color:var(--catalog-ink)}
+.example-meta{font-size:10px;color:#68788e}
+.exhibit-track .card-tags{margin:8px 0 12px;border:0;gap:6px;max-height:none;overflow:visible;flex-shrink:0}
+.example-card .tag-row{padding:0;border:0;gap:6px;min-height:26px}
+.example-card .tag-label{font-size:10px;min-width:56px;color:#64748b}
+.example-card .tag-row:last-child:not(:first-child) .card-tag{background:#f0f4fa;color:#577dad}
+.exhibit-track .card-support{margin:0 0 2px}
+.support-badge{font-size:10px;padding:4px 5px}
+.exhibit-track .example-link{font-size:11px;color:#416fd6;border-top:1px solid #eef2f6;padding-top:9px;margin-top:auto}
+.exhibit-track .preview-empty{background:#edf1f6;color:#8495ad}
+.preview-empty .preview-initial{font-size:28px;opacity:.6;letter-spacing:-1px}
+.preview-empty small{font-size:10px;color:#718199}
+.card-select{width:30px;height:30px;top:7px;left:7px;border-radius:7px;box-shadow:0 1px 5px #172c4620}
+.card-select input{width:18px;height:18px;accent-color:var(--catalog-blue)}
+.catalog-grid #examples{padding:0 28px 36px}
+.catalog-grid .exhibit-track{padding:0;gap:12px;grid-template-columns:repeat(auto-fill,minmax(195px,1fr))}
+:where(button,a,input,select,summary):focus-visible{outline:2px solid #416fd6;outline-offset:3px}
+#dataset-cart{color:var(--catalog-ink)}
+.cart-heading h2{font-weight:600}.cart-empty,#selection-hint{color:#64748b}
+@media(max-width:1100px){.header-intro h1{font-size:17px}.project-papers{float:none;padding-bottom:0}.icon-guide details{padding-top:6px}}
+@media(max-width:850px){#task-sidebar{background:#fff}.search-home,.searching .search-home{padding:16px 20px}.icon-guide,.active-filter-bar{padding-left:20px;padding-right:20px}.browse-toolbar{padding:16px 20px 12px}.exhibit-track{padding-left:20px;padding-right:20px}.catalog-grid #examples{padding-left:20px;padding-right:20px}}
+@media(max-width:600px){.search-home,.searching .search-home{display:flex;flex-wrap:wrap;padding:16px;gap:12px}.header-intro{flex-basis:100%}.header-intro h1{font-size:17px;line-height:1.5}.cart-trigger{margin-left:auto;font-size:12px}.cart-trigger svg{display:block}.icon-guide,.active-filter-bar{padding-left:16px;padding-right:16px}.project-papers{font-size:10px;gap:7px}.browse-toolbar{padding:14px 16px 12px}.browse-toolbar .examples-heading{flex-wrap:wrap}.browse-toolbar .examples-heading h2{font-size:18px}.gallery-actions{gap:12px}.exhibit-track{padding-left:16px;padding-right:16px}.catalog-grid #examples{padding-left:12px;padding-right:12px}.catalog-grid .exhibit-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.example-card .tag-label{min-width:45px;font-size:9px}.example-card .tag-row{gap:3px}.example-card .card-tag,.card-format-icon{width:25px;height:27px}.exhibit-track .example-card h3{font-size:14px;min-height:38px}.exhibit-track .example-card,.exhibit-track .example-card:has(.card-support){min-height:270px}#gallery-count{display:block;margin:4px 0 0}.active-filter-bar #selected-facets{align-items:flex-start}}
+/* Moving shelves size each card to its content; filtered grid aligns within rows. */
+.exhibit-track{align-items:flex-start}
+.catalog-grid .exhibit-track{align-items:stretch}
+/* Fixed slots keep every dataset in the same visual register. */
+.exhibit-track .example-card,.exhibit-track .example-card:has(.card-support),.catalog-grid .exhibit-track .example-card{display:grid;grid-template-rows:104px 14px 36px 22px 78px minmax(22px,1fr);gap:4px;height:318px;min-height:318px;padding:0 10px 10px;align-content:start}
+.exhibit-track .card-preview{height:104px;aspect-ratio:auto;margin:0 -10px;min-width:0}
+.exhibit-track .example-meta{margin:0;line-height:14px}
+.exhibit-track .example-card h3{margin:0;min-height:0;height:36px;line-height:18px}
+.exhibit-track .card-support{margin:0;min-height:22px;overflow:hidden}
+.task-support-list{flex-wrap:nowrap}
+.exhibit-track .card-tags{display:grid;grid-template-rows:24px 24px 24px;gap:3px;margin:0;min-width:0}
+.example-card .tag-row{min-width:0;min-height:0;margin:0;padding:0}
+.example-card .tag-row>div{flex:1;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+.example-card .card-tag,.card-format-icon{width:23px;height:24px;flex-shrink:0}
+.metadata-placeholder{color:#a1adbd;font-size:13px;padding-left:5px}
+.exhibit-track .example-link{margin:0;padding:4px 0 0;line-height:17px}
+/* Name lookup sits beside the catalog heading; readiness shares facet state. */
+.browse-toolbar .examples-heading{flex-wrap:wrap;justify-content:flex-start}
+.dataset-name-search{flex:1;min-width:170px;max-width:290px}
+.dataset-name-search input{width:100%;font:inherit;font-size:12px;color:#26384f;background:#fff;border:1px solid #dce4ef;border-radius:7px;padding:9px 12px;outline-offset:2px}
+.dataset-name-search input::placeholder{color:#8190a4}
+.gallery-actions{margin-left:auto;flex-wrap:wrap}
+.supported-only{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:#526781;white-space:nowrap;cursor:pointer}
+.supported-only input{width:14px;height:14px;margin:0;accent-color:#416fd6}
+@media(max-width:600px){.dataset-name-search{max-width:none;min-width:150px}.gallery-actions{width:100%;justify-content:flex-start;margin-left:0;gap:12px}.supported-only{font-size:10px}}
+
+/* Anchor the paper action to the bottom of its fixed card. */
+.exhibit-track .example-link{align-self:end}
+.exhibit-track .card-support{overflow:visible;min-width:0}
+.task-support-list{height:22px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;min-width:0}
+.task-support-list::-webkit-scrollbar{display:none}
+.task-support-list .support-badge{flex-shrink:0;white-space:nowrap;font-size:9px;padding:4px 5px}
+.task-support-list .support-badge:hover{text-decoration:underline}
+
+/* A quiet pixel car rides the header divider, inspired by the personal site's pixel landscape. */
+.search-dock{border-bottom:0}
+.search-home,.searching .search-home{padding-bottom:29px}
+.pixel-road{position:absolute;bottom:0;left:0;right:0;height:26px;overflow:hidden;pointer-events:none;border-bottom:1px solid #cbd4df}
+.pixel-car-run{position:absolute;inset:0;animation:drive-left 24s linear infinite;animation-delay:-7s;will-change:transform}
+.pixel-car{position:absolute;left:0;bottom:0;display:block}
+
+@keyframes drive-left{from{transform:translateX(100%)}to{transform:translateX(-100px)}}
+@media(max-width:600px){.pixel-car-run{animation-duration:14s;animation-delay:-4s}}
+@media(prefers-reduced-motion:reduce){.pixel-car-run{animation:none;transform:translateX(72%)}}
+
+/* Let the larger, simple sprite cross the header lettering itself. */
+.search-home,.searching .search-home{padding-bottom:20px}
+.pixel-road{height:100%;border-bottom:1px solid #cbd4df;z-index:2}
+.pixel-car{width:96px;height:48px;bottom:auto;top:50%;transform:translateY(-50%)}
+@media(max-width:600px){.search-home,.searching .search-home{padding-bottom:16px}.pixel-car{width:80px;height:40px}}
+/* The divider is a small road; header content stays in front of passing cars. */
+.search-dock{isolation:isolate}
+.search-home,.searching .search-home{position:relative;z-index:3}
+.pixel-road{height:100%;border-bottom:0;z-index:1}
+.pixel-road::before{content:"";position:absolute;bottom:0;left:0;right:0;height:9px;background:#d5dde7;border-top:1px solid #bec9d7;border-bottom:1px solid #bec9d7}
+.pixel-road::after{content:"";position:absolute;bottom:4px;left:0;right:0;height:1px;background:repeating-linear-gradient(to right,#f9fbfd 0 14px,transparent 14px 27px)}
+.pixel-car{top:auto;bottom:8px;transform:none}
+
+/* JS schedules sparse, non-repeating arrivals; each sprite runs only once. */
+.pixel-car-run{animation:none;transform:translateX(100%)}
+@media(prefers-reduced-motion:reduce){.pixel-car-run{transform:translateX(72%)}}
+
+.location-soon{display:flex;align-items:center;justify-content:space-between;padding:0 8px;margin:0 0 20px;font-size:12px;color:#8190a4}.location-soon small{font-size:10px;color:#98a3b3}
+
+/* Official 123D road-and-cube symbol, at its original wide proportions. */
+.card-format-icon.supported{width:32px;background:transparent;padding:0}
+.card-format-icon.supported .facet-icon{width:30px;height:17px}
+.sidebar-facet-icon:has(.py123d-symbol){flex-basis:28px}
+.sidebar-facet-icon .py123d-symbol{width:28px;height:16px}
+.icon-guide .py123d-symbol{width:30px;height:17px}
